@@ -1,4 +1,4 @@
-const mix = require('laravel-mix');
+const mix = require('laravel-mix')
 
 /*
  |--------------------------------------------------------------------------
@@ -12,6 +12,13 @@ const mix = require('laravel-mix');
  */
 
 mix.js('resources/js/app.js', 'public/js')
-    .postCss('resources/css/app.css', 'public/css', [
-        //
-    ]);
+    .sass('resources/sass/app.sass', 'public/css')
+    .browserSync({
+        notify: true,
+        proxy: 'homepage-laradock_nginx_1', // nginx or caddy Docker ip (more on that later)
+        host: 'localhost', // your hostname from .hosts
+        open: false,
+        files: [
+            'resources/**/*',
+        ]
+    })
