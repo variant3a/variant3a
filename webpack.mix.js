@@ -14,7 +14,7 @@ const mix = require('laravel-mix')
 mix.js('resources/js/app.js', 'public/js')
     .sass('resources/sass/app.sass', 'public/css')
     .browserSync({
-        notify: true,
+        notify: false,
         proxy: 'homepage-laradock_nginx_1', // nginx or caddy Docker ip (more on that later)
         host: 'localhost', // your hostname from .hosts
         open: false,
@@ -22,3 +22,7 @@ mix.js('resources/js/app.js', 'public/js')
             'resources/**/*',
         ]
     })
+
+if (mix.inProduction()) {
+    mix.version()
+}
