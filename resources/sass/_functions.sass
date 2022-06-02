@@ -124,3 +124,8 @@ input[type="color"]:focus,
     box-shadow: 0 0 0 0.2rem nth(rgba($main-color, 0.5), 1)
     outline: 0 none
     transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out
+
+input:-webkit-autofill,
+input:-webkit-autofill:focus
+    -webkit-box-shadow: 0 0 0 10000px darken(rgba($main-color, 0.5), 25%) inset !important
+    -webkit-text-fill-color: $white !important

@@ -19723,6 +19723,12 @@ input[type=color]:focus,
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 
+input:-webkit-autofill,
+input:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0 10000px rgba(14, 91, 68, 0.5) inset !important;
+  -webkit-text-fill-color: #fff !important;
+}
+
 @font-face {
   font-family: "bootstrap-icons";
   src: url(/fonts/vendor/bootstrap-icons/bootstrap-icons.woff2?f2539a501be3a673de05437f73913ca3) format("woff2"), url(/fonts/vendor/bootstrap-icons/bootstrap-icons.woff?7ff3ca6fa798de3f8ac2251c7ed9c581) format("woff");
