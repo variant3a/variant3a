@@ -24,12 +24,8 @@
     @return $result
 
 @mixin generate-color-classes($key, $value)
-    $text-color: $black
+    $text-color: if(number(str-slice($key, -3)) >= 500, $white, $black)
 
-    @if number(str-slice($key, -3)) >= 500
-        $text-color: $white
-    @else
-        $text-color: $black
     .bg-#{$key}
         background-color: $value !important
     .text-#{$key}
@@ -129,3 +125,5 @@ input:-webkit-autofill,
 input:-webkit-autofill:focus
     -webkit-box-shadow: 0 0 0 10000px darken(rgba($main-color, 0.5), 25%) inset !important
     -webkit-text-fill-color: $white !important
+meta[name="theme-color"]
+    attr-content: $main-color
