@@ -7,7 +7,7 @@ use Livewire\Component;
 class Index extends Component
 {
 
-    public string $title = 'Posts';
+    public string $title = 'Home';
 
     public function render()
     {

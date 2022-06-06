@@ -10,7 +10,7 @@ use Livewire\Component;
 class Create extends Component
 {
 
-    public string $title = 'Posts';
+    public string $title = 'Create Posts';
     public string $preview = '';
     public $tag = [];
     public $post, $tags;
