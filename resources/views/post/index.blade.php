@@ -14,17 +14,21 @@
                     </a>
                 </div>
             </div>
-            <div class="card text-bg-800">
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-12">
-                            <input wire:model="keyword" type="text" class="form-control border-700 text-bg-700" placeholder="Keywords">
+            <div class="row mb-3">
+                <div class="col-12 d-grid gap-2">
+                    <div class="card text-bg-800">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-12">
+                                    <input wire:model="keyword" type="text" class="form-control border-700 text-bg-700" placeholder="Keywords">
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class=" col-md-9">
+        <div class="col-md-9">
             <div class="card text-bg-800">
                 @if ($posts->count())
                     @foreach ($posts as $post)
