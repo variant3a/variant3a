@@ -2,7 +2,7 @@
     <div class="col-md-4 col-12">
         <div class="card text-bg-800">
             <div class="card-body">
-                @if ($tags)
+                @if ($tags->count())
                     @foreach ($tags as $tag)
                         <input type="checkbox" wire:model="tag" class="btn-check" id="btn-check-{{ $tag->id }}" value="{{ $tag->id }}" autocomplete="off">
                         <label class="px-3 btn btn-outline-main-500 btn-sm" for="btn-check-{{ $tag->id }}">
