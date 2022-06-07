@@ -12,15 +12,8 @@
                 <div class="card text-bg-800">
                     <div class="card-body">
                         <div class="row">
-                            <div class="col-12 d-flex">
+                            <div class="col-12">
                                 <input type="text" wire:model="keyword" class="form-control border-700 text-bg-700" placeholder="Keywords">
-                                <button class="btn btn-700 ms-2" wire:click="sortPost">
-                                    @if ($sort_post)
-                                        <i class="bi bi-sort-alpha-up"></i>
-                                    @else
-                                        <i class="bi bi-sort-alpha-down"></i>
-                                    @endif
-                                </button>
                             </div>
                         </div>
                     </div>
@@ -42,27 +35,26 @@
                                         </h5>
                                     </div>
                                 </div>
-                                <div class="row">
-
+                                <div class="row mb-3">
+                                    <div class="col-12 text-500">
+                                        {{ $post->user->name }}
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-12">
+                                        {!! Illuminate\Mail\Markdown::parse(e($post->content)) !!}
+                                    </div>
                                 </div>
                                 <div class="row">
-
+                                    <div class="col-12">
+                                        <h6 class="card-subtitle mb-2 text-muted">
+                                            {{ $post->created_at->format('Y-m-d H:i') }}
+                                        </h6>
+                                    </div>
                                 </div>
-                                <div class="row">
-
-                                </div>
-                                <p class="card-text">
-                                    {!! $post->content !!}
-                                </p>
-                                <h6 class="card-subtitle mb-2 text-muted">
-                                    {{ $post->created_at }}
-                                </h6>
-                                <h6 class="card-subtitle mb-2 text-muted">
-                                    {{ $post->updated_at }}
-                                </h6>
                             </div>
                             @if (!$loop->last)
-                                <hr>
+                                <hr class="my-0">
                             @endif
                         @endforeach
                     @else

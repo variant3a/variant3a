@@ -62,7 +62,7 @@ class User extends Authenticatable
 
     protected $dates = [
         'created_at',
-        'udpated_at',
+        'updated_at',
     ];
 
     public function posts()

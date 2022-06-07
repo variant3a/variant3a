@@ -10,7 +10,6 @@ class Index extends Component
 
     public string $title = 'Posts';
     public string $keyword = '';
-    public bool $sort_post = false;
     public $posts;
 
     public function render()
@@ -25,7 +24,6 @@ class Index extends Component
     {
         $posts = Post::query();
         $keyword = $this->keyword;
-        $sort = $this->sort_post ? 'desc' : 'asc';
 
         if ($keyword) {
             $posts->orWhere('title', 'LIKE', "%$keyword%");
@@ -35,16 +33,8 @@ class Index extends Component
             });
         }
 
-        if ($sort) {
-            $posts->orderBy('title', $sort);
-        }
+        $posts->orderBy('created_at', 'desc');
 
         $this->posts = $posts->get();
-    }
-
-    public function sortPost()
-    {
-        $this->sort_post = !$this->sort_post;
-        $this->search();
     }
 }

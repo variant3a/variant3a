@@ -17,7 +17,7 @@ class Tag extends Model
 
     protected $dates = [
         'created_at',
-        'udpated_at',
+        'updated_at',
     ];
 
     public function posts()
