@@ -15,7 +15,7 @@ class Create extends Component
     public string $new_tag = '';
     public string $filter_tag = '';
     public bool $sort_tag = false;
-    public $tag = [];
+    public $selected_tag = [];
     public $post, $tags;
 
     protected $rules = [
@@ -67,7 +67,7 @@ class Create extends Component
         $this->validate();
 
         $data = $this->post;
-        $tags = $this->tag;
+        $selected_tags = $this->selected_tag;
 
         $post = new Post;
         $post->fill($data);
@@ -75,20 +75,26 @@ class Create extends Component
         $post->updated_by = auth()->id();
         $post->save();
 
-        $post->tags()->attach($tags);
+        $post->tags()->attach($selected_tags);
 
         return redirect()->route('post.index');
     }
 
     public function createTag()
     {
-        $validated_data = $this->validate(['new_tag' => 'required|string|min:1']);
-        $selected_tag = Tag::firstOrNew(['name' => $validated_data['new_tag']]);
-        $selected_tag->created_by = auth()->id();
-        $selected_tag->updated_by = auth()->id();
-        $selected_tag->save();
+        $validated_data = $this->validate([
+            'new_tag' => 'required|string|min:1',
+        ]);
+        $tags = Tag::firstOrNew(['name' => $validated_data['new_tag']]);
+
+        if (!$tags->exists) {
+            $tags->created_by = auth()->id();
+            $tags->updated_by = auth()->id();
+        }
+
+        $tags->save();
 
         $this->new_tag = '';
-        $this->tag[] = $selected_tag->id;
+        $this->selected_tag[] = $tags->id;
     }
 }

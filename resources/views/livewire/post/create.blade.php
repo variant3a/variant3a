@@ -42,7 +42,7 @@
                             <div class="col-12">
                                 @if ($tags->count())
                                     @foreach ($tags as $tag)
-                                        <input type="checkbox" wire:model="tag" class="btn-check" id="btn-check-{{ $tag->id }}" value="{{ $tag->id }}" autocomplete="off">
+                                        <input type="checkbox" wire:model="selected_tag" class="btn-check" id="btn-check-{{ $tag->id }}" value="{{ $tag->id }}" autocomplete="off">
                                         <label class="mb-1 px-3 btn btn-outline-main-500 btn-sm" for="btn-check-{{ $tag->id }}">
                                             {{ $tag->name }}
                                         </label>
