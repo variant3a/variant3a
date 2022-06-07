@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Login')
+@php($title = 'Login')
 
 @section('header_target', 'target')
 
