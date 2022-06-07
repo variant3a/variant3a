@@ -12,8 +12,15 @@
                 <div class="card text-bg-800">
                     <div class="card-body">
                         <div class="row">
-                            <div class="col-12">
-                                <input wire:model="keyword" type="text" class="form-control border-700 text-bg-700" placeholder="Keywords">
+                            <div class="col-12 d-flex">
+                                <input type="text" wire:model="keyword" class="form-control border-700 text-bg-700" placeholder="Keywords">
+                                <button class="btn btn-700 ms-2" wire:click="sortPost">
+                                    @if ($sort_post)
+                                        <i class="bi bi-sort-alpha-up"></i>
+                                    @else
+                                        <i class="bi bi-sort-alpha-down"></i>
+                                    @endif
+                                </button>
                             </div>
                         </div>
                     </div>
