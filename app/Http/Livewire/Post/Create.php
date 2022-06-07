@@ -33,9 +33,9 @@ class Create extends Component
             ->section('content');
     }
 
-    public function updated($propertyName)
+    public function updated($property_name)
     {
-        $this->validateOnly($propertyName);
+        $this->validateOnly($property_name);
     }
 
     public function getTag()
@@ -82,7 +82,8 @@ class Create extends Component
 
     public function createTag()
     {
-        $selected_tag = Tag::firstOrNew(['name' => $this->new_tag]);
+        $validated_data = $this->validate(['new_tag' => 'required|string|min:1']);
+        $selected_tag = Tag::firstOrNew(['name' => $validated_data['new_tag']]);
         $selected_tag->created_by = auth()->id();
         $selected_tag->updated_by = auth()->id();
         $selected_tag->save();
