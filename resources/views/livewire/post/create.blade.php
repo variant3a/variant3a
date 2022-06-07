@@ -1,23 +1,70 @@
 <div class="row">
-    <div class="col-md-4 col-12">
-        <div class="card text-bg-800">
-            <div class="card-body">
-                @if ($tags->count())
-                    @foreach ($tags as $tag)
-                        <input type="checkbox" wire:model="tag" class="btn-check" id="btn-check-{{ $tag->id }}" value="{{ $tag->id }}" autocomplete="off">
-                        <label class="px-3 btn btn-outline-main-500 btn-sm" for="btn-check-{{ $tag->id }}">
-                            {{ $tag->name }}
-                        </label>
-                    @endforeach
-                @else
-                    <div class="text-500">
-                        no tags.
+    <div class="col-md-3 col-12">
+        <div class="row mb-3">
+            <div class="col-12">
+                <div class="card text-bg-800">
+                    <div class="card-body">
+                        <form wire:submit.prevent="createTag" method="post">
+                            <div class="row mb-3">
+                                <div class="col-12">
+                                    <input type="text" wire:model="new_tag" class="form-control border-700 text-bg-700" placeholder="Tag name">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12 d-grid gap-2">
+                                    <button class="btn btn-outline-main-500">
+                                        Add Tag
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
                     </div>
-                @endif
+                </div>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-12">
+                <div class="card text-bg-800">
+                    <div class="card-body">
+                        <div class="row mb-3">
+                            <div class="col-12 d-flex">
+                                <input type="text" wire:model="filter_tag" class="form-control border-700 text-bg-700" placeholder="Filter">
+                                <button class="btn btn-700 ms-2" wire:click="sortTag">
+                                    @if ($sort_tag)
+                                        <i class="bi bi-sort-alpha-up"></i>
+                                    @else
+                                        <i class="bi bi-sort-alpha-down"></i>
+                                    @endif
+                                </button>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-12">
+                                @if ($tags->count())
+                                    @foreach ($tags as $tag)
+                                        <input type="checkbox" wire:model="tag" class="btn-check" id="btn-check-{{ $tag->id }}" value="{{ $tag->id }}" autocomplete="off">
+                                        <label class="mb-1 px-3 btn btn-outline-main-500 btn-sm" for="btn-check-{{ $tag->id }}">
+                                            {{ $tag->name }}
+                                        </label>
+                                    @endforeach
+                                @else
+                                    <div class="text-500">
+                                        no tags.
+                                    </div>
+                                @endif
+                                @error('post.title')
+                                    <div class="invalid-feedback text-left">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-    <div class="col-md-8 col-12">
+    <div class="col-md-9 col-12">
         <div class="card text-bg-800">
             <div class="card-body">
                 <form wire:submit.prevent="store" method="post">

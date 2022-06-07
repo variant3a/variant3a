@@ -12,6 +12,9 @@ class Create extends Component
 
     public string $title = 'Create Posts';
     public string $preview = '';
+    public string $new_tag = '';
+    public string $filter_tag = '';
+    public bool $sort_tag = false;
     public $tag = [];
     public $post, $tags;
 
@@ -22,8 +25,9 @@ class Create extends Component
 
     public function render()
     {
-        $this->tags = Tag::all();
+        $this->getTag();
         $this->preview();
+
         return view('livewire.post.create')
             ->extends('layouts.app', ['title' => $this->title])
             ->section('content');
@@ -32,6 +36,24 @@ class Create extends Component
     public function updated($propertyName)
     {
         $this->validateOnly($propertyName);
+    }
+
+    public function getTag()
+    {
+        $sort = $this->sort_tag ? 'desc' : 'asc';
+        $filter = $this->filter_tag;
+        $tags = Tag::query();
+        if ($filter) {
+            $tags->where('name', 'LIKE', "%$filter%");
+        }
+        $tags->orderBy('name', $sort);
+        $this->tags = $tags->get();
+    }
+
+    public function sortTag()
+    {
+        $this->sort_tag = !$this->sort_tag;
+        $this->getTag();
     }
 
     public function preview()
@@ -56,5 +78,16 @@ class Create extends Component
         $post->tags()->attach($tags);
 
         return redirect()->route('post.index');
+    }
+
+    public function createTag()
+    {
+        $selected_tag = Tag::firstOrNew(['name' => $this->new_tag]);
+        $selected_tag->created_by = auth()->id();
+        $selected_tag->updated_by = auth()->id();
+        $selected_tag->save();
+
+        $this->new_tag = '';
+        $this->tag[] = $selected_tag->id;
     }
 }
