@@ -14,13 +14,13 @@
                 <div class="col-12 d-grid gap-2">
                     <div class="card text-bg-800">
                         <div class="card-body">
-                            <div class="row mb-3">
+                            <div class="row">
                                 <div class="col-12">
                                     <input type="text" wire:model="keyword" class="form-control border-700 text-bg-700" placeholder="Keywords">
                                 </div>
                             </div>
                             @if ($tags->count())
-                                <div class="row">
+                                <div class="row mt-3">
                                     <div class="col-12">
                                         @foreach ($tags as $search_tag)
                                             <input type="checkbox" wire:model="selected_tag" class="btn-check" id="btn-search-{{ $search_tag->id }}" value="{{ $search_tag->id }}" autocomplete="off">
