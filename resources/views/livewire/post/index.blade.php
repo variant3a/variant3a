@@ -67,13 +67,13 @@
                                         </span>
                                     </div>
                                 </div>
-                                <div class="row mb-3">
+                                <div class="row">
                                     <div class="col-12">
                                         {!! e(Illuminate\Mail\Markdown::parse($post->content)) !!}
                                     </div>
                                 </div>
                                 @if ($post->tags->count())
-                                    <div class="row">
+                                    <div class="row mt-3">
                                         <div class="col-12 text-500">
                                             @foreach ($post->tags as $tag)
                                                 <input type="checkbox" wire:model="selected_tag" class="btn-check" id="btn-check-{{ "$post->id-$tag->id" }}" value="{{ $tag->id }}" autocomplete="off">
