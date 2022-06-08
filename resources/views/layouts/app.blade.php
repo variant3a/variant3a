@@ -11,6 +11,10 @@
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
 
+    <!-- Scripts -->
+    @livewireScripts
+    <script src="{{ mix('js/app.js') }}" data-turbolinks-eval="false" data-turbo-eval="false"></script>
+
     <!-- Styles -->
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
     @livewireStyles
@@ -28,8 +32,6 @@
     <footer>
         @include('components.footer')
     </footer>
-    <script src="{{ mix('js/app.js') }}"></script>
-    @livewireScripts
 </body>
 
 </html>

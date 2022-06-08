@@ -1,5 +1,8 @@
 import bootstrap from 'bootstrap/dist/js/bootstrap.bundle'
 window.SimpleMDE = require('simplemde/dist/simplemde.min')
+window.Turbolinks = require('turbolinks')
+Turbolinks.start()
+require('livewire-turbolinks/dist/livewire-turbolinks')
 
 $(() => {
     const tooltipTriggerList = $('[data-bs-toggle="tooltip"]');
@@ -7,15 +10,6 @@ $(() => {
 
     twinkleIcon()
     setInterval(twinkleIcon, 5000)
-
-    $('textarea.simplemde').each(function () {
-        const simplemde = new SimpleMDE({
-            element: $(this)[0],
-            fullscreen: false,
-            hideIcons: ['fullscreen', 'side-by-side', 'image'],
-            showIcons: ['code', 'table', 'guide'],
-        })
-    })
 
 })
 

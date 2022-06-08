@@ -28,6 +28,8 @@
         "jquery": "^3.6.0",
         "jquery-ui": "^1.13.1",
         "jquery-ui-dist": "^1.13.1",
-        "simplemde": "^1.11.2"
+        "livewire-turbolinks": "^0.1.4",
+        "simplemde": "^1.11.2",
+        "turbolinks": "^5.2.0"
     }
 }
