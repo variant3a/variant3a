@@ -108,8 +108,8 @@
                                 </div>
                                 <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="preview-tab" tabindex="0">
                                     <div class="p-3 border-700 text-bg-700 rounded-0 rounded-bottom shadow-none">
-                                        @if ($preview)
-                                            {!! $preview !!}
+                                        @if ($post['content'] ?? false)
+                                            {!! e(Illuminate\Mail\Markdown::parse($post['content'])) !!}
                                         @else
                                             <span class="text-500">
                                                 no preview.

@@ -11,7 +11,6 @@ class Create extends Component
 {
 
     public string $title = 'Create Posts';
-    public string $preview = '';
     public string $new_tag = '';
     public string $filter_tag = '';
     public bool $sort_tag = false;
@@ -26,7 +25,6 @@ class Create extends Component
     public function render()
     {
         $this->getTag();
-        $this->preview();
 
         return view('livewire.post.create')
             ->extends('layouts.app', ['title' => $this->title])
@@ -54,12 +52,6 @@ class Create extends Component
     {
         $this->sort_tag = !$this->sort_tag;
         $this->getTag();
-    }
-
-    public function preview()
-    {
-        $content = $this->post['content'] ?? '';
-        $this->preview = Markdown::parse(e($content));
     }
 
     public function store()
