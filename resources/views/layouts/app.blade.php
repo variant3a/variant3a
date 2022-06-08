@@ -21,7 +21,7 @@
 </head>
 
 <body class="bg-dark">
-    <header>
+    <header id="header" data-turbolinks-permanent>
         @include('components.header')
     </header>
     <main>
@@ -29,7 +29,7 @@
             @yield('content')
         </div>
     </main>
-    <footer>
+    <footer id="footer" data-turbolinks-permanent>
         @include('components.footer')
     </footer>
 </body>
