@@ -26,11 +26,11 @@ class Create extends Component
     public function mount()
     {
         $this->previous = url()->previous();
-        $this->getTag();
     }
 
     public function render()
     {
+        $this->getTag();
         return view('livewire.post.create')
             ->extends('layouts.app', ['title' => $this->title])
             ->section('content');

@@ -14,13 +14,9 @@ class Index extends Component
     public $selected_tag = [];
     public $posts, $tags;
 
-    public function mount()
-    {
-        $this->search();
-    }
-
     public function render()
     {
+        $this->search();
         return view('livewire.post.index')
             ->extends('layouts.app', ['title' => $this->title])
             ->section('content');

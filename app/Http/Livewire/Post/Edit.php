@@ -26,7 +26,6 @@ class Edit extends Component
     {
         $post = Post::find($id);
         $this->previous = url()->previous();
-        $this->getTag();
         $this->post = $post;
         foreach ($post->tags as $tag) {
             $this->selected_tag[] = $tag->id;
@@ -35,6 +34,7 @@ class Edit extends Component
 
     public function render()
     {
+        $this->getTag();
         return view('livewire.post.edit')
             ->extends('layouts.app', ['title' => $this->title])
             ->section('content');
