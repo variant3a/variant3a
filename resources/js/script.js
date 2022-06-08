@@ -1,12 +1,10 @@
 import bootstrap from 'bootstrap/dist/js/bootstrap.bundle'
-window.SimpleMDE = require('simplemde/dist/simplemde.min')
-window.Turbolinks = require('turbolinks')
-Turbolinks.start()
-require('livewire-turbolinks/dist/livewire-turbolinks')
 
 $(() => {
     const tooltipTriggerList = $('[data-bs-toggle="tooltip"]');
     [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+
+    Turbolinks.start()
 
     twinkleIcon()
     setInterval(twinkleIcon, 5000)
