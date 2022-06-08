@@ -84,6 +84,11 @@
                     @endauth
                     @guest
                         <li>
+                            <a class="dropdown-item" href="{{ route('register') }}">
+                                Register
+                            </a>
+                        </li>
+                        <li>
                             <a class="dropdown-item" href="{{ route('login') }}">
                                 Login
                             </a>

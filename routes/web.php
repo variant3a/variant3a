@@ -23,6 +23,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', fn () => redirect()->route('home.index'))->name('/');
 
+Route::prefix('register')->group(function () {
+    Route::get('/', [RegisterController::class, 'showRegistrationForm'])->name('register');
+    Route::post('/', [RegisterController::class, 'register']);
+});
+
 Route::prefix('login')->group(function () {
     Route::get('/', [LoginController::class, 'showLoginForm'])->name('login');
     Route::post('/', [LoginController::class, 'login']);
@@ -45,5 +50,6 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
 
     Route::prefix('post')->name('post.')->group(function () {
         Route::get('create', Post\Create::class)->name('create');
+        Route::get('edit/{id}', Post\Edit::class)->name('edit');
     });
 });

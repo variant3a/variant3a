@@ -126,7 +126,7 @@
                                 Cancel
                             </a>
                             <button type="submit" class="btn btn-main-500">
-                                Submit
+                                Save
                             </button>
                         </div>
                     </div>

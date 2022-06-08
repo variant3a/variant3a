@@ -13,7 +13,9 @@ class Show extends Component
 
     public function mount($id)
     {
-        $this->post = Post::find($id);
+        $post = Post::find($id);
+        $this->post = $post;
+        $this->title = $post->title;
     }
 
     public function render()
