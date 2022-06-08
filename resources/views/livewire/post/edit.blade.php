@@ -121,16 +121,24 @@
                         </div>
                     </div>
                     <div class="row mb-3">
-                        <div class="col-12 text-end">
-                            <a href="{{ url($previous) }}" class="btn btn-outline-red-600">
-                                Cancel
-                            </a>
-                            <button type="submit" class="btn btn-main-500">
-                                Save
-                            </button>
+                        <div class="col-12 d-flex justify-content-between">
+                            <span>
+                                <button type="submit" class="btn btn-outline-red-600" form="delete">
+                                    Delete
+                                </button>
+                            </span>
+                            <span>
+                                <a href="{{ url($previous) }}" class="btn btn-700">
+                                    Cancel
+                                </a>
+                                <button type="submit" class="btn btn-main-500">
+                                    Save
+                                </button>
+                            </span>
                         </div>
                     </div>
                 </form>
+                <form wire:submit.prevent="delete" id="delete" method="post"></form>
             </div>
         </div>
     </div>

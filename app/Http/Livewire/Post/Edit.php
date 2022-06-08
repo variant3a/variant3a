@@ -99,4 +99,15 @@ class Edit extends Component
         $this->new_tag = '';
         $this->selected_tag[] = $tags->id;
     }
+
+    public function delete()
+    {
+        $selected_tags = $this->selected_tag;
+
+        $post = Post::find($this->post->id);
+        $post->delete();
+        $post->tags()->detach($selected_tags);
+
+        return redirect()->route('post.index');
+    }
 }

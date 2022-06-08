@@ -122,7 +122,7 @@
                     </div>
                     <div class="row mb-3">
                         <div class="col-12 text-end">
-                            <a href="{{ url($previous) }}" class="btn btn-outline-red-600">
+                            <a href="{{ url($previous) }}" class="btn btn-700">
                                 Cancel
                             </a>
                             <button type="submit" class="btn btn-main-500">
