@@ -9,7 +9,7 @@
         </ul>
         <ul class="navbar-nav text-center flex-column flex-md-row">
             <li id="logo" class="nav-item">
-                <a href="{{ route('/') }}" id="random-emoji" class="nav-link py-3 border-left rounded-0 text-main-500" style="width:5rem" style="width:5rem" data-bs-toggle="tooltip" data-bs-placement="bottom" title="&#128512">
+                <a href="{{ route('home.index') }}" id="random-emoji" class="nav-link py-3 border-left rounded-0 text-main-500" style="width:5rem" style="width:5rem" data-bs-toggle="tooltip" data-bs-placement="bottom" title="&#128512">
                     <i class="bi bi-code-slash fs-4"></i>
                 </a>
             </li>
@@ -19,14 +19,14 @@
                 <h5 class="offcanvas-title text-main-500">
                     variant3a
                 </h5>
-                <a href="{{ route('/') }}" class="btn btn-link navbar-toggler border-0 rounded-0 text-main-500" type="button" data-bs-dismiss="offcanvas" aria-label="Close">
+                <a href="{{ route('home.index') }}" class="btn btn-link navbar-toggler border-0 rounded-0 text-main-500" type="button" data-bs-dismiss="offcanvas" aria-label="Close">
                     <i class="bi bi-x-lg fs-4"></i>
                 </a>
             </div>
             <div class="px-0 offcanvas-body justify-content-center">
                 <ul class="navbar-nav text-center flex-column flex-md-row">
                     <li class="nav-item">
-                        <a href="{{ route('/') }}" class="d-flex nav-link py-3 border-left rounded-0 align-items-center text-main-500 text-bg-hover-main-500" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Home">
+                        <a href="{{ route('home.index') }}" class="d-flex nav-link py-3 border-left rounded-0 align-items-center text-main-500 text-bg-hover-main-500" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Home">
                             <div class="" style="width:4rem">
                                 <i class="bi bi-house-door-fill fs-4"></i>
                             </div>
@@ -83,11 +83,6 @@
                         </li>
                     @endauth
                     @guest
-                        <li>
-                            <a class="dropdown-item" href="{{ route('register') }}">
-                                Register
-                            </a>
-                        </li>
                         <li>
                             <a class="dropdown-item" href="{{ route('login') }}">
                                 Login

@@ -2167,11 +2167,11 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 window.$ = __webpack_require__(/*! jquery/dist/jquery.min */ "./node_modules/jquery/dist/jquery.min.js");
 window.Turbolinks = __webpack_require__(/*! turbolinks */ "./node_modules/turbolinks/dist/turbolinks.js");
 
+__webpack_require__(/*! livewire-turbolinks/dist/livewire-turbolinks */ "./node_modules/livewire-turbolinks/dist/livewire-turbolinks.js");
+
 __webpack_require__(/*! jquery-ui-dist/jquery-ui.min */ "./node_modules/jquery-ui-dist/jquery-ui.min.js");
 
 __webpack_require__(/*! ./script */ "./resources/js/script.js");
-
-__webpack_require__(/*! livewire-turbolinks/dist/livewire-turbolinks */ "./node_modules/livewire-turbolinks/dist/livewire-turbolinks.js");
 
 /***/ }),
 
