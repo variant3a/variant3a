@@ -67,7 +67,7 @@
     <div class="col-md-9 col-12">
         <div class="card text-bg-800">
             <div class="card-body">
-                <form wire:submit.prevent="store" method="post">
+                <form wire:submit.prevent="update" method="post">
                     @csrf
                     <div class="row mb-3">
                         <div class="col-12">
@@ -126,7 +126,7 @@
                                 Cancel
                             </a>
                             <button type="submit" class="btn btn-main-500">
-                                Submit
+                                Save
                             </button>
                         </div>
                     </div>

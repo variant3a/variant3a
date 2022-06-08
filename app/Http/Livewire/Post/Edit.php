@@ -4,13 +4,12 @@ namespace App\Http\Livewire\Post;
 
 use App\Models\Post;
 use App\Models\Tag;
-use Illuminate\Mail\Markdown;
 use Livewire\Component;
 
-class Create extends Component
+class Edit extends Component
 {
 
-    public string $title = 'Create Posts';
+    public string $title = 'Edit Posts';
     public string $previous = '';
     public string $new_tag = '';
     public string $filter_tag = '';
@@ -23,15 +22,20 @@ class Create extends Component
         'post.content' => 'required|max:10000',
     ];
 
-    public function mount()
+    public function mount($id)
     {
+        $post = Post::find($id);
         $this->previous = url()->previous();
         $this->getTag();
+        $this->post = $post;
+        foreach ($post->tags as $tag) {
+            $this->selected_tag[] = $tag->id;
+        }
     }
 
     public function render()
     {
-        return view('livewire.post.create')
+        return view('livewire.post.edit')
             ->extends('layouts.app', ['title' => $this->title])
             ->section('content');
     }
@@ -59,20 +63,21 @@ class Create extends Component
         $this->getTag();
     }
 
-    public function store()
+    public function update()
     {
         $this->validate();
 
         $data = $this->post;
         $selected_tags = $this->selected_tag;
 
-        $post = new Post;
-        $post->fill($data);
+        $post = Post::find($this->post->id);
+        $post->title = $data->title;
+        $post->content = $data->content;
         $post->created_by = auth()->id();
         $post->updated_by = auth()->id();
         $post->save();
 
-        $post->tags()->attach($selected_tags);
+        $post->tags()->sync($selected_tags);
 
         return redirect()->route('post.index');
     }

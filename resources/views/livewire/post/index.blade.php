@@ -49,12 +49,14 @@
                                         <h5 class="ps-2 py-2 border-start border-4 border-main-500">
                                             {{ $post->title }}
                                         </h5>
-                                        <span>
-                                            <a href="{{ route('post.detail', ['id' => $post->id]) }}" class="btn text-bg-hover-main-500 border-0">
-                                                Details
-                                                <i class="bi bi-chevron-right"></i>
-                                            </a>
-                                        </span>
+                                        @auth
+                                            <span>
+                                                <a href="{{ route('post.detail', ['id' => $post->id]) }}" class="btn text-bg-hover-main-500 border-0">
+                                                    Details
+                                                    <i class="bi bi-chevron-right"></i>
+                                                </a>
+                                            </span>
+                                        @endauth
                                     </div>
                                 </div>
                                 <div class="row mb-3">
