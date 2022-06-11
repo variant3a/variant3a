@@ -21,7 +21,7 @@
 </head>
 
 <body class="bg-dark">
-    <header id="header" data-turbolinks-permanent>
+    <header id="header">
         @include('components.header')
     </header>
     <main>
