@@ -1,4 +1,4 @@
-<div>
+<div class="mb-4">
     <div class="card bg-800">
         <div class="card-body">
             <div class="row">
@@ -41,6 +41,5 @@
                 </div>
             @endif
         </div>
-
     </div>
 </div>
