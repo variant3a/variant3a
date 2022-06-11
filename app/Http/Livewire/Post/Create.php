@@ -87,11 +87,14 @@ class Create extends Component
         if (!$tags->exists) {
             $tags->created_by = auth()->id();
             $tags->updated_by = auth()->id();
+
+            $tags->save();
         }
 
-        $tags->save();
-
         $this->new_tag = '';
-        $this->selected_tag[] = $tags->id;
+
+        if (!in_array($tags->id, $this->selected_tag)) {
+            $this->selected_tag[] = $tags->id;
+        }
     }
 }
