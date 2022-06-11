@@ -99,7 +99,7 @@
                         <div class="col-12">
                             <div class="tab-content" id="myTabContent">
                                 <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="editor-tab" tabindex="0">
-                                    <textarea wire:model="post.content" class="form-control p-3 border-700 text-bg-700 rounded-0 rounded-bottom shadow-none @error('post.content') is-invalid @enderror" rows="10" placeholder="Content"></textarea>
+                                    <textarea wire:model="post.content" class="form-control p-3 border-0 text-bg-700 rounded-0 rounded-bottom shadow-none @error('post.content') is-invalid @enderror" rows="10" placeholder="Content"></textarea>
                                     @error('post.content')
                                         <div class="invalid-feedback text-left">
                                             {{ $message }}
