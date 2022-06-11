@@ -6,6 +6,8 @@ $(() => {
 
     Turbolinks.start()
 
+    hljs.highlightAll()
+
     twinkleIcon()
     setInterval(twinkleIcon, 5000)
 

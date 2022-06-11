@@ -25,7 +25,7 @@
                 </div>
             </div>
             <div class="row mb-3">
-                <div class="col-12">
+                <div class="col-12 markdown">
                     {!! e(Illuminate\Mail\Markdown::parse($post->content)) !!}
                 </div>
             </div>

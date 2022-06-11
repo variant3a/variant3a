@@ -70,7 +70,7 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-12">
+                                    <div class="col-12 markdown">
                                         {!! e(Illuminate\Mail\Markdown::parse($post->content)) !!}
                                     </div>
                                 </div>
@@ -88,7 +88,7 @@
                                 @endif
                             </div>
                             @if (!$loop->last)
-                                <hr class="my-0">
+                                <hr>
                             @endif
                         @endforeach
                     @else
