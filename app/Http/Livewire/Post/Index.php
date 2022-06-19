@@ -5,19 +5,31 @@ namespace App\Http\Livewire\Post;
 use App\Models\Post;
 use App\Models\Tag;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class Index extends Component
 {
+    use WithPagination;
 
     public string $title = 'Posts';
     public string $keyword = '';
     public $selected_tag = [];
-    public $posts, $tags;
+    public $tags;
+    protected $posts;
+
+    protected $paginationTheme = 'bootstrap';
+
+    public function mount()
+    {
+        $this->posts = Post::paginate(10);
+    }
 
     public function render()
     {
         $this->search();
-        return view('livewire.post.index')
+        return view('livewire.post.index', [
+            'posts' => $this->posts,
+        ])
             ->extends('layouts.app', ['title' => $this->title])
             ->section('content');
     }
@@ -44,7 +56,7 @@ class Index extends Component
 
         $posts->orderBy('created_at', 'desc');
 
-        $this->posts = $posts->get();
+        $this->posts = $posts->paginate(10);
 
         $tags = Tag::query();
 

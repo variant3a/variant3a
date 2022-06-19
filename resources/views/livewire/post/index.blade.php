@@ -35,6 +35,24 @@
                     </div>
                 </div>
             </div>
+            <div class="row mb-3 d-none d-md-block">
+                <div class="col-12 d-grid gap-2">
+                    <div class="list-group border-0">
+                        @if ($posts->count())
+                            @foreach ($posts as $post)
+                                <a href="{{ route('post.detail', ['id' => $post->id]) }}" class="list-group-item list-group-item-action border-0">
+                                    {{ $post->title }}
+                                </a>
+                            @endforeach
+                        @endif
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 d-flex justify-content-center">
+                    {{ $posts->links() }}
+                </div>
+            </div>
         </div>
     </div>
     <div class="col-md-9">
@@ -49,14 +67,12 @@
                                         <h5 class="ps-2 py-2 border-start border-4 border-main-500">
                                             {{ $post->title }}
                                         </h5>
-                                        @auth
-                                            <span>
-                                                <a href="{{ route('post.detail', ['id' => $post->id]) }}" class="btn text-bg-hover-main-500 border-0">
-                                                    Details
-                                                    <i class="bi bi-chevron-right"></i>
-                                                </a>
-                                            </span>
-                                        @endauth
+                                        <span>
+                                            <a href="{{ route('post.detail', ['id' => $post->id]) }}" class="btn text-bg-hover-main-500 border-0">
+                                                Details
+                                                <i class="bi bi-chevron-right"></i>
+                                            </a>
+                                        </span>
                                     </div>
                                 </div>
                                 <div class="row mb-3">
@@ -98,6 +114,15 @@
                             </p>
                         </div>
                     @endif
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="row">
+                    <div class="col-12 d-flex justify-content-center">
+                        {{ $posts->links() }}
+                    </div>
                 </div>
             </div>
         </div>
