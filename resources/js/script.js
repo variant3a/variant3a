@@ -1,10 +1,13 @@
 import bootstrap from 'bootstrap/dist/js/bootstrap.bundle'
+Turbolinks.start()
 
-$(() => {
+$(document).on('turbolinks:load', function () {
+
     const tooltipTriggerList = $('[data-bs-toggle="tooltip"]');
     [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
 
-    Turbolinks.start()
+    const dataSpyList = $('[data-bs-spy="scroll"]');
+    [...dataSpyList].map(dataSpyEl => new bootstrap.ScrollSpy.getInstance(dataSpyEl).refresh())
 
     hljs.highlightAll()
 

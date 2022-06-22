@@ -37,10 +37,10 @@
             </div>
             <div class="row mb-3 d-none d-md-block">
                 <div class="col-12 d-grid gap-2">
-                    <div class="list-group border-0">
+                    <div id="post-list" class="list-group border-0">
                         @if ($posts->count())
                             @foreach ($posts as $post)
-                                <a href="{{ route('post.detail', ['id' => $post->id]) }}" class="list-group-item list-group-item-action border-0">
+                                <a href="{{ "#post-$post->id" }}" class="list-group-item list-group-item-action border-0">
                                     {{ $post->title }}
                                 </a>
                             @endforeach
@@ -58,10 +58,10 @@
     <div class="col-md-9">
         <div class="row mb-4">
             <div class="col-12">
-                <div class="card text-bg-800">
+                <div class="card text-bg-800" data-bs-spy="scroll" data-bs-target="#post-list" data-bs-smooth-scroll="true" tabindex="0">
                     @if ($posts->count())
                         @foreach ($posts as $post)
-                            <div class="card-body">
+                            <div id="{{ "post-$post->id" }}" class="card-body">
                                 <div class="row">
                                     <div class="col-12 d-flex justify-content-between">
                                         <h5 class="ps-2 py-2 border-start border-4 border-main-500">
