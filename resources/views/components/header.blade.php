@@ -10,11 +10,11 @@
         <ul class="navbar-nav text-center flex-column flex-md-row">
             <li id="logo" class="nav-item">
                 <a href="{{ route('home.index') }}" id="random-emoji" class="nav-link py-3 border-left rounded-0 text-main-500" style="width:5rem" style="width:5rem" data-bs-toggle="tooltip" data-bs-placement="bottom" title="&#128512">
-                    <i class="bi bi-code-slash fs-4"></i>
+                    <img src="{{ asset('images/mstile-310x310.png') }}" class="bg-transparent" style="width:1.5rem;height:auto">
                 </a>
             </li>
         </ul>
-        <div class="offcanvas offcanvas-end bg-dark border-0" tabindex="-1" id="offcanvas">
+        <div class="offcanvas offcanvas-start bg-dark border-0" tabindex="-1" id="offcanvas">
             <div class="offcanvas-header">
                 <h5 class="offcanvas-title text-main-500">
                     variant3a
