@@ -83,11 +83,13 @@
                         </li>
                     @endauth
                     @guest
+                        @env('local')
                         <li>
                             <a class="dropdown-item" href="{{ route('register') }}">
                                 Register
                             </a>
                         </li>
+                        @endenv
                         <li>
                             <a class="dropdown-item" href="{{ route('login') }}">
                                 Login
