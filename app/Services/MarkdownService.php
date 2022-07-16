@@ -6,7 +6,7 @@ use Illuminate\Support\HtmlString;
 use League\CommonMark\CommonMarkConverter;
 use League\CommonMark\Environment\Environment;
 use League\CommonMark\Extension\Table\TableExtension;
-use League\CommonMark\Extension\DisallowedRawHTML\DisallowedRawHtmlExtension;
+use League\CommonMark\Extension\DisallowedRawHtml\DisallowedRawHtmlExtension;
 
 class MarkdownService
 {
