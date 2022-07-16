@@ -87,7 +87,7 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-12 markdown">
-                                        {!! e(Illuminate\Mail\Markdown::parse($post->content)) !!}
+                                        {!! e(App\Services\MarkdownService::parse($post->content)) !!}
                                     </div>
                                 </div>
                                 @if ($post->tags->count())

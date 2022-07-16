@@ -110,7 +110,7 @@
                                     <div class="p-3 border-700 text-bg-700 rounded-0 rounded-bottom shadow-none">
                                         @if ($post['content'] ?? false)
                                             <div class="markdown">
-                                                {!! e(Illuminate\Mail\Markdown::parse($post['content'])) !!}
+                                                {!! e(App\Services\MarkdownService::parse($post['content'])) !!}
                                             </div>
                                         @else
                                             <span class="text-500">

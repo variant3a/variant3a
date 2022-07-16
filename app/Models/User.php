@@ -74,4 +74,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Tag::class);
     }
+
+    public function memos()
+    {
+        return $this->hasOne(Memo::class);
+    }
 }
