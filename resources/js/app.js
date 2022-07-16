@@ -1,7 +1,4 @@
 require('./bootstrap')
 window.$ = require('jquery/dist/jquery.min')
-window.Turbolinks = require('turbolinks')
-window.hljs = require('highlight.js/lib/common')
-require('livewire-turbolinks/dist/livewire-turbolinks')
 require('jquery-ui-dist/jquery-ui.min')
 require('./script')

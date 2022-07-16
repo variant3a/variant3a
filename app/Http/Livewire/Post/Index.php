@@ -69,5 +69,7 @@ class Index extends Component
         $tags->orderBy('posts_count', 'desc');
 
         $this->tags = $tags->get();
+
+        $this->dispatchBrowserEvent('paginated');
     }
 }

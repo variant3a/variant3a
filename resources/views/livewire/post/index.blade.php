@@ -58,7 +58,7 @@
     <div class="col-md-9">
         <div class="row mb-4">
             <div class="col-12">
-                <div class="card text-bg-800" data-bs-spy="scroll" data-bs-target="#post-list" data-bs-smooth-scroll="true" tabindex="0">
+                <div class="card text-bg-800">
                     @if ($posts->count())
                         @foreach ($posts as $post)
                             <div id="{{ "post-$post->id" }}" class="card-body">

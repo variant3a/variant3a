@@ -1,20 +1,30 @@
-import bootstrap from 'bootstrap/dist/js/bootstrap.bundle'
+import { Tooltip, ScrollSpy } from 'bootstrap'
+import hljs from 'highlight.js'
+import Turbolinks from 'turbolinks'
+import LivewireTurbolinks from 'livewire-turbolinks'
+
 Turbolinks.start()
 
-$(document).on('turbolinks:load', function () {
+document.addEventListener('turbolinks:load', function () {
+    const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
+    [...tooltipTriggerList].map(tooltipTriggerEl => new Tooltip(tooltipTriggerEl))
 
-    const tooltipTriggerList = $('[data-bs-toggle="tooltip"]');
-    [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+    OnLoad()
+})
 
-    const dataSpyList = $('[data-bs-spy="scroll"]');
-    [...dataSpyList].map(dataSpyEl => new bootstrap.ScrollSpy.getInstance(dataSpyEl).refresh())
+window.addEventListener('paginated', () => {
+    OnLoad()
+})
 
+function OnLoad() {
+    const dataSpyList = document.querySelectorAll('#post-list');
+    [...dataSpyList].map(dataSpyEl => new ScrollSpy(document.body, {
+        target: '#post-list'
+    }))
     hljs.highlightAll()
 
     twinkleIcon()
-    setInterval(twinkleIcon, 5000)
-
-})
+}
 
 function twinkleIcon() {
     $('li.nav-item').each(function (i, val) {
