@@ -2,12 +2,10 @@
 
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\PostController;
-use App\Http\Controllers\UserController;
 use App\Http\Livewire\Home;
 use App\Http\Livewire\Post;
 use App\Http\Livewire\User;
+use App\Http\Livewire\Setting;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -50,6 +48,11 @@ Route::prefix('user')->name('user.')->group(function () {
 });
 
 Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified'])->group(function () {
+
+
+    Route::prefix('setting')->name('setting.')->group(function () {
+        Route::get('index', Setting\Index::class)->name('index');
+    });
 
     Route::prefix('post')->name('post.')->group(function () {
         Route::get('create', Post\Create::class)->name('create');

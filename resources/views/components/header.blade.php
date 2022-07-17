@@ -71,6 +71,11 @@
                             </a>
                         </li>
                         <li>
+                            <a class="dropdown-item" href="{{ route('setting.index') }}">
+                                Settings
+                            </a>
+                        </li>
+                        <li>
                             <hr class="dropdown-divider">
                         </li>
                         <li>
