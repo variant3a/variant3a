@@ -26,7 +26,7 @@ class Index extends Component
         $this->users = User::all();
         $this->posts = Post::all();
         $this->post = Post::latest()->first();
-        $this->memo = Memo::where('created_by', auth()->id())->latest()->first() ?? null;
+        $this->memo = Memo::where('created_by', auth()->id())->latest()->first() ?? new Memo();
     }
 
     public function render()
