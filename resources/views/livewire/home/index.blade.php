@@ -70,7 +70,7 @@
         <div class="card text-bg-800">
             <div class="card-body">
                 @auth
-                    <textarea wire:model="memo.content" class="form-control p-3 border-0 text-bg-700 rounded shadow-none" rows="10" placeholder="Memo" style="resize:none"></textarea>
+                    <textarea wire:model.lazy="memo.content" class="form-control p-3 border-0 text-bg-700 rounded shadow-none" rows="10" placeholder="Memo" style="resize:none"></textarea>
                 @endauth
                 @guest
                     <textarea class="form-control p-3 border-0 text-bg-700 rounded shadow-none" rows="10" placeholder="Guest account can't use this area." style="resize:none" disabled></textarea>
