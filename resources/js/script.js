@@ -45,7 +45,7 @@ function twinkleIcon() {
 
 window.addEventListener('load', () => {
     if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('/sw.js').
+        navigator.serviceWorker.register('/js/sw.js').
             then(() => {
                 console.log('ServiceWorker registered')
             }).
