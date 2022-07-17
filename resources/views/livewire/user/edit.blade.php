@@ -5,7 +5,7 @@
                 <div class="card-title fs-3 text-center">
                     Edit Profile
                 </div>
-                <div class="card-text text-center">
+                <div class="card-text text-end">
                     <form wire:submit.prevent="update" method="POST">
                         @csrf
                         <div class="form-floating mb-3">
