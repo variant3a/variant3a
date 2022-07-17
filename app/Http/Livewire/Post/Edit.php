@@ -13,6 +13,7 @@ class Edit extends Component
     public string $previous = '';
     public string $new_tag = '';
     public string $filter_tag = '';
+    public int $row = 15;
     public bool $sort_tag = false;
     public $selected_tag = [];
     public $post, $tags;
@@ -30,6 +31,7 @@ class Edit extends Component
         foreach ($post->tags as $tag) {
             $this->selected_tag[] = $tag->id;
         }
+        $this->calcRow();
     }
 
     public function render()
@@ -42,6 +44,7 @@ class Edit extends Component
 
     public function updated($property_name)
     {
+        $this->calcRow();
         $this->validateOnly($property_name);
     }
 
@@ -112,5 +115,13 @@ class Edit extends Component
         $post->tags()->detach($selected_tags);
 
         return redirect()->route('post.index');
+    }
+
+    public function calcRow()
+    {
+        $content_length = substr_count($this->post['content'] ?? 0, "\n");
+        $row = $content_length > 15  ? $content_length + 5 : 15;
+        $row = $row > 30  ? 30 : $row;
+        $this->row = $row;
     }
 }

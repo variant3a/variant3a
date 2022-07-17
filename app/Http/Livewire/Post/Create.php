@@ -14,6 +14,7 @@ class Create extends Component
     public string $previous = '';
     public string $new_tag = '';
     public string $filter_tag = '';
+    public int $row = 15;
     public bool $sort_tag = false;
     public $selected_tag = [];
     public $post, $tags;
@@ -25,6 +26,7 @@ class Create extends Component
 
     public function mount()
     {
+        $this->calcRow();
         $this->previous = url()->previous();
     }
 
@@ -38,6 +40,7 @@ class Create extends Component
 
     public function updated($property_name)
     {
+        $this->calcRow();
         $this->validateOnly($property_name);
     }
 
@@ -96,5 +99,13 @@ class Create extends Component
         if (!in_array($tags->id, $this->selected_tag)) {
             $this->selected_tag[] = $tags->id;
         }
+    }
+
+    public function calcRow()
+    {
+        $content_length = substr_count($this->post['content'] ?? 0, "\n");
+        $row = $content_length > 15  ? $content_length + 5 : 15;
+        $row = $row > 30  ? 30 : $row;
+        $this->row = $row;
     }
 }
