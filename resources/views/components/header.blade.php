@@ -36,12 +36,12 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{ route('post.index') }}" class="d-flex nav-link py-3 border-left rounded-0 align-items-center text-main-500 text-bg-hover-main-500" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Blog">
+                        <a href="{{ route('post.index') }}" class="d-flex nav-link py-3 border-left rounded-0 align-items-center text-main-500 text-bg-hover-main-500" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Posts">
                             <div class="" style="width:4rem">
                                 <i class="bi bi-newspaper fs-4"></i>
                             </div>
                             <div class="d-md-none">
-                                Blog
+                                Posts
                             </div>
                         </a>
                     </li>
