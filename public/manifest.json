@@ -3,7 +3,7 @@
     "short_name": "variant3a",
     "theme_color": "#20c997",
     "background_color": "#212529",
-    "display": "fullscreen",
+    "display": "standalone",
     "scope": "https://variant3a.ddns.net",
     "start_url": "/post/index",
     "icons": [
