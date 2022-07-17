@@ -38,19 +38,18 @@
                         <span class="text-500">
                             {{ count($selected_tag) }} items selected.
                         </span>
-                        <span>
+                        <div class="d-flex">
                             <form wire:submit.prevent="deleteTag" method="post">
-                                <button type="submit" class="btn btn-outline-red-600" @disabled(count($selected_tag) === 0)>
+                                <button type="submit" class="me-1 btn btn-outline-red-600" @disabled(count($selected_tag) === 0)>
                                     Delete
                                 </button>
-
                             </form>
                             <form wire:submit.prevent="updateTag" method="post">
                                 <button type="submit" class="btn btn-main-500" @disabled(count($selected_tag) === 0)>
                                     Save
                                 </button>
                             </form>
-                        </span>
+                        </div>
                     </div>
                 </div>
             </div>
