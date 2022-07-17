@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Post;
 
 use App\Models\Post;
 use App\Models\Tag;
+use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 
 class Edit extends Component

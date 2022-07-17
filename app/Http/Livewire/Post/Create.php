@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Post;
 use App\Models\Post;
 use App\Models\Tag;
 use Illuminate\Mail\Markdown;
+use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 
 class Create extends Component
