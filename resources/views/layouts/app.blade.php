@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="">
 
+    <!-- PWA -->
+    <link rel="manifest" href="{{ asset('manifest.json') }}">
+
     <title>{{ $title }} - Laravel</title>
 
     <!-- Fonts -->

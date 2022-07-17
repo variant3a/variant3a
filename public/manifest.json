@@ -1,0 +1,22 @@
+{
+    "short_name": "variant3a",
+    "name": "variant3a's Homepage",
+    "icons": [
+      {
+        "src": "images/mstile-96x96.png",
+        "type": "image/png",
+        "sizes": "96x96"
+      },
+      {
+        "src": "images/mstile-196x196.png",
+        "type": "image/png",
+        "sizes": "196x196"
+      },
+      {
+        "src": "images/mstile-310x310.png",
+        "type": "image/png",
+        "sizes": "310x310"
+      }
+    ],
+    "start_url": "/"
+  }
