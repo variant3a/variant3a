@@ -10,7 +10,7 @@
         <ul class="navbar-nav text-center flex-column flex-md-row">
             <li id="logo" class="nav-item">
                 <a href="{{ route('home.index') }}" id="random-emoji" class="nav-link py-3 border-left rounded-0 text-main-500" style="width:5rem" style="width:5rem" data-bs-toggle="tooltip" data-bs-placement="bottom" title="&#128512">
-                    <img src="{{ asset('images/mstile-310x310.gif') }}" class="bg-transparent" style="width:1.5rem;height:auto">
+                    <img src="{{ asset('images/favicon-512.gif') }}" class="bg-transparent" style="width:1.5rem;height:auto">
                 </a>
             </li>
         </ul>
