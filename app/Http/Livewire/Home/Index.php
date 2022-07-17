@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Home;
 
 use App\Models\Memo;
 use App\Models\Post;
+use App\Models\User;
 use Carbon\Carbon;
 use Livewire\Component;
 
@@ -11,7 +12,7 @@ class Index extends Component
 {
 
     public string $title = 'Home';
-    public $posts, $post;
+    public $posts, $post, $users;
     public $memo;
 
     protected $rules = [
@@ -22,6 +23,7 @@ class Index extends Component
 
     public function mount()
     {
+        $this->users = User::all();
         $this->posts = Post::all();
         $this->post = Post::latest()->first();
         $this->memo = Memo::where('created_by', auth()->id())->latest()->first() ?? null;
