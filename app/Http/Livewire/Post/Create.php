@@ -69,13 +69,15 @@ class Create extends Component
         $data = $this->post;
         $selected_tags = $this->selected_tag;
 
-        $post = new Post;
-        $post->fill($data);
-        $post->created_by = auth()->id();
-        $post->updated_by = auth()->id();
-        $post->save();
+        DB::transaction(function () use ($data, $selected_tags) {
+            $post = new Post;
+            $post->fill($data);
+            $post->created_by = auth()->id();
+            $post->updated_by = auth()->id();
+            $post->save();
 
-        $post->tags()->attach($selected_tags);
+            $post->tags()->attach($selected_tags);
+        });
 
         return redirect()->route('post.index');
     }

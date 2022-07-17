@@ -73,14 +73,16 @@ class Edit extends Component
         $data = $this->post;
         $selected_tags = $this->selected_tag;
 
-        $post = Post::find($this->post->id);
-        $post->title = $data->title;
-        $post->content = $data->content;
-        $post->created_by = auth()->id();
-        $post->updated_by = auth()->id();
-        $post->save();
+        DB::transaction(function () use ($data, $selected_tags) {
+            $post = Post::find($this->post->id);
+            $post->title = $data->title;
+            $post->content = $data->content;
+            $post->created_by = auth()->id();
+            $post->updated_by = auth()->id();
+            $post->save();
 
-        $post->tags()->sync($selected_tags);
+            $post->tags()->sync($selected_tags);
+        });
 
         return redirect()->route('post.index');
     }
@@ -110,9 +112,11 @@ class Edit extends Component
     {
         $selected_tags = $this->selected_tag;
 
-        $post = Post::find($this->post->id);
-        $post->delete();
-        $post->tags()->detach($selected_tags);
+        DB::transaction(function () use ($selected_tags) {
+            $post = Post::find($this->post->id);
+            $post->delete();
+            $post->tags()->detach($selected_tags);
+        });
 
         return redirect()->route('post.index');
     }
