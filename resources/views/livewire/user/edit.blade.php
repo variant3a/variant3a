@@ -31,7 +31,7 @@
                             @enderror
                         </div>
                         <button type="submit" class="btn btn-block btn-main-500">
-                            Register
+                            Save
                         </button>
                     </form>
                 </div>
