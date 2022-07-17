@@ -34,7 +34,7 @@
                             No tags.
                         </span>
                     @endif
-                    <div class="pb-2 d-flex align-items-center justify-content-between bg-800">
+                    <div class="mx-2 pb-2 d-flex align-items-center justify-content-between bg-800">
                         <span class="text-500">
                             {{ count($selected_tag) }} items selected.
                         </span>
