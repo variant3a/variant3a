@@ -23,10 +23,12 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', fn () => redirect()->route('home.index'))->name('/');
 
-Route::prefix('register')->group(function () {
-    Route::get('/', [RegisterController::class, 'showRegistrationForm'])->name('register');
-    Route::post('/', [RegisterController::class, 'register']);
-});
+if (app()->isLocal()) {
+    Route::prefix('register')->group(function () {
+        Route::get('/', [RegisterController::class, 'showRegistrationForm'])->name('register');
+        Route::post('/', [RegisterController::class, 'register']);
+    });
+}
 
 Route::prefix('login')->group(function () {
     Route::get('/', [LoginController::class, 'showLoginForm'])->name('login');
