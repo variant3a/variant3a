@@ -5,7 +5,7 @@
     "background_color": "#212529",
     "display": "standalone",
     "scope": "https://variant3a.ddns.net",
-    "start_url": "/post/index",
+    "start_url": "/",
     "icons": [
         {
             "src": "images/mstile-96x96.png",
