@@ -52,11 +52,6 @@
                                         no tags.
                                     </div>
                                 @endif
-                                @error('post.title')
-                                    <div class="invalid-feedback text-left">
-                                        {{ $message }}
-                                    </div>
-                                @enderror
                             </div>
                         </div>
                     </div>
