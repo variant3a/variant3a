@@ -66,7 +66,7 @@
                 <ul class="dropdown-menu dropdown-menu-end position-absolute">
                     @auth
                         <li>
-                            <a class="dropdown-item" href="#">
+                            <a class="dropdown-item" href="{{ route('user.edit') }}">
                                 Edit Profile
                             </a>
                         </li>
