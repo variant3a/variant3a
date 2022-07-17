@@ -88,6 +88,7 @@ class Index extends Component
     public function deleteTag()
     {
         Tag::destroy($this->selected_tag);
+        $this->selected_tag = [];
         $this->getTag();
     }
 }
