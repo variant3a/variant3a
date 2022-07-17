@@ -1,4 +1,4 @@
-import { Tooltip, ScrollSpy } from 'bootstrap'
+import { Tooltip, ScrollSpy, Offcanvas } from 'bootstrap'
 import hljs from 'highlight.js'
 import Turbolinks from 'turbolinks'
 import LivewireTurbolinks from 'livewire-turbolinks'
@@ -10,6 +10,11 @@ document.addEventListener('turbolinks:load', function () {
     [...tooltipTriggerList].map(tooltipTriggerEl => new Tooltip(tooltipTriggerEl))
 
     OnLoad()
+})
+
+document.addEventListener('turbolinks:click', function () {
+    const offcanvas = Offcanvas.getInstance(document.querySelector('.offcanvas'))
+    offcanvas?.hide()
 })
 
 window.addEventListener('paginated', () => {
