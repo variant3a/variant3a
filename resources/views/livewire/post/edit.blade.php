@@ -66,7 +66,7 @@
                     @csrf
                     <div class="row mb-3">
                         <div class="col-12">
-                            <input type="text" wire:model="post.title" class="form-control border-700 text-bg-700 @error('post.title') is-invalid @enderror" placeholder="Title">
+                            <input type="text" wire:model.lazy="post.title" class="form-control border-700 text-bg-700 @error('post.title') is-invalid @enderror" placeholder="Title">
                             @error('post.title')
                                 <div class="invalid-feedback text-left">
                                     {{ $message }}
@@ -94,7 +94,7 @@
                         <div class="col-12">
                             <div class="tab-content" id="myTabContent">
                                 <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="editor-tab" tabindex="0">
-                                    <textarea wire:model="post.content" class="form-control p-3 border-0 text-bg-700 rounded-0 rounded-bottom shadow-none @error('post.content') is-invalid @enderror" rows="{{ $row }}" placeholder="Content"></textarea>
+                                    <textarea wire:model.lazy="post.content" class="form-control p-3 border-0 text-bg-700 rounded-0 rounded-bottom shadow-none @error('post.content') is-invalid @enderror" rows="{{ $row }}" placeholder="Content"></textarea>
                                     @error('post.content')
                                         <div class="invalid-feedback text-left">
                                             {{ $message }}

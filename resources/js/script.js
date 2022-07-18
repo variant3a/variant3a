@@ -21,6 +21,10 @@ window.addEventListener('paginated', () => {
     OnLoad()
 })
 
+window.addEventListener('post-updated', () => {
+    hljs.highlightAll()
+})
+
 function OnLoad() {
     const dataSpyList = document.querySelectorAll('#post-list');
     [...dataSpyList].map(dataSpyEl => new ScrollSpy(document.body, {

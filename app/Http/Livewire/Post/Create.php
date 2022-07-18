@@ -43,6 +43,7 @@ class Create extends Component
     {
         $this->calcRow();
         $this->validateOnly($property_name);
+        $this->dispatchBrowserEvent('post-updated');
     }
 
     public function getTag()
