@@ -20,6 +20,19 @@ class Tag extends Model
         'updated_at',
     ];
 
+    public function scopeSearch($query, Request $request)
+    {
+        $sort = $request->sort_tag ? 'desc' : 'asc';
+
+        $query->when($request->filter, function ($query, $filter) {
+            $query->where('name', 'LIKE', "%$filter%");
+        });
+
+        $query->orderBy('name', $sort);
+
+        return $query;
+    }
+
     public function posts()
     {
         return $this->belongsToMany(Post::class);
