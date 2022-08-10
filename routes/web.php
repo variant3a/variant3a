@@ -3,6 +3,7 @@
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Livewire\Home;
+use App\Http\Livewire\Photo;
 use App\Http\Livewire\Post;
 use App\Http\Livewire\User;
 use App\Http\Livewire\Setting;
@@ -40,6 +41,10 @@ Route::prefix('home')->name('home.')->group(function () {
 Route::prefix('post')->name('post.')->group(function () {
     Route::get('index', Post\Index::class)->name('index');
     Route::get('detail/{id}', Post\Show::class)->name('detail');
+});
+
+Route::prefix('photo')->name('photo.')->group(function () {
+    Route::get('index', Photo\Index::class)->name('index');
 });
 
 Route::prefix('user')->name('user.')->group(function () {

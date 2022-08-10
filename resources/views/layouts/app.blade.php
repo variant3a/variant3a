@@ -16,7 +16,7 @@
 
     <!-- Scripts -->
     @livewireScripts
-    <script src="{{ mix('js/app.js') }}" data-turbolinks-eval="false" data-turbo-eval="false"></script>
+    <script src="{{ mix('js/app.js') }}" data-turbolinks-eval="false" data-turbo-eval="false" defer></script>
 
     <!-- Styles -->
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">

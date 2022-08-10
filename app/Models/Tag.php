@@ -33,6 +33,11 @@ class Tag extends Model
         return $query;
     }
 
+    public function photos()
+    {
+        return $this->belongsToMany(Photo::class);
+    }
+
     public function posts()
     {
         return $this->belongsToMany(Post::class);

@@ -65,6 +65,11 @@ class User extends Authenticatable
         'updated_at',
     ];
 
+    public function photos()
+    {
+        return $this->hasMany(Photo::class);
+    }
+
     public function posts()
     {
         return $this->hasMany(Post::class);
