@@ -1,7 +1,7 @@
-<div class="row">
-    <div class="upload-container"
-        x-data="{ droping: false, progress: 0 }" x-cloak>
+<div class="row"
+    x-data="{ droping: false, progress: 0 }">
 
+    <div class="upload-container" x-cloak>
         <div class="position-absolute top-0 start-0 vw-100 vh-100"
             x-on:drop.prevent="$wire.uploadMultiple(
                 'files',
@@ -29,7 +29,7 @@
             </div>
         </div>
     </div>
-    <div class="col-12">
+    <div class="col-12" x-show="!droping">
         <div class="flex justify-content-center align-items-center" wire:loading.remove>
             @if ($photos->count())
                 @foreach ($photos as $photo)
