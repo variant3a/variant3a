@@ -39,7 +39,7 @@ class Index extends Component
     public function upload()
     {
         $this->validate([
-            'files.*' => 'image|max:20480',
+            'files.*' => 'image|max:40960',
         ]);
 
         foreach ($this->files as $file) {

@@ -2,7 +2,7 @@
     x-data="{ droping: false, progress: 0 }">
 
     <div class="upload-container" x-cloak>
-        <div class="position-absolute top-0 start-0 vw-100 vh-100"
+        <div class="position-fixed top-0 start-0 vw-100 vh-100"
             x-on:drop.prevent="$wire.uploadMultiple(
                 'files',
                 $event.dataTransfer.files,
@@ -30,10 +30,12 @@
         </div>
     </div>
     <div class="col-12" x-show="!droping">
-        <div class="flex justify-content-center align-items-center" wire:loading.remove>
+        <div class="row">
             @if ($photos->count())
                 @foreach ($photos as $photo)
-                    <img src="{{ asset("storage/$photo->path") }}">
+                    <div class="col-md-4 mb-3 d-flex justify-content-center align-items-center">
+                        <img src="{{ asset("storage/$photo->path") }}" class="w-100">
+                    </div>
                 @endforeach
             @else
                 No Photos.
