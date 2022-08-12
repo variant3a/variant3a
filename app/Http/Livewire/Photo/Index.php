@@ -33,7 +33,7 @@ class Index extends Component
 
     public function getPictures()
     {
-        $this->photos = Photo::all();
+        $this->photos = Photo::orderBy('id', 'desc')->get();
     }
 
     public function upload()
