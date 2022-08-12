@@ -56,12 +56,12 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{ route('user.index') }}" class="d-flex nav-link py-3 border-left rounded-0 align-items-center text-main-500 text-bg-hover-main-500" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Profile">
+                        <a href="{{ route('user.index') }}" class="d-flex nav-link py-3 border-left rounded-0 align-items-center text-main-500 text-bg-hover-main-500" data-bs-toggle="tooltip" data-bs-placement="bottom" title="About Me">
                             <div class="" style=" width:4rem">
-                                <i class="bi bi-person-fill fs-4"></i>
+                                <i class="bi bi-person-workspace fs-4"></i>
                             </div>
                             <div class="d-md-none">
-                                Profile
+                                About Me
                             </div>
                         </a>
                     </li>
