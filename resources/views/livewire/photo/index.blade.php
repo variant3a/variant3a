@@ -45,7 +45,9 @@
                     </div>
                 @endforeach
             @else
-                No Photos.
+                <div class="col-12">
+                    No Photos.
+                </div>
             @endif
         </div>
     </div>
