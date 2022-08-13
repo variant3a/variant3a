@@ -11,7 +11,7 @@
                         <div class="form-group mb-3">
                             <div class="mb-3 d-flex justify-content-center">
                                 <div class="w-50 position-relative" style="height:0;padding-top:50%">
-                                    <img src="{{ asset("storage/$user->profile_photo_path") }}" class="w-100 h-100 fixed-top position-absolute rounded-circle" style="object-fit:cover">
+                                    <img src="{{ asset("storage/$user->profile_photo_path") }}" class="w-100 h-100 fixed-top position-absolute rounded-circle" style="object-fit:cover;z-index:auto">
                                 </div>
                             </div>
                             <div class="row mb-3"
