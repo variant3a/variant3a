@@ -4,7 +4,7 @@
             <div class="card-body">
                 <div class="row mb-3">
                     <div class="col-12">
-                        <span class="ms-1 text-500">
+                        <span class="ms-1 text-muted">
                             Dashboard:
                         </span>
                     </div>
@@ -49,7 +49,7 @@
                 </div>
                 <div class="row mb-3">
                     <div class="col-12">
-                        <span class="ms-1 text-500">
+                        <span class="ms-1 text-muted">
                             Latest Post:
                         </span>
                     </div>
@@ -67,7 +67,7 @@
                                 </a>
                             </span>
                         @else
-                            <span class="ms-1 text-500">
+                            <span class="ms-1 text-muted">
                                 No articles.
                             </span>
                         @endif

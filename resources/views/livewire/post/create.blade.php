@@ -48,7 +48,7 @@
                                         </label>
                                     @endforeach
                                 @else
-                                    <div class="text-500">
+                                    <div class="text-muted">
                                         no tags.
                                     </div>
                                 @endif
@@ -108,7 +108,7 @@
                                                 {!! e(App\Services\MarkdownService::parse($post['content'])) !!}
                                             </div>
                                         @else
-                                            <span class="text-500">
+                                            <span class="text-muted">
                                                 no preview.
                                             </span>
                                         @endif

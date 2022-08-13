@@ -76,7 +76,7 @@
                                     </div>
                                 </div>
                                 <div class="row mb-3">
-                                    <div class="col-12 text-500 d-flex justify-content-between">
+                                    <div class="col-12 text-muted d-flex justify-content-between">
                                         <span>
                                             {{ $post->user->name }}
                                         </span>
@@ -97,7 +97,7 @@
                                 </div>
                                 @if ($post->tags->count())
                                     <div class="row mt-3">
-                                        <div class="col-12 text-500">
+                                        <div class="col-12 text-muted">
                                             @foreach ($post->tags as $tag)
                                                 <input type="checkbox" wire:model="selected_tag" class="btn-check" id="btn-check-{{ "$post->id-$tag->id" }}" value="{{ $tag->id }}" autocomplete="off">
                                                 <label class="mb-1 px-3 btn btn-outline-main-500 btn-sm" for="btn-check-{{ "$post->id-$tag->id" }}">

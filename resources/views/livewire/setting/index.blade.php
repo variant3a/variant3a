@@ -30,12 +30,12 @@
                             </ul>
                         </div>
                     @else
-                        <span class="text-500">
+                        <span class="text-muted">
                             No tags.
                         </span>
                     @endif
                     <div class="mx-2 pb-2 d-flex align-items-center justify-content-between bg-800">
-                        <span class="text-500">
+                        <span class="text-muted">
                             {{ count($selected_tag) }} items selected.
                         </span>
                         <div class="d-flex">
