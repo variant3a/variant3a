@@ -23,7 +23,7 @@
                 </div>
             </div>
         </div>
-        <div class="card text-bg-800">
+        <div class="card mb-3 text-bg-800">
             <div class="card-body text-center">
                 <div class="d-flex justify-content-evenly">
                     <a href="https://github.com/variant3a" target="_blank no_refferer" class="text-white">
