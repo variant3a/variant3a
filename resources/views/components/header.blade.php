@@ -46,16 +46,6 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{ route('photo.index') }}" class="d-flex nav-link py-3 border-left rounded-0 align-items-center text-main-500 text-bg-hover-main-500" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Photos">
-                            <div class="" style="width:4rem">
-                                <i class="bi bi-image-fill fs-4"></i>
-                            </div>
-                            <div class="d-md-none">
-                                Photos
-                            </div>
-                        </a>
-                    </li>
-                    <li class="nav-item">
                         <a href="{{ route('user.index') }}" class="d-flex nav-link py-3 border-left rounded-0 align-items-center text-main-500 text-bg-hover-main-500" data-bs-toggle="tooltip" data-bs-placement="bottom" title="About Me">
                             <div class="" style=" width:4rem">
                                 <i class="bi bi-person-workspace fs-4"></i>

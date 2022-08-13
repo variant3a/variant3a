@@ -43,10 +43,6 @@ Route::prefix('post')->name('post.')->group(function () {
     Route::get('detail/{id}', Post\Show::class)->name('detail');
 });
 
-Route::prefix('photo')->name('photo.')->group(function () {
-    Route::get('index', Photo\Index::class)->name('index');
-});
-
 Route::prefix('user')->name('user.')->group(function () {
     Route::get('index', User\Index::class)->name('index');
     Route::get('edit', User\Edit::class)->name('edit');
