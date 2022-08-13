@@ -27,7 +27,7 @@
                 </div>
             </div>
             <div class="row mb-3">
-                <div class="col-12 markdown">
+                <div class="col-12 markdown lh-lg">
                     {!! e(App\Services\MarkdownService::parse($post->content)) !!}
                 </div>
             </div>

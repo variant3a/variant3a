@@ -87,7 +87,7 @@
                                 </div>
                                 <div class="row"
                                     x-data="{ height: $el.clientHeight }">
-                                    <div class="col-12 markdown overflow-hidden"
+                                    <div class="col-12 markdown overflow-hidden lh-lg"
                                         x-bind:style="height > 500 ? 'height:50vh' : ''">
                                         {!! e(App\Services\MarkdownService::parse($post->content)) !!}
                                     </div>
