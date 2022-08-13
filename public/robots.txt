@@ -1,2 +1,3 @@
 User-agent: *
 Disallow:
+Sitemap: https://variant3a.ddns.net/sitemap.xml
