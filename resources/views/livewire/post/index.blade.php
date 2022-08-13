@@ -64,9 +64,9 @@
                             <div id="{{ "post-$post->id" }}" class="card-body">
                                 <div class="row">
                                     <div class="col-12 d-flex justify-content-between">
-                                        <h5 class="ps-2 py-2 border-start border-4 border-main-500 text-break">
+                                        <a href="{{ route('post.detail', ['id' => $post->id]) }}" class="ps-2 py-2 fs-5 border-start border-4 border-main-500 text-break text-white text-decoration-none">
                                             {{ $post->title }}
-                                        </h5>
+                                        </a>
                                         <span>
                                             <a href="{{ route('post.detail', ['id' => $post->id]) }}" class="btn text-bg-hover-main-500 border-0 text-nowrap">
                                                 Details
