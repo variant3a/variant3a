@@ -7,12 +7,12 @@
 
                 <div class="col-md-10 offset-md-1 col-12 d-grid gap-2"
                     x-on:drop.prevent="$wire.uploadMultiple(
-                    'files',
-                    $event.dataTransfer.files,
-                    () => {droping = false;progress = 0},
-                    () => {droping = false;progress = 0},
-                    e => {progress = e.detail.progress}
-                )"
+                        'files',
+                        $event.dataTransfer.files,
+                        () => {droping = false;progress = 0},
+                        () => {droping = false;progress = 0},
+                        e => {progress = e.detail.progress}
+                    )"
                     x-on:dragover.prevent="droping = true"
                     x-on:dragleave.prevent="droping = false"
                     x-on:livewire-upload-finish="droping = false;progress = 0"
@@ -40,8 +40,28 @@
         <div class="row">
             @if ($photos->count())
                 @foreach ($photos as $photo)
-                    <div class="col-md-4 mb-3 d-flex justify-content-center align-items-center">
-                        <img src="{{ asset("storage/$photo->path") }}" class="w-100">
+                    <div class="col-md-4 mb-3 d-flex justify-content-center align-items-center"
+                        x-data="{ hover: false }">
+                        <div class="position-relative"
+                            x-on:mouseover="hover = true"
+                            x-on:mouseleave="hover = false">
+
+                            <img src="{{ asset("storage/$photo->path") }}" class="w-100">
+                            <div class="position-absolute top-50 start-50 translate-middle d-flex justify-content-center w-100 h-100"
+                                x-bind:class="hover ? 'glass-black' : ''">
+
+                                <div class="d-flex justify-content-center align-items-center">
+                                    <button class="btn btn-outline-white me-1" x-show="hover" x-cloak>
+                                        Detail
+                                    </button>
+                                    @auth
+                                        <button class="btn btn-outline-red-600" x-show="hover" x-cloak>
+                                            Delete
+                                        </button>
+                                    @endauth
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 @endforeach
             @else
