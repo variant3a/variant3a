@@ -85,10 +85,15 @@
                                         </span>
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-12 markdown">
+                                <div class="row"
+                                    x-data="{ height: $el.clientHeight }">
+                                    <div class="col-12 markdown overflow-hidden"
+                                        x-bind:style="height > 500 ? 'height:50vh' : ''">
                                         {!! e(App\Services\MarkdownService::parse($post->content)) !!}
                                     </div>
+                                    <p class="text-muted text-end" x-show="height > 500">
+                                        Show more...
+                                    </p>
                                 </div>
                                 @if ($post->tags->count())
                                     <div class="row mt-3">
