@@ -23,7 +23,7 @@
                 </div>
             </div>
         </div>
-        <div class="card mb-3 text-bg-800">
+        <div class="card text-bg-800">
             <div class="card-body text-center">
                 <div class="d-flex justify-content-evenly">
                     <a href="https://github.com/variant3a" target="_blank no_refferer" class="text-white">
@@ -127,13 +127,16 @@
                 <div class="row">
                     @if ($photos->count())
                         @foreach ($photos as $photo)
-                            <div class="col-md-4 mb-3 d-flex justify-content-center align-items-center"
-                                x-data="{ hover: false }">
+                            <div class="col-md-3 col-4 mb-3"
+                                x-data="{ hover: false, detail: false }">
                                 <div class="position-relative"
                                     x-on:mouseover="hover = true"
-                                    x-on:mouseleave="hover = false">
+                                    x-on:mouseleave="hover = false"
+                                    x-on:click="detail = !detail">
 
-                                    <img src="{{ asset("storage/$photo->path") }}" class="w-100">
+                                    <div class="w-100 position-relative" style="height:0;padding-top:100%">
+                                        <img src="{{ asset("storage/$photo->path") }}" class="w-100 h-100 fixed-top position-absolute" style="object-fit:cover;z-index:auto">
+                                    </div>
                                     <div class="position-absolute top-50 start-50 translate-middle d-flex justify-content-center w-100 h-100"
                                         x-bind:class="hover ? 'glass-black' : ''">
 
