@@ -40,37 +40,37 @@
         <div class="card text-bg-800">
             <div class="card-body">
                 <div class="row">
-                    <div class="col-3">
+                    <div class="col-3 text-nowrap">
                         Full Name
                     </div>
-                    <div class="col text-muted">
+                    <div class="col-md-9 col-12 text-muted">
                         Yuma Nishimura
                     </div>
                 </div>
                 <hr>
                 <div class="row">
-                    <div class="col-3">
+                    <div class="col-3 text-nowrap">
                         Email
                     </div>
-                    <div class="col text-muted">
+                    <div class="col-md-9 col-12 text-muted">
                         {{ $user->email }}
                     </div>
                 </div>
                 <hr>
                 <div class="row">
-                    <div class="col-3">
+                    <div class="col-3 text-nowrap">
                         Languages
                     </div>
-                    <div class="col text-muted">
+                    <div class="col-md-9 col-12 text-muted">
                         PHP, JavaScript, HTML, CSS, Kotlin
                     </div>
                 </div>
                 <hr>
                 <div class="row">
-                    <div class="col-3">
+                    <div class="col-3 text-nowrap">
                         Frameworks
                     </div>
-                    <div class="col text-muted">
+                    <div class="col-md-9 col-12 text-muted">
                         Laravel, WordPress, Vue, Inertia, Livewire, Alpine, Bootstrap
                     </div>
                 </div>
