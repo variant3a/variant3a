@@ -91,9 +91,9 @@
                                         x-bind:style="height > 500 ? 'height:50vh' : ''">
                                         {!! e(App\Services\MarkdownService::parse($post->content)) !!}
                                     </div>
-                                    <p class="text-muted text-end" x-show="height > 500">
+                                    <a class="text-muted text-end" x-show="height > 500" href="{{ route('post.detail', ['id' => $post->id]) }}">
                                         Show more...
-                                    </p>
+                                    </a>
                                 </div>
                                 @if ($post->tags->count())
                                     <div class="row mt-3">
