@@ -76,7 +76,7 @@
                                     </div>
                                 </div>
                                 <div class="row mb-3">
-                                    <div class="col-12 text-muted d-flex justify-content-between">
+                                    <div class="px-4 col-12 text-muted d-flex justify-content-between">
                                         <span>
                                             {{ $post->user->name }}
                                         </span>
@@ -87,11 +87,11 @@
                                 </div>
                                 <div class="row"
                                     x-data="{ height: $el.clientHeight }">
-                                    <div class="col-12 markdown overflow-hidden lh-lg"
+                                    <div class="px-4 col-12 markdown overflow-hidden lh-lg"
                                         x-bind:style="height > 500 ? 'height:50vh' : ''">
                                         {!! e(App\Services\MarkdownService::parse($post->content)) !!}
                                     </div>
-                                    <a class="text-muted text-end" x-show="height > 500" href="{{ route('post.detail', ['id' => $post->id]) }}">
+                                    <a class="px-4 text-muted text-end" x-show="height > 500" href="{{ route('post.detail', ['id' => $post->id]) }}">
                                         Show more...
                                     </a>
                                 </div>

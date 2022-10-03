@@ -17,7 +17,7 @@
                 </div>
             </div>
             <div class="row mb-3">
-                <div class="col-12 text-muted d-flex justify-content-between">
+                <div class="px-4 col-12 text-muted d-flex justify-content-between">
                     <span>
                         {{ $post->user->name }}
                     </span>
@@ -27,7 +27,7 @@
                 </div>
             </div>
             <div class="row mb-3">
-                <div class="col-12 markdown lh-lg">
+                <div class="px-4 col-12 markdown lh-lg">
                     {!! e(App\Services\MarkdownService::parse($post->content)) !!}
                 </div>
             </div>
