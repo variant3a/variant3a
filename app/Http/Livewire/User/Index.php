@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\User;
 
 use App\Models\Photo;
+use App\Models\Timeline;
 use App\Models\User;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -15,11 +16,13 @@ class Index extends Component
     public $files = [];
     public $user;
     public $photos;
+    public $timelines;
 
     public function mount()
     {
         $this->getPictures();
         $this->user = User::where('user_id', '=', 'variant3a')->first();
+        $this->timelines = Timeline::where('created_by', $this->user->id)->orderBy('start_date', 'asc')->with('tags')->get();
     }
 
     public function render()

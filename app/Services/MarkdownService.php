@@ -16,6 +16,8 @@ class MarkdownService
 {
     public static function parse($text)
     {
+        if (empty($text)) return;
+
         $environment = Environment::createCommonMarkEnvironment();
 
         $environment->addExtension(new DisallowedRawHtmlExtension());
