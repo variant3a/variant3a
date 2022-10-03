@@ -10,10 +10,10 @@
                 <h5 class="my-3">
                     {{ $user->user_id }}
                 </h5>
-                <p class="text-muted mb-1">
+                <p class="text-400 mb-1">
                     Engineer
                 </p>
-                <p class="text-muted mb-4">
+                <p class="text-400 mb-4">
                     Sapporo, Japan
                 </p>
                 <div class="d-flex justify-content-center">
@@ -43,7 +43,7 @@
                     <div class="col-3 text-nowrap">
                         Full Name
                     </div>
-                    <div class="col-md-9 col-12 text-muted">
+                    <div class="col-md-9 col-12 text-400">
                         Yuma Nishimura
                     </div>
                 </div>
@@ -52,7 +52,7 @@
                     <div class="col-3 text-nowrap">
                         Email
                     </div>
-                    <div class="col-md-9 col-12 text-muted">
+                    <div class="col-md-9 col-12 text-400">
                         {{ $user->email }}
                     </div>
                 </div>
@@ -61,7 +61,7 @@
                     <div class="col-3 text-nowrap">
                         Languages
                     </div>
-                    <div class="col-md-9 col-12 text-muted">
+                    <div class="col-md-9 col-12 text-400">
                         PHP, JavaScript, HTML, CSS, Kotlin
                     </div>
                 </div>
@@ -70,7 +70,7 @@
                     <div class="col-3 text-nowrap">
                         Frameworks
                     </div>
-                    <div class="col-md-9 col-12 text-muted">
+                    <div class="col-md-9 col-12 text-400">
                         Laravel, WordPress, Vue, Inertia, Livewire, Alpine, Bootstrap
                     </div>
                 </div>
@@ -119,7 +119,7 @@
                 @endif
                 <div class="row mb-3">
                     <div class="col-12">
-                        <span class="ms-1 text-muted">
+                        <span class="ms-1 text-400">
                             Photos
                         </span>
                     </div>
@@ -155,7 +155,7 @@
                             </div>
                         @endforeach
                     @else
-                        <div class="col-12">
+                        <div class="col-12 text-muted">
                             No Photos.
                         </div>
                     @endif

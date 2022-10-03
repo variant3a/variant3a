@@ -76,7 +76,7 @@
                                     </div>
                                 </div>
                                 <div class="row mb-3">
-                                    <div class="px-4 col-12 text-muted d-flex justify-content-between">
+                                    <div class="px-4 col-12 text-400 d-flex justify-content-between">
                                         <span>
                                             {{ $post->user->name }}
                                         </span>
@@ -91,13 +91,13 @@
                                         x-bind:style="height > 500 ? 'height:50vh' : ''">
                                         {!! e(App\Services\MarkdownService::parse($post->content)) !!}
                                     </div>
-                                    <a class="px-4 text-muted text-end" x-show="height > 500" href="{{ route('post.detail', ['id' => $post->id]) }}">
+                                    <a class="px-4 text-400 text-end" x-show="height > 500" href="{{ route('post.detail', ['id' => $post->id]) }}">
                                         Show more...
                                     </a>
                                 </div>
                                 @if ($post->tags->count())
                                     <div class="row mt-3">
-                                        <div class="col-12 text-muted">
+                                        <div class="col-12">
                                             @foreach ($post->tags as $tag)
                                                 <input type="checkbox" wire:model="selected_tag" class="btn-check" id="btn-check-{{ "$post->id-$tag->id" }}" value="{{ $tag->id }}" autocomplete="off">
                                                 <label class="mb-1 px-3 btn btn-outline-main-500 btn-sm" for="btn-check-{{ "$post->id-$tag->id" }}">

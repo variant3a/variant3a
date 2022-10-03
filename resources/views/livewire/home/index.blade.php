@@ -4,7 +4,7 @@
             <div class="card-body">
                 <div class="row mb-3">
                     <div class="col-12">
-                        <span class="ms-1 text-muted">
+                        <span class="ms-1 text-400">
                             Dashboard:
                         </span>
                     </div>
@@ -49,7 +49,7 @@
                 </div>
                 <div class="row mb-3">
                     <div class="col-12">
-                        <span class="ms-1 text-muted">
+                        <span class="ms-1 text-400">
                             Latest Post:
                         </span>
                     </div>

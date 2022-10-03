@@ -17,7 +17,7 @@
                 </div>
             </div>
             <div class="row mb-3">
-                <div class="px-4 col-12 text-muted d-flex justify-content-between">
+                <div class="px-4 col-12 text-400 d-flex justify-content-between">
                     <span>
                         {{ $post->user->name }}
                     </span>
@@ -33,7 +33,7 @@
             </div>
             @if ($post->tags->count())
                 <div class="row">
-                    <div class="col-12 text-muted">
+                    <div class="col-12">
                         @foreach ($post->tags as $tag)
                             <span class="mb-1 me-1 py-1 px-3 border border-main-500 small text-main-500 rounded-1">
                                 {{ $tag->name }}

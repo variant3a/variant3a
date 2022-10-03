@@ -35,7 +35,7 @@
                         </span>
                     @endif
                     <div class="mx-2 pb-2 d-flex align-items-center justify-content-between bg-800">
-                        <span class="text-muted">
+                        <span class="text-400">
                             {{ count($selected_tag) }} items selected.
                         </span>
                         <div class="d-flex">
