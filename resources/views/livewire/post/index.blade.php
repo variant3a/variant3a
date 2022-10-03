@@ -80,8 +80,8 @@
                                         <span>
                                             {{ $post->user->name }}
                                         </span>
-                                        <span>
-                                            {{ $post->created_at->format('Y-m-d H:i') }}
+                                        <span title="{{ $post->created_at->format('Y-m-d H:i:s') }}">
+                                            {{ $post->created_at->format('F j, Y') }}
                                         </span>
                                     </div>
                                 </div>
