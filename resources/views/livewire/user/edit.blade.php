@@ -83,7 +83,7 @@
         <div class="card text-bg-800">
             <div class="card-body">
                 <div class="row">
-                    <div class="col-4 overflow-auto" style="height:50vh">
+                    <div class="col-4 overflow-auto" style="max-height:50vh">
                         @if ($timelines->count())
                             @foreach ($timelines as $item)
                                 <div class="timeline-item">
