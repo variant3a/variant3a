@@ -96,7 +96,7 @@
                                     <div class="d-flex">
                                         <div class="mx-3 border-1 border-start {{ 'border-' . ($item->icon_color ?? '') }}"></div>
                                         <div class="ms-2 my-3 flex-grow-1 d-grid gap-2">
-                                            <input type="radio" wire:model="selected_timeline" class="btn-check" id="timeline-check-{{ $item->id }}" value="{{ $item->id }}" autocomplete="off">
+                                            <input type="radio" wire:model="selected_timeline" class="btn-check d-none" id="timeline-check-{{ $item->id }}" value="{{ $item->id }}" autocomplete="off">
                                             <label for="timeline-check-{{ $item->id }}" class="btn btn-outline-main-500 p-0" wire:click="addTimeline({{ $item->id }})">
                                                 <div class="card-body text-start text-break">
                                                     <span class="text-break">
