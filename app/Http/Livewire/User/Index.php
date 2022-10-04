@@ -5,6 +5,7 @@ namespace App\Http\Livewire\User;
 use App\Models\Photo;
 use App\Models\Timeline;
 use App\Models\User;
+use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
@@ -40,6 +41,15 @@ class Index extends Component
     public function getPictures()
     {
         $this->photos = Photo::orderBy('id', 'desc')->get();
+    }
+
+    public function deletePicture($id)
+    {
+        $photo = Photo::find($id);
+        Storage::disk('public')->delete($photo->path);
+        $photo->delete();
+
+        $this->getPictures();
     }
 
     public function upload()

@@ -83,28 +83,28 @@
                                 @foreach ($photos as $photo)
                                     <div class="col-4 col-md-6 col-xl-4 p-1"
                                         x-data="{ hover: false, detail: false }">
-                                        <div class="position-relative"
-                                            x-on:mouseover="hover = true"
-                                            x-on:mouseleave="hover = false"
-                                            x-on:click="detail = !detail">
-
-                                            <div class="w-100 position-relative" style="height:0;padding-top:100%">
+                                        <div class="position-relative">
+                                            <div class="w-100 position-relative" style="height:0;padding-top:100%"
+                                                x-on:mouseover="hover = true"
+                                                x-on:mouseleave="hover = false">
                                                 <img src="{{ asset("storage/$photo->path") }}" class="w-100 h-100 fixed-top position-absolute rounded" style="object-fit:cover;z-index:auto">
-                                            </div>
-                                            <div class="position-absolute top-50 start-50 translate-middle d-flex justify-content-center w-100 h-100 rounded"
-                                                x-bind:class="hover ? 'glass-black' : ''">
-                                                {{--
-                                                <div class="d-flex justify-content-center align-items-center">
-                                                    <button class="btn btn-outline-white me-1" x-show="hover" x-cloak>
-                                                        Detail
-                                                    </button>
-                                                    @if ($user->id === auth()->id())
-                                                        <button class="btn btn-outline-red-600" x-show="hover" x-cloak>
-                                                            Delete
-                                                        </button>
+                                                <div class="w-auto h-auto position-absolute top-50 start-50 translate-middle"
+                                                    x-show="hover" x-cloak>
+                                                    <i class="bi bi-arrows-angle-expand fs-4" style="cursor:pointer"
+                                                        x-on:click="detail = !detail">
+                                                    </i>
+                                                    @if (auth()->id() === $photo->created_by)
+                                                        <i class="bi bi-trash fs-4 text-red-500" style="cursor:pointer"
+                                                            wire:click="deletePicture({{ $photo->id }})">
+                                                        </i>
                                                     @endif
-                                                </div> --}}
+                                                </div>
                                             </div>
+                                        </div>
+                                        <div class="position-fixed w-100 vh-100 top-0 start-0" style="background-color: #00000070;z-index:8000"
+                                            x-show="detail"
+                                            x-on:click="detail = !detail" x-cloak>
+                                            <img src="{{ asset("storage/$photo->path") }}" class="w-auto h-auto position-absolute top-50 start-50 translate-middle" style="max-width:98%;max-height:98%">
                                         </div>
                                     </div>
                                 @endforeach
@@ -282,28 +282,28 @@
                                 @foreach ($photos as $photo)
                                     <div class="col-4 col-md-6 col-xl-4 p-1"
                                         x-data="{ hover: false, detail: false }">
-                                        <div class="position-relative"
-                                            x-on:mouseover="hover = true"
-                                            x-on:mouseleave="hover = false"
-                                            x-on:click="detail = !detail">
-
-                                            <div class="w-100 position-relative" style="height:0;padding-top:100%">
+                                        <div class="position-relative">
+                                            <div class="w-100 position-relative" style="height:0;padding-top:100%"
+                                                x-on:mouseover="hover = true"
+                                                x-on:mouseleave="hover = false">
                                                 <img src="{{ asset("storage/$photo->path") }}" class="w-100 h-100 fixed-top position-absolute rounded" style="object-fit:cover;z-index:auto">
-                                            </div>
-                                            <div class="position-absolute top-50 start-50 translate-middle d-flex justify-content-center w-100 h-100 rounded"
-                                                x-bind:class="hover ? 'glass-black' : ''">
-                                                {{--
-                                                <div class="d-flex justify-content-center align-items-center">
-                                                    <button class="btn btn-outline-white me-1" x-show="hover" x-cloak>
-                                                        Detail
-                                                    </button>
-                                                    @if ($user->id === auth()->id())
-                                                        <button class="btn btn-outline-red-600" x-show="hover" x-cloak>
-                                                            Delete
-                                                        </button>
+                                                <div class="w-auto h-auto position-absolute top-50 start-50 translate-middle"
+                                                    x-show="hover" x-cloak>
+                                                    <i class="bi bi-arrows-angle-expand fs-4" style="cursor:pointer"
+                                                        x-on:click="detail = !detail">
+                                                    </i>
+                                                    @if (auth()->id() === $photo->created_by)
+                                                        <i class="bi bi-trash fs-4 text-red-500" style="cursor:pointer"
+                                                            wire:click="deletePicture({{ $photo->id }})">
+                                                        </i>
                                                     @endif
-                                                </div> --}}
+                                                </div>
                                             </div>
+                                        </div>
+                                        <div class="position-fixed w-100 vh-100 top-0 start-0" style="background-color: #00000070;z-index:8000"
+                                            x-show="detail"
+                                            x-on:click="detail = !detail" x-cloak>
+                                            <img src="{{ asset("storage/$photo->path") }}" class="w-auto h-auto position-absolute top-50 start-50 translate-middle" style="max-width:98%;max-height:98%">
                                         </div>
                                     </div>
                                 @endforeach

@@ -6,6 +6,7 @@ use App\Models\Tag;
 use App\Models\Timeline;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
@@ -152,9 +153,12 @@ class Edit extends Component
             'file' => 'image|max:40960',
         ]);
 
-        $user = User::findOrFail(auth()->id());
-        $user->profile_photo_path = $this->file->store('profile-photos');
-        $user->save();
+        DB::transaction(function () {
+            $user = User::findOrFail(auth()->id());
+            if ($user->profile_photo_path) Storage::disk('public')->delete($user->profile_photo_path);
+            $user->profile_photo_path = $this->file->store('profile-photos');
+            $user->save();
+        });
 
         $this->getUser();
     }
