@@ -143,6 +143,22 @@
                                     </div>
                                 @enderror
                             </div>
+                            @if ($selected_timeline)
+                                <div class="col-auto ms-auto">
+                                    <a href="" class="py-3 border-left rounded-0 text-500" style="width:5rem" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <i class="bi bi-three-dots-vertical"></i>
+                                    </a>
+                                    <ul class="dropdown-menu dropdown-menu-end position-absolute">
+                                        <li>
+                                            <form wire:submit.prevent="deleteTimeline" method="POST">
+                                                <button type="submit"class="dropdown-item text-red-600">
+                                                    Delete
+                                                </button>
+                                            </form>
+                                        </li>
+                                    </ul>
+                                </div>
+                            @endif
                         </div>
                         <div class="row mb-3">
                             <div class="col-auto d-flex align-items-center">
@@ -164,22 +180,6 @@
                                     </div>
                                 @enderror
                             </div>
-                            @if ($selected_timeline)
-                                <div class="col-auto">
-                                    <a href="" class="py-3 border-left rounded-0 text-500" style="width:5rem" data-bs-toggle="dropdown" aria-expanded="false">
-                                        <i class="bi bi-three-dots-vertical"></i>
-                                    </a>
-                                    <ul class="dropdown-menu dropdown-menu-end position-absolute">
-                                        <li>
-                                            <form wire:submit.prevent="deleteTimeline" method="POST">
-                                                <button type="submit"class="dropdown-item text-red-600">
-                                                    Delete
-                                                </button>
-                                            </form>
-                                        </li>
-                                    </ul>
-                                </div>
-                            @endif
                         </div>
                         <div class="row mb-3">
                             <div class="col-12">
