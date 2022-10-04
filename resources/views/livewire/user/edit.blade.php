@@ -89,7 +89,7 @@
                                 <div class="timeline-item">
                                     <div class="py-2 d-flex align-items-center">
                                         <i class="px-1 fs-4 bi {{ ($item->icon ?? 'bi-circle') . ' text-' . ($item->icon_color ?? '') }}"></i>
-                                        <span class="px-2 text-muted" title="{{ $item->start_date->format('Y-m-d H:i:s') . ' - ' . $item->end_date?->format('Y-m-d H:i:s') ?? '' }}">
+                                        <span class="px-2 text-muted">
                                             {{ $item->start_date->format('F, Y') }}
                                         </span>
                                     </div>
