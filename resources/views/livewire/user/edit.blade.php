@@ -83,7 +83,7 @@
         <div class="card text-bg-800">
             <div class="card-body">
                 <div class="row">
-                    <div class="col-4 overflow-auto" style="max-height:50vh">
+                    <div class="col-md-4 mb-3 overflow-auto" style="max-height:50vh">
                         @if ($timelines->count())
                             @foreach ($timelines as $item)
                                 <div class="timeline-item">
@@ -122,9 +122,9 @@
                             </button>
                         </div>
                     </div>
-                    <div class="col-8">
-                        <div class="row mb-3">
-                            <div class="col-auto">
+                    <div class="col-md-8">
+                        <div class="row">
+                            <div class="col-auto mb-3">
                                 <input wire:model.debounce.500ms="timeline.start_date" class="form-control text-bg-700 @error('timeline.start_date') is-invalid @enderror" type="month">
                                 @error('timeline.start_date')
                                     <div class="invalid-feedback text-left">
@@ -132,10 +132,10 @@
                                     </div>
                                 @enderror
                             </div>
-                            <div class="col-auto d-flex align-items-center">
+                            <div class="col-auto mb-3 d-flex align-items-center">
                                 -
                             </div>
-                            <div class="col-auto">
+                            <div class="col-auto mb-3">
                                 <input wire:model.debounce.500ms="timeline.end_date" class="form-control text-bg-700 @error('timeline.end_date') is-invalid @enderror" type="month">
                                 @error('timeline.end_date')
                                     <div class="invalid-feedback text-left">
@@ -144,7 +144,7 @@
                                 @enderror
                             </div>
                             @if ($selected_timeline)
-                                <div class="col-auto ms-auto">
+                                <div class="col-auto mb-3 ms-auto">
                                     <a href="" class="py-3 border-left rounded-0 text-500" style="width:5rem" data-bs-toggle="dropdown" aria-expanded="false">
                                         <i class="bi bi-three-dots-vertical"></i>
                                     </a>
@@ -160,11 +160,11 @@
                                 </div>
                             @endif
                         </div>
-                        <div class="row mb-3">
-                            <div class="col-auto d-flex align-items-center">
+                        <div class="row">
+                            <div class="col-auto mb-3 d-flex align-items-center">
                                 <i class="ps-3 fs-4 bi {{ ($timeline->icon ?? 'bi-circle') . ' text-' . ($timeline->icon_color ?? '') }}"></i>
                             </div>
-                            <div class="col-auto">
+                            <div class="col-auto mb-3">
                                 <input wire:model.debounce.500ms="timeline.icon" type="text" class="form-control border-700 text-bg-700 @error('timeline.icon') is-invalid @enderror" placeholder="bi-circle">
                                 @error('timeline.icon')
                                     <div class="invalid-feedback text-left">
@@ -172,7 +172,7 @@
                                     </div>
                                 @enderror
                             </div>
-                            <div class="col-auto me-auto">
+                            <div class="col-auto mb-3 me-auto">
                                 <input wire:model.debounce.500ms="timeline.icon_color" type="text" class="form-control border-700 text-bg-700 @error('icon.{{ $loop->index }}') is-invalid @enderror" placeholder="color">
                                 @error('timeline.icon_color')
                                     <div class="invalid-feedback text-left">
@@ -235,7 +235,7 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-md-6 mb-3">
+                            <div class="col-md-6 mb-md-0 mb-3">
                                 <div class="card text-bg-700">
                                     <div class="card-body">
                                         <form wire:submit.prevent="createTag" method="post">
@@ -255,7 +255,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-6 mb-3">
+                            <div class="col-md-6">
                                 <div class="card text-bg-700">
                                     <div class="card-body">
                                         <div class="row mb-3">
