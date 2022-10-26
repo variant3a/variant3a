@@ -25,6 +25,11 @@ class Edit extends Component
     protected $rules = [
         'user.user_id' => ['required', 'string', 'max:32'],
         'user.name' => ['required', 'string', 'max:255'],
+        'user.state' => ['nullable', 'string', 'max:255'],
+        'user.job' => ['nullable', 'string', 'max:255'],
+        'user.bio' => ['nullable', 'string', 'max:65535'],
+        'user.programming_lang' => ['nullable', 'string', 'max:65535'],
+        'user.frameworks' => ['nullable', 'string', 'max:65535'],
         'file' => ['nullable', 'image', 'max:4096'],
         'timeline.icon' => ['nullable', 'string', 'max:64'],
         'timeline.icon_color' => ['nullable', 'string', 'max:32'],
@@ -68,7 +73,7 @@ class Edit extends Component
 
     public function getUser()
     {
-        $this->user = auth()->user();
+        $this->user = User::find(auth()->id());
     }
 
     public function getTimelines()
@@ -170,7 +175,7 @@ class Edit extends Component
         $data = $this->user;
 
         $user = User::findOrFail(auth()->id());
-        $user->name = $data->name;
+        $user->fill($data->only(['name', 'state', 'job', 'bio', 'programming_lang', 'frameworks']));
         $user->save();
 
         $this->getUser();

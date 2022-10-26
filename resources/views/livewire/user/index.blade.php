@@ -13,11 +13,18 @@
                             {{ $user->user_id }}
                         </h5>
                         <p class="text-400 mb-1">
-                            Engineer
+                            {{ $user->job }}
                         </p>
                         <p class="text-400 mb-4">
-                            Sapporo, Japan
+                            {{ $user->state }}
                         </p>
+                        @if ($user->bio)
+                            <hr>
+                            <p class="text-400 mb-4 text-start">
+                                {{ $user->bio }}
+                            </p>
+                        @endif
+                        <hr>
                         <div class="d-flex justify-content-center">
                             <a href="mailto:sulfur.monoxide168@gmail.com"class="btn btn-outline-main-500">
                                 Send Email
@@ -131,7 +138,7 @@
                                         Full Name
                                     </div>
                                     <div class="col-md-9 col-12 text-400">
-                                        Yuma Nishimura
+                                        {{ $user->name }}
                                     </div>
                                 </div>
                                 <hr>
@@ -149,7 +156,7 @@
                                         Languages
                                     </div>
                                     <div class="col-md-9 col-12 text-400">
-                                        PHP, JavaScript, HTML, CSS, Kotlin
+                                        {{ $user->programming_lang }}
                                     </div>
                                 </div>
                                 <hr>
@@ -158,7 +165,7 @@
                                         Frameworks
                                     </div>
                                     <div class="col-md-9 col-12 text-400">
-                                        Laravel, WordPress, Vue, Inertia, Livewire, Alpine, Bootstrap
+                                        {{ $user->frameworks }}
                                     </div>
                                 </div>
                             </div>
