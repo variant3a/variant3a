@@ -23,11 +23,14 @@
         "tailwindcss": "^3.0.0"
     },
     "dependencies": {
+        "@fullcalendar/core": "^5.11.3",
+        "@fullcalendar/daygrid": "^5.11.3",
+        "@fullcalendar/interaction": "^5.11.3",
+        "@fullcalendar/list": "^5.11.3",
+        "@fullcalendar/timegrid": "^5.11.3",
         "bootstrap": "^5.2.0-beta1",
         "bootstrap-icons": "^1.8.3",
         "highlight.js": "^11.5.1",
-        "jquery": "^3.6.0",
-        "jquery-ui": "^1.13.1",
         "jquery-ui-dist": "^1.13.1",
         "livewire-turbolinks": "^0.1.4",
         "simplemde": "^1.11.2",

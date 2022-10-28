@@ -33,7 +33,13 @@
                                     </div>
                                 @enderror
                             </div>
-                            <button type="submit" class="btn btn-block btn-main-500">Login</button>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <a href="{{ route('oauth.redirect') }}" class="btn btn-red-500">
+                                    <i class="bi bi-google"></i>
+                                    Sign in as Google
+                                </a>
+                                <button type="submit" class="btn btn-block btn-main-500">Login</button>
+                            </div>
                         </form>
                     </div>
                 </div>

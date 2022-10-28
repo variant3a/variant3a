@@ -55,6 +55,60 @@
                             </div>
                         </a>
                     </li>
+                    @auth
+                        <li class="nav-item">
+                            <a href="{{ route('internal.dashboard.index') }}" class="d-flex nav-link py-3 border-left rounded-0 align-items-center text-main-500 text-bg-hover-main-500" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Internal System">
+                                <div class="" style=" width:4rem">
+                                    <i class="bi bi-boxes fs-4"></i>
+                                </div>
+                                <div class="d-md-none">
+                                    Internal System
+                                </div>
+                            </a>
+                        </li>
+                        @if (Request::is('internal/*'))
+                            <li class="nav-item d-md-none">
+                                <a href="{{ route('internal.dashboard.index') }}" class="d-flex nav-link ms-5 py-3 border-left rounded-0 align-items-center text-main-500 text-bg-hover-main-500" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Home">
+                                    <div class="" style=" width:4rem">
+                                        <i class="bi bi-bar-chart-steps fs-4"></i>
+                                    </div>
+                                    <div class="d-md-none">
+                                        Projects
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="nav-item d-md-none">
+                                <a href="{{ route('internal.schedule.index') }}" class="d-flex nav-link ms-5 py-3 border-left rounded-0 align-items-center text-main-500 text-bg-hover-main-500" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Home">
+                                    <div class="" style=" width:4rem">
+                                        <i class="bi bi-calendar-week fs-4"></i>
+                                    </div>
+                                    <div class="d-md-none">
+                                        Schedules
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="nav-item d-md-none">
+                                <a href="{{ route('internal.dashboard.index') }}" class="d-flex nav-link ms-5 py-3 border-left rounded-0 align-items-center text-main-500 text-bg-hover-main-500" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Home">
+                                    <div class="" style=" width:4rem">
+                                        <i class="bi bi-coin fs-4"></i>
+                                    </div>
+                                    <div class="d-md-none">
+                                        Expenses
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="nav-item d-md-none">
+                                <a href="{{ route('internal.dashboard.index') }}" class="d-flex nav-link ms-5 py-3 border-left rounded-0 align-items-center text-main-500 text-bg-hover-main-500" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Home">
+                                    <div class="" style=" width:4rem">
+                                        <i class="bi bi-journals fs-4"></i>
+                                    </div>
+                                    <div class="d-md-none">
+                                        Notes
+                                    </div>
+                                </a>
+                            </li>
+                        @endif
+                    @endauth
                 </ul>
             </div>
         </div>

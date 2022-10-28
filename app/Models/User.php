@@ -32,7 +32,9 @@ class User extends Authenticatable
         'job',
         'bio',
         'programming_lang',
-        'frameworks'
+        'frameworks',
+        'access_token',
+        'refresh_token',
     ];
 
     /**
@@ -45,6 +47,8 @@ class User extends Authenticatable
         'remember_token',
         'two_factor_recovery_codes',
         'two_factor_secret',
+        'access_token',
+        'refresh_token',
     ];
 
     /**
@@ -70,6 +74,11 @@ class User extends Authenticatable
         'updated_at',
     ];
 
+    function events()
+    {
+        return $this->hasMany(Event::class);
+    }
+
     public function photos()
     {
         return $this->hasMany(Photo::class);
@@ -93,5 +102,10 @@ class User extends Authenticatable
     public function memos()
     {
         return $this->hasOne(Memo::class);
+    }
+
+    function identityProviders()
+    {
+        return $this->hasMany(IdentityProvider::class);
     }
 }

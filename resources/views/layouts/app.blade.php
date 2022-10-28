@@ -17,6 +17,9 @@
     <!-- Scripts -->
     @livewireScripts
     <script src="{{ mix('js/app.js') }}" data-turbolinks-eval="false" data-turbo-eval="false" defer></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar-scheduler@5.11.3/main.min.css" data-turbolinks-eval="false" data-turbo-eval="false">
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar-scheduler@5.11.3/main.js" data-turbolinks-eval="false" data-turbo-eval="false"></script>
+    @stack('js')
 
     <!-- Styles -->
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
@@ -31,7 +34,16 @@
     </header>
     <main>
         <div class="container-fluid mt-5 pt-5">
-            @yield('content')
+            <div class="row">
+                @if (Request::is('internal/*'))
+                    <div class="col-auto">
+                        @include('components.sidenav')
+                    </div>
+                @endif
+                <div class="col">
+                    @yield('content')
+                </div>
+            </div>
         </div>
     </main>
     <footer id="footer" data-turbolinks-permanent>

@@ -3,7 +3,7 @@
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Livewire\Home;
-use App\Http\Livewire\Photo;
+use App\Http\Livewire\Internal;
 use App\Http\Livewire\Post;
 use App\Http\Livewire\User;
 use App\Http\Livewire\Setting;
@@ -28,6 +28,11 @@ if (app()->isLocal()) {
         Route::post('/', [RegisterController::class, 'register']);
     });
 }
+
+Route::prefix('oauth')->name('oauth.')->group(function () {
+    Route::get('redirect', [LoginController::class, 'redirectToOAuth'])->name('redirect');
+    Route::get('callback', [LoginController::class, 'callbackFromOAuth'])->name('callback');
+});
 
 Route::prefix('login')->group(function () {
     Route::get('/', [LoginController::class, 'showLoginForm'])->name('login');
@@ -58,5 +63,17 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
     Route::prefix('post')->name('post.')->group(function () {
         Route::get('create', Post\Create::class)->name('create');
         Route::get('edit/{id}', Post\Edit::class)->name('edit');
+    });
+
+    Route::prefix('internal')->name('internal.')->group(function () {
+
+
+        Route::prefix('dashboard')->name('dashboard.')->group(function () {
+            Route::get('index', Internal\Dashboard\Index::class)->name('index');
+        });
+
+        Route::prefix('schedule')->name('schedule.')->group(function () {
+            Route::get('index', Internal\Schedule\Index::class)->name('index');
+        });
     });
 });

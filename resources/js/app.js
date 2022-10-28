@@ -1,5 +1,6 @@
-require('./bootstrap')
-window.$ = require('jquery/dist/jquery.min')
-require('jquery-ui-dist/jquery-ui.min')
-require('alpinejs/dist/cdn')
-require('./script')
+import Alpine from 'alpinejs'
+import './script'
+
+window.Alpine = Alpine
+
+Alpine.start()
