@@ -3,7 +3,8 @@
         x-data="{
             mouse: { x: 0, y: 0 },
             isAllday: true,
-            modalStyle: @entangle('modal_window')
+            modalStyle: @entangle('modal_window'),
+            isCollapsed: false,
         }"
         x-bind:style="{ display: modalStyle.show ? 'block' : 'none' }"
         :class="modalStyle.show ? 'show' : ''">
@@ -32,11 +33,16 @@
                     <h5 class="modal-title">
                         {{ $modal_window['title'] }} Event
                     </h5>
-                    <button type="button" class="btn btn-link p-0 text-white fs-5" wire:click="closeModal">
-                        <i class="bi bi-x"></i>
-                    </button>
+                    <span>
+                        <button type="button" class="btn btn-link p-0 me-2 text-white fs-5" x-on:click="isCollapsed = !isCollapsed">
+                            <i class="bi bi-dash"></i>
+                        </button>
+                        <button type="button" class="btn btn-link p-0 text-white fs-5" wire:click="closeModal">
+                            <i class="bi bi-x"></i>
+                        </button>
+                    </span>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body" x-show="!isCollapsed" x-transition>
                     <div class="row">
                         <div class="col-12 mb-3">
                             <div class="form-floating">
