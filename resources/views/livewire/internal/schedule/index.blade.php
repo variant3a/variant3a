@@ -42,12 +42,12 @@
                             let left = 0
                             let top = 0
                             if (info.jsEvent.pageX + 500 > window.innerWidth) {
-                                left = info.jsEvent.pageX - 500
+                                left = info.jsEvent.pageX - (info.jsEvent.pageX + 500 - window.innerWidth)
                             } else {
                                 left = info.jsEvent.pageX
                             }
-                            if (info.jsEvent.pageY + 500 > window.innerWidth) {
-                                top = info.jsEvent.pageY - 500
+                            if (info.jsEvent.pageY + 648 > window.innerHeight) {
+                                top = info.jsEvent.pageX - (info.jsEvent.pageX + 648 - window.innerHeight)
                             } else {
                                 top = info.jsEvent.pageY
                             }
@@ -59,15 +59,17 @@
                             const modalWindow = modalEl.firstElementChild
                             let left = 0
                             let top = 0
-                            if (info.jsEvent.pageX + 500 > window.innerWidth) {
-                                left = info.jsEvent.pageX - 500
-                            } else {
-                                left = info.jsEvent.pageX
-                            }
-                            if (info.jsEvent.pageY + 500 > window.contentHeight) {
-                                top = info.jsEvent.pageY - 500
-                            } else {
-                                top = info.jsEvent.pageY
+                            if (window.innerWidth >= 768) {
+                                if (info.jsEvent.pageX + 500 > window.innerWidth) {
+                                    left = info.jsEvent.pageX - (info.jsEvent.pageX + 500 - window.innerWidth)
+                                } else {
+                                    left = info.jsEvent.pageX
+                                }
+                                if (info.jsEvent.pageY + 648 > window.innerHeight) {
+                                    top = info.jsEvent.pageX - (info.jsEvent.pageX + 648 - window.innerHeight)
+                                } else {
+                                    top = info.jsEvent.pageY
+                                }
                             }
                             Livewire.emitTo('internal.schedule.modal', 'showEditModal', ['Edit', left, top, info.event.id])
                         },
