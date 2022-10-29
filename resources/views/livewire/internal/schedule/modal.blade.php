@@ -143,9 +143,11 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-outline-danger ms-0 me-auto" wire:click="deleteEvent()">
-                        Delete
-                    </button>
+                    @if ($modal_window['title'] === 'Edit')
+                        <button type="button" class="btn btn-outline-danger ms-0 me-auto" wire:click="deleteEvent()">
+                            Delete
+                        </button>
+                    @endif
                     <button type="button" class="btn btn-outline-500" wire:click="closeModal">
                         Cancel
                     </button>
