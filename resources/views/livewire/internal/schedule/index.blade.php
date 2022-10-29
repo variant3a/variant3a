@@ -12,7 +12,7 @@
                         headerToolbar: {
                             left: 'customPrev,customNext today',
                             center: 'title',
-                            right: 'dayGridMonth,timeGrid listYear'
+                            right: 'dayGridMonth listYear'
                         },
                         displayEventTime: true,
                         editable: true,

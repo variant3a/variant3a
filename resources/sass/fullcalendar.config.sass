@@ -1,0 +1,113 @@
+.fc
+    .fc-toolbar
+        .fc-button-group
+            @extend .btn-group
+        button
+            @extend .btn
+            @extend .btn-outline-100
+            &.fc-button-primary.fc-button-active
+                @extend .btn
+                @extend .btn-100
+    .fc-view-harness
+        .fc-daygrid
+            @extend .shadow
+            table.fc-scrollgrid
+                @extend .border-0
+                @extend .rounded
+                thead > tr > th
+                    @extend .border-start
+                    @extend .border-end
+                    @extend .border-800
+                    &:first-child
+                        border-left: 0 !important
+                    &:last-child
+                        border-right: 0 !important
+                    table.fc-col-header
+                        @extend .bg-yellow-500
+                        @extend .rounded-top
+                        thead > tr > th.fc-col-header-cell
+                            @extend .border-800
+                            @extend .border-bottom-0
+                            a
+                                @extend .text-700
+                                @extend .text-decoration-none
+                tbody > tr
+                    &:first-child > td
+                        border-top: 0 !important
+                    &:last-child > td
+                        border-bottom: 0 !important
+                    td
+                        @extend .border
+                        @extend .border-800
+                        &:first-child
+                            border-left: 0 !important
+                        &:last-child
+                            border-right: 0 !important
+                        table.fc-scrollgrid-sync-table
+                            @extend .bg-700
+                            @extend .rounded-bottom
+                            tbody > tr
+                                &:last-child > td .fc-daygrid-day-bg .fc-highlight
+                                    @extend .rounded-bottom
+                                td a
+                                    @extend .text-200
+                                    @extend .text-decoration-none
+        .fc-list
+            @extend .shadow
+            @extend .border-0
+            table.fc-list-table
+                background-color: transparent
+                thead
+                    // invisible
+                tbody > tr
+                    th, td
+                        @extend .border-800
+                    > th
+                        @extend .bg-yellow-600
+                        a
+                            @extend .text-decoration-none
+                        > .fc-cell-shaded
+                            background-color: transparent
+                    > td
+                        @extend .bg-800
+                        .fc-list-event-dot
+                            @extend .border-main-500
+                    &.fc-day-past,
+                    &.fc-event-past
+                        > th
+                            @extend .bg-yellow-700
+                            a
+                                @extend .text-500
+                        > td
+                            @extend .bg-700
+                            @extend .text-600
+                    &.fc-day-today,
+                    &.fc-day-past.fc-day-today,
+                    &.fc-day-today.fc-day-future,
+                    &.fc-day-past.fc-day-today.fc-day-future,
+                    &.fc-event-today,
+                    &.fc-event-past.fc-event-today,
+                    &.fc-event-today.fc-event-future,
+                    &.fc-event-past.fc-event-today.fc-event-future
+                        > th a
+                            @extend .text-white
+                        > td
+                            @extend .text-white
+                    &.fc-day-future,
+                    &.fc-event-future
+                        > th a
+                            @extend .text-200
+                        > td
+                            @extend .text-500
+                    &:first-child > th
+                        @extend .rounded-top
+                    &:last-child > td
+                        @extend .rounded-bottom
+
+.fc-h-event, .fc-v-event, .fc-event
+    @extend .border-0
+    @extend .bg-main-500
+    &:hover
+        @extend .shadow
+    &:after
+        @extend .bg-transparent

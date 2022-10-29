@@ -17,7 +17,6 @@
     <!-- Scripts -->
     @livewireScripts
     <script src="{{ mix('js/app.js') }}" data-turbolinks-eval="false" data-turbo-eval="false" defer></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar-scheduler@5.11.3/main.min.css" data-turbolinks-eval="false" data-turbo-eval="false">
     <script src="https://cdn.jsdelivr.net/npm/fullcalendar-scheduler@5.11.3/main.js" data-turbolinks-eval="false" data-turbo-eval="false"></script>
     @stack('js')
 
