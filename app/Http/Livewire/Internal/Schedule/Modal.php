@@ -60,18 +60,19 @@ class Modal extends Component
         $this->modal_window['left'] = $data[1] . 'px';
         $this->modal_window['top'] = $data[2] . 'px';
         $event = Event::find($data[3]);
+        $result = [];
 
-        $event['id'] = $event->id;
-        $event['title'] = $event->title;
-        $event['start'] = Carbon::parse($event->start)->format('Y-m-d');
-        $event['end'] = Carbon::parse($event->end)->format('Y-m-d');
-        $event['start_time'] = Carbon::parse($event->start)->format('H:i:s');
-        $event['end_time'] = Carbon::parse($event->end)->format('H:i:s');
-        $event['location'] = $event->location;
-        $event['url'] = $event->url;
-        $event['description'] = $event->description;
-        $event['all_day'] = $this->event['all_day'];
-        $this->event = $event;
+        $result['id'] = $event->id;
+        $result['title'] = $event->title;
+        $result['start'] = Carbon::parse($event->start)->format('Y-m-d');
+        $result['end'] = Carbon::parse($event->end)->format('Y-m-d');
+        $result['start_time'] = Carbon::parse($event->start)->format('H:i:s');
+        $result['end_time'] = Carbon::parse($event->end)->format('H:i:s');
+        $result['location'] = $event->location;
+        $result['url'] = $event->url;
+        $result['description'] = $event->description;
+        $result['all_day'] = $this->event['all_day'];
+        $this->event = $result;
     }
 
     public function closeModal()
