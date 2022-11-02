@@ -32,50 +32,58 @@
                     variant3a
                 </h5>
             </div>
-            <a href="{{ route('home.index') }}" class="flex h-16 p-5 text-teal-500 hover:text-neutral-200 hover:bg-teal-500/50 md:pointer-events-auto">
+            <a href="{{ route('home.index') }}" class="flex h-16 p-5 text-teal-500 hover:text-neutral-200 hover:bg-teal-500/50 md:pointer-events-auto"
+                x-on:click="showSideNav = (window.innerWidth >= 768) ? showSideNav : !showSideNav">
                 <i class="self-center px-1 text-xl bi bi-house-door-fill"></i>
                 <div class="mx-5 md:hidden">
                     Home
                 </div>
             </a>
-            <a href="{{ route('post.index') }}" class="flex h-16 p-5 text-teal-500 hover:text-neutral-200 hover:bg-teal-500/50 md:pointer-events-auto">
+            <a href="{{ route('post.index') }}" class="flex h-16 p-5 text-teal-500 hover:text-neutral-200 hover:bg-teal-500/50 md:pointer-events-auto"
+                x-on:click="showSideNav = (window.innerWidth >= 768) ? showSideNav : !showSideNav">
                 <i class="self-center px-1 text-xl bi bi-newspaper"></i>
                 <div class="mx-5 md:hidden">
                     Posts
                 </div>
             </a>
-            <a href="{{ route('user.index') }}" class="flex h-16 p-5 text-teal-500 hover:text-neutral-200 hover:bg-teal-500/50 md:pointer-events-auto">
+            <a href="{{ route('user.index') }}" class="flex h-16 p-5 text-teal-500 hover:text-neutral-200 hover:bg-teal-500/50 md:pointer-events-auto"
+                x-on:click="showSideNav = (window.innerWidth >= 768) ? showSideNav : !showSideNav">
                 <i class="self-center px-1 text-xl bi bi-person-workspace"></i>
                 <div class="mx-5 md:hidden">
                     About Me
                 </div>
             </a>
             @auth
-                {{-- <a href="{{ route('internal.dashboard.index') }}" class="flex h-16 p-5 text-teal-500 hover:text-neutral-200 hover:bg-teal-500/50 md:pointer-events-auto">
+                {{-- <a href="{{ route('internal.dashboard.index') }}" class="flex h-16 p-5 text-teal-500 hover:text-neutral-200 hover:bg-teal-500/50 md:pointer-events-auto"
+                    x-on:click="showSideNav = (window.innerWidth >= 768) ? showSideNav : !showSideNav">
                     <i class="self-center px-1 text-xl bi bi-boxes"></i>
                     <div class="mx-5 md:hidden">
                         Internal System
                     </div>
                 </a>
-                <a href="{{ route('internal.dashboard.index') }}" class="flex h-16 p-5 text-teal-500 hover:text-neutral-200 hover:bg-teal-500/50 md:pointer-events-auto">
+                <a href="{{ route('internal.dashboard.index') }}" class="flex h-16 p-5 text-teal-500 hover:text-neutral-200 hover:bg-teal-500/50 md:pointer-events-auto"
+                    x-on:click="showSideNav = (window.innerWidth >= 768) ? showSideNav : !showSideNav">
                     <i class="self-center px-1 text-xl bi bi-bar-chart-steps"></i>
                     <div class="mx-5 md:hidden">
                         Projects
                     </div>
                 </a> --}}
-                <a href="{{ route('internal.schedule.index') }}" class="flex h-16 p-5 text-teal-500 hover:text-neutral-200 hover:bg-teal-500/50 md:pointer-events-auto">
+                <a href="{{ route('internal.schedule.index') }}" class="flex h-16 p-5 text-teal-500 hover:text-neutral-200 hover:bg-teal-500/50 md:pointer-events-auto"
+                    x-on:click="showSideNav = (window.innerWidth >= 768) ? showSideNav : !showSideNav">
                     <i class="self-center px-1 text-xl bi bi-calendar-week"></i>
                     <div class="mx-5 md:hidden">
                         Schedules
                     </div>
                 </a>
-                {{-- <a href="{{ route('internal.dashboard.index') }}" class="flex h-16 p-5 text-teal-500 hover:text-neutral-200 hover:bg-teal-500/50 md:pointer-events-auto">
+                {{-- <a href="{{ route('internal.dashboard.index') }}" class="flex h-16 p-5 text-teal-500 hover:text-neutral-200 hover:bg-teal-500/50 md:pointer-events-auto"
+                    x-on:click="showSideNav = (window.innerWidth >= 768) ? showSideNav : !showSideNav">
                     <i class="self-center px-1 text-xl bi bi-coin"></i>
                     <div class="mx-5 md:hidden">
                         Expenses
                     </div>
                 </a>
-                <a href="{{ route('internal.dashboard.index') }}" class="flex h-16 p-5 text-teal-500 hover:text-neutral-200 hover:bg-teal-500/50 md:pointer-events-auto">
+                <a href="{{ route('internal.dashboard.index') }}" class="flex h-16 p-5 text-teal-500 hover:text-neutral-200 hover:bg-teal-500/50 md:pointer-events-auto"
+                    x-on:click="showSideNav = (window.innerWidth >= 768) ? showSideNav : !showSideNav">
                     <i class="self-center px-1 text-xl bi bi-journals"></i>
                     <div class="mx-5 md:hidden">
                         Notes
@@ -91,14 +99,17 @@
                 Switch Theme
             </button>
             @auth
-                <a class="block px-4 py-2 text-sm text-neutral-700 dark:text-neutral-200 hover:text-neutral-200 hover:bg-teal-500/50" href="{{ route('user.edit') }}">
+                <a class="block px-4 py-2 text-sm text-neutral-700 dark:text-neutral-200 hover:text-neutral-200 hover:bg-teal-500/50" href="{{ route('user.edit') }}"
+                    x-on:click="showDropdown = (window.innerWidth >= 768) ? showDropdown : !showDropdown">
                     Edit Profile
                 </a>
-                <a class="block px-4 py-2 text-sm text-neutral-700 dark:text-neutral-200 hover:text-neutral-200 hover:bg-teal-500/50" href="{{ route('setting.index') }}">
+                <a class="block px-4 py-2 text-sm text-neutral-700 dark:text-neutral-200 hover:text-neutral-200 hover:bg-teal-500/50" href="{{ route('setting.index') }}"
+                    x-on:click="showDropdown = (window.innerWidth >= 768) ? showDropdown : !showDropdown">
                     Settings
                 </a>
                 <hr class="dropdown-divider">
-                <form action="{{ route('logout') }}" method="post">
+                <form action="{{ route('logout') }}" method="post"
+                    x-on:click="showDropdown = (window.innerWidth >= 768) ? showDropdown : !showDropdown">
                     @csrf
                     <button type="submit" class="w-full px-4 py-2 text-sm text-left text-red-500 hover:text-neutral-200 hover:bg-red-500/50">
                         Logout
@@ -107,11 +118,13 @@
             @endauth
             @guest
                 @env('local')
-                <a class="block px-4 py-2 text-sm text-neutral-700 dark:text-neutral-200 hover:text-neutral-200 hover:bg-teal-500/50" href="{{ route('register') }}">
+                <a class="block px-4 py-2 text-sm text-neutral-700 dark:text-neutral-200 hover:text-neutral-200 hover:bg-teal-500/50" href="{{ route('register') }}"
+                    x-on:click="showDropdown = (window.innerWidth >= 768) ? showDropdown : !showDropdown">
                     Register
                 </a>
                 @endenv
-                <a class="block px-4 py-2 text-sm text-neutral-700 dark:text-neutral-200 hover:text-neutral-200 hover:bg-teal-500/50" href="{{ route('login') }}">
+                <a class="block px-4 py-2 text-sm text-neutral-700 dark:text-neutral-200 hover:text-neutral-200 hover:bg-teal-500/50" href="{{ route('login') }}"
+                    x-on:click="showDropdown = (window.innerWidth >= 768) ? showDropdown : !showDropdown">
                     Login
                 </a>
             @endguest
