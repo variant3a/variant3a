@@ -24,7 +24,7 @@
             </div>
             @if ($user->bio)
                 <hr>
-                <p class="mb-4 text-neutral-500">
+                <p class="my-3 break-all text-neutral-500">
                     {{ $user->bio }}
                 </p>
             @endif
@@ -35,6 +35,9 @@
             </a>
             <a href="https://github.com/variant3a/variant3a" target="_blank no_refferer" class="self-center">
                 <img src="{{ asset('images/logo_only_transparent_trim.png') }}" class="w-6 h-auto bg-transparent">
+            </a>
+            <a href="https://www.tumblr.com/variant3a" target="_blank no_refferer" class="w-6 h-auto text-xl text-center text-neutral-700 dark:text-neutral-200">
+                <i class="bi-images"></i>
             </a>
         </div>
         <div class="flex flex-col p-2 pb-0 bg-white rounded shadow sm:p-3 sm:pb-1 h-fit dark:bg-zinc-700 text-neutral-700 dark:text-neutral-200 ring-1 ring-black/5"
