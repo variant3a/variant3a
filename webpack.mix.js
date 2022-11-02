@@ -26,7 +26,6 @@ mix.js('resources/js/app.js', 'public/js')
             'resources/**/*',
         ]
     })
-    .version()
 
 if (mix.inProduction()) {
     mix.version()
