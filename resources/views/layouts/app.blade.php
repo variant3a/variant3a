@@ -4,7 +4,6 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="theme-color" content="">
 
     <!-- PWA -->
     <link rel="manifest" href="{{ asset('manifest.json') }}">
@@ -16,9 +15,8 @@
 
     <!-- Scripts -->
     @livewireScripts
-    <script src="{{ mix('js/app.js') }}" data-turbolinks-eval="false" data-turbo-eval="false" defer></script>
-    <script src="https://cdn.jsdelivr.net/npm/fullcalendar-scheduler@5.11.3/main.js" data-turbolinks-eval="false" data-turbo-eval="false"></script>
-    @stack('js')
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar-scheduler@5.11.3/main.js"></script>
+    <script src="{{ mix('js/app.js') }}" defer></script>
 
     <!-- Styles -->
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
@@ -27,27 +25,41 @@
     <meta name="google-site-verification" content="2ZseLlPEz2jQX_FTIz1UkNzLEpovoPTGEdn0S4YgbzE" />
 </head>
 
-<body class="bg-dark">
-    <header id="header">
+<body class="bg-gray-100 dark:bg-zinc-800">
+    <header id="header" data-turbo-permanent>
         @include('components.header')
     </header>
     <main>
-        <div class="container-fluid mt-5 pt-5">
-            <div class="row">
-                @if (Request::is('internal/*'))
-                    <div class="col-auto">
-                        @include('components.sidenav')
-                    </div>
-                @endif
-                <div class="col">
-                    @yield('content')
-                </div>
-            </div>
+        <div class="mx-1 mt-20 sm:mx-3 sm:mt-24">
+            @yield('content')
         </div>
     </main>
-    <footer id="footer" data-turbolinks-permanent>
+    <footer id="footer" data-turbo-permanent>
         @include('components.footer')
     </footer>
+    <script data-turbo-eval="false" defer>
+        // Switch Theme Script
+
+        const savedTheme = localStorage.theme
+        const scheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+        const theme = savedTheme ?? scheme
+
+        if (theme === 'dark') {
+            document.documentElement.classList.add('dark')
+        } else {
+            document.documentElement.classList.remove('dark')
+        }
+
+        window.changeTheme = () => {
+            if (localStorage.theme === 'dark') {
+                document.documentElement.classList.remove('dark')
+                localStorage.theme = 'light'
+            } else {
+                document.documentElement.classList.add('dark')
+                localStorage.theme = 'dark'
+            }
+        }
+    </script>
 </body>
 
 </html>

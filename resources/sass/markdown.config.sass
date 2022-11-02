@@ -1,38 +1,23 @@
 .markdown
     h1
-        font-size: 1.75rem
-        margin: 3rem 0 1rem 0
-        padding: 0.5rem 0
-        border-bottom: solid 4px $main-color
+        @apply text-2xl font-bold -left-2 my-5 pl-2 border-l-8 border-teal-500
     h2
-        font-size: 1.5rem
-        margin: 3rem 0 1rem 0
-        padding: 0.5rem 0
-        border-bottom: solid 2px $main-color
+        @apply text-2xl font-bold -left-2 my-4 pl-2 border-l-4 border-teal-500
     h3
-        font-size: 1.25rem
-        margin: 2.5rem 0 1rem 0
-        padding: 0.5rem 0
-        border-bottom: solid 2px $gray-600
+        @apply text-xl font-semibold -left-2 my-4 ml-2 pl-2 border-l-4 border-teal-500
     h4
-        font-size: 1.125rem
-        margin: 2.5rem 0 1rem 0
-        padding: 0.5rem 0
-        border-bottom: solid 2px $gray-600
+        @apply text-lg font-semibold -left-2 my-4 ml-2 pl-2 border-l-4 border-neutral-700 dark:border-white
     h5
-        font-size: 1rem
-        margin: 2rem 0 1rem 0
-        padding: 0.5rem 0
-        border-bottom: solid 1px $gray-600
+        @apply font-semibold -left-2 my-4 ml-2 pl-2 border-l-4 border-neutral-700 dark:border-white
+    p
+        @apply text-neutral-700 dark:text-neutral-200
+    a
+        @apply text-teal-500 underline
     code
-        border-radius: 6px
+        @apply text-lg rounded text-base
     table
-        border: solid 1px $gray-600
-        thead
-            th
-                border: solid 1px $gray-600
-                padding: 0.25rem
-        tbody
-            td
-                border: solid 1px $gray-600
-                padding: 0.25rem
+        @apply border border-neutral-400
+        thead th,
+        tbody td
+            @apply border border-neutral-400
+            @apply p-1

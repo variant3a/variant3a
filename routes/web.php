@@ -61,8 +61,7 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
     });
 
     Route::prefix('post')->name('post.')->group(function () {
-        Route::get('create', Post\Create::class)->name('create');
-        Route::get('edit/{id}', Post\Edit::class)->name('edit');
+        Route::get('edit/{id?}', Post\Edit::class)->name('edit');
     });
 
     Route::prefix('internal')->name('internal.')->group(function () {

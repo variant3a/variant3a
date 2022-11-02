@@ -1,162 +1,120 @@
-<nav class="navbar p-0 fixed-top navbar-expand-md bg-dark shadow">
-    <div class="container-xxl p-0 d-flex justify-content-between">
-        <ul class="navbar-nav text-center">
-            <li class="nav-item">
-                <a class="btn btn-link navbar-toggler border-0 rounded-0 text-main-500" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvas" aria-expanded="false" style="width:5rem">
-                    <i class="bi bi-list fs-4"></i>
-                </a>
-            </li>
-        </ul>
-        <ul class="navbar-nav text-center flex-column flex-md-row">
-            <li id="logo" class="nav-item">
-                <a href="{{ url()->current() }}" id="random-emoji" class="nav-link py-3 border-left rounded-0 text-main-500" style="width:5rem" style="width:5rem" data-bs-toggle="tooltip" data-bs-placement="bottom" title="&#128512">
-                    <img src="{{ asset('images/favicon-512.gif') }}" class="bg-transparent" style="width:1.5rem;height:auto">
-                </a>
-            </li>
-        </ul>
-        <div class="offcanvas offcanvas-start bg-dark border-0" tabindex="-1" id="offcanvas">
-            <div class="offcanvas-header">
-                <h5 class="offcanvas-title text-main-500">
-                    variant3a
-                </h5>
-                <a href="{{ route('home.index') }}" class="btn btn-link navbar-toggler border-0 rounded-0 text-main-500" type="button" data-bs-dismiss="offcanvas" aria-label="Close">
-                    <i class="bi bi-x-lg fs-4"></i>
+<div
+    x-data="{ showDropdown: false, showSideNav: (window.innerWidth >= 768) ? true : false }">
+    <div class="fixed z-10 m-1 sm:m-3 top-0 left-0 w-[calc(100%_-_0.5rem)] sm:w-[calc(100%_-_1.5rem)] shadow-lg rounded backdrop-blur-lg bg-zinc-200/20 dark:bg-white/10 ring-1 ring-white/40 dark:ring-white/20">
+        <div class="flex justify-between">
+            <div class="relative flex items-center justify-between z-1 md:hidden">
+                <button type="button" class="inline-block h-16 p-5 text-center no-underline rounded-l hover:text-neutral-200 hover:bg-teal-500/50"
+                    x-on:click="showSideNav = !showSideNav"
+                    :class="showSideNav ? 'bg-teal-500 text-neutral-200' : 'text-teal-500'">
+                    <i class="self-center px-1 text-xl bi bi-list"></i>
+                </button>
+            </div>
+            <div class="relative flex items-center justify-between h-16 px-4 z-1">
+                <a href="{{ url()->current() }}" id="random-emoji" class="inline-block">
+                    <img src="{{ asset('images/logo_only_transparent_trim.png') }}" class="w-8 h-auto">
                 </a>
             </div>
-            <div class="px-0 offcanvas-body justify-content-center">
-                <ul class="navbar-nav text-center flex-column flex-md-row">
-                    <li class="nav-item">
-                        <a href="{{ route('home.index') }}" class="d-flex nav-link py-3 border-left rounded-0 align-items-center text-main-500 text-bg-hover-main-500" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Home">
-                            <div class="" style="width:4rem">
-                                <i class="bi bi-house-door-fill fs-4"></i>
-                            </div>
-                            <div class="d-md-none">
-                                Home
-                            </div>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{{ route('post.index') }}" class="d-flex nav-link py-3 border-left rounded-0 align-items-center text-main-500 text-bg-hover-main-500" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Posts">
-                            <div class="" style="width:4rem">
-                                <i class="bi bi-newspaper fs-4"></i>
-                            </div>
-                            <div class="d-md-none">
-                                Posts
-                            </div>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{{ route('user.index') }}" class="d-flex nav-link py-3 border-left rounded-0 align-items-center text-main-500 text-bg-hover-main-500" data-bs-toggle="tooltip" data-bs-placement="bottom" title="About Me">
-                            <div class="" style=" width:4rem">
-                                <i class="bi bi-person-workspace fs-4"></i>
-                            </div>
-                            <div class="d-md-none">
-                                About Me
-                            </div>
-                        </a>
-                    </li>
-                    @auth
-                        <li class="nav-item">
-                            <a href="{{ route('internal.dashboard.index') }}" class="d-flex nav-link py-3 border-left rounded-0 align-items-center text-main-500 text-bg-hover-main-500" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Internal System">
-                                <div class="" style=" width:4rem">
-                                    <i class="bi bi-boxes fs-4"></i>
-                                </div>
-                                <div class="d-md-none">
-                                    Internal System
-                                </div>
-                            </a>
-                        </li>
-                        @if (Request::is('internal/*'))
-                            <li class="nav-item d-md-none">
-                                <a href="{{ route('internal.dashboard.index') }}" class="d-flex nav-link ms-5 py-3 border-left rounded-0 align-items-center text-main-500 text-bg-hover-main-500" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Home">
-                                    <div class="" style=" width:4rem">
-                                        <i class="bi bi-bar-chart-steps fs-4"></i>
-                                    </div>
-                                    <div class="d-md-none">
-                                        Projects
-                                    </div>
-                                </a>
-                            </li>
-                            <li class="nav-item d-md-none">
-                                <a href="{{ route('internal.schedule.index') }}" class="d-flex nav-link ms-5 py-3 border-left rounded-0 align-items-center text-main-500 text-bg-hover-main-500" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Home">
-                                    <div class="" style=" width:4rem">
-                                        <i class="bi bi-calendar-week fs-4"></i>
-                                    </div>
-                                    <div class="d-md-none">
-                                        Schedules
-                                    </div>
-                                </a>
-                            </li>
-                            <li class="nav-item d-md-none">
-                                <a href="{{ route('internal.dashboard.index') }}" class="d-flex nav-link ms-5 py-3 border-left rounded-0 align-items-center text-main-500 text-bg-hover-main-500" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Home">
-                                    <div class="" style=" width:4rem">
-                                        <i class="bi bi-coin fs-4"></i>
-                                    </div>
-                                    <div class="d-md-none">
-                                        Expenses
-                                    </div>
-                                </a>
-                            </li>
-                            <li class="nav-item d-md-none">
-                                <a href="{{ route('internal.dashboard.index') }}" class="d-flex nav-link ms-5 py-3 border-left rounded-0 align-items-center text-main-500 text-bg-hover-main-500" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Home">
-                                    <div class="" style=" width:4rem">
-                                        <i class="bi bi-journals fs-4"></i>
-                                    </div>
-                                    <div class="d-md-none">
-                                        Notes
-                                    </div>
-                                </a>
-                            </li>
-                        @endif
-                    @endauth
-                </ul>
+            <div class="relative z-20 flex items-center justify-between h-16">
+                <div class="fixed inset-0 w-screen h-screen" x-on:click="showDropdown = !showDropdown" x-show="showDropdown" x-on: x-cloak></div>
+                <button type="button" class="inline-block h-16 p-5 rounded-r hover:text-neutral-200 hover:bg-teal-500/50"
+                    x-on:click="showDropdown = !showDropdown"
+                    :class="showDropdown ? 'bg-teal-500 text-neutral-200' : 'text-teal-500'">
+                    <i class="self-center px-1 text-xl bi bi-three-dots-vertical"></i>
+                </button>
             </div>
         </div>
-        <ul class="navbar-nav text-center flex-column flex-md-row">
-            <li class="nav-item dropdown">
-                <a href="" class="nav-link py-3 border-left rounded-0 text-main-500 text-bg-hover-main-500" style="width:5rem" data-bs-toggle="dropdown" aria-expanded="false">
-                    <i class="bi bi-three-dots-vertical fs-4"></i>
-                </a>
-                <ul class="dropdown-menu dropdown-menu-end position-absolute">
-                    @auth
-                        <li>
-                            <a class="dropdown-item" href="{{ route('user.edit') }}">
-                                Edit Profile
-                            </a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="{{ route('setting.index') }}">
-                                Settings
-                            </a>
-                        </li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-                        <li>
-                            <form action="{{ route('logout') }}" method="post">
-                                @csrf
-                                <button type="submit" class="dropdown-item text-red-600">
-                                    Logout
-                                </button>
-                            </form>
-                        </li>
-                    @endauth
-                    @guest
-                        @env('local')
-                        <li>
-                            <a class="dropdown-item" href="{{ route('register') }}">
-                                Register
-                            </a>
-                        </li>
-                        @endenv
-                        <li>
-                            <a class="dropdown-item" href="{{ route('login') }}">
-                                Login
-                            </a>
-                        </li>
-                    @endguest
-                </ul>
-            </li>
-        </ul>
     </div>
-</nav>
+    <div class="fixed inset-0 z-20 w-screen h-screen md:hidden" x-on:click="showSideNav = !showSideNav" x-show="showSideNav" x-cloak></div>
+    <div class="fixed z-30 md:pointer-events-none top-20 sm:top-24 left-1 sm:left-3 md:inset-0 md:m-3 w-[calc(100vw_-_0.5rem)] sm:w-[calc(100vw_-_1.5rem)] max-h-[calc(100vh_-_6.25rem)] shadow-lg md:shadow-none md:backdrop-blur-0 bg-zinc-200/20 md:bg-transparent dark:bg-white/10 dark:md:bg-transparent rounded backdrop-blur-lg ring-1 ring-white/40 dark:ring-white/20 md:ring-0 overflow-auto" x-show="showSideNav" x-cloak x-transition>
+        <div class="flex flex-col flex-1 md:flex-row md:justify-center">
+            <div class="flex p-5 md:hidden">
+                <h5 class="inline-block my-0 font-semibold text-neutral-700 dark:text-neutral-200">
+                    variant3a
+                </h5>
+            </div>
+            <a href="{{ route('home.index') }}" class="flex h-16 p-5 text-teal-500 hover:text-neutral-200 hover:bg-teal-500/50 md:pointer-events-auto">
+                <i class="self-center px-1 text-xl bi bi-house-door-fill"></i>
+                <div class="mx-5 md:hidden">
+                    Home
+                </div>
+            </a>
+            <a href="{{ route('post.index') }}" class="flex h-16 p-5 text-teal-500 hover:text-neutral-200 hover:bg-teal-500/50 md:pointer-events-auto">
+                <i class="self-center px-1 text-xl bi bi-newspaper"></i>
+                <div class="mx-5 md:hidden">
+                    Posts
+                </div>
+            </a>
+            <a href="{{ route('user.index') }}" class="flex h-16 p-5 text-teal-500 hover:text-neutral-200 hover:bg-teal-500/50 md:pointer-events-auto">
+                <i class="self-center px-1 text-xl bi bi-person-workspace"></i>
+                <div class="mx-5 md:hidden">
+                    About Me
+                </div>
+            </a>
+            @auth
+                {{-- <a href="{{ route('internal.dashboard.index') }}" class="flex h-16 p-5 text-teal-500 hover:text-neutral-200 hover:bg-teal-500/50 md:pointer-events-auto">
+                    <i class="self-center px-1 text-xl bi bi-boxes"></i>
+                    <div class="mx-5 md:hidden">
+                        Internal System
+                    </div>
+                </a>
+                <a href="{{ route('internal.dashboard.index') }}" class="flex h-16 p-5 text-teal-500 hover:text-neutral-200 hover:bg-teal-500/50 md:pointer-events-auto">
+                    <i class="self-center px-1 text-xl bi bi-bar-chart-steps"></i>
+                    <div class="mx-5 md:hidden">
+                        Projects
+                    </div>
+                </a> --}}
+                <a href="{{ route('internal.schedule.index') }}" class="flex h-16 p-5 text-teal-500 hover:text-neutral-200 hover:bg-teal-500/50 md:pointer-events-auto">
+                    <i class="self-center px-1 text-xl bi bi-calendar-week"></i>
+                    <div class="mx-5 md:hidden">
+                        Schedules
+                    </div>
+                </a>
+                {{-- <a href="{{ route('internal.dashboard.index') }}" class="flex h-16 p-5 text-teal-500 hover:text-neutral-200 hover:bg-teal-500/50 md:pointer-events-auto">
+                    <i class="self-center px-1 text-xl bi bi-coin"></i>
+                    <div class="mx-5 md:hidden">
+                        Expenses
+                    </div>
+                </a>
+                <a href="{{ route('internal.dashboard.index') }}" class="flex h-16 p-5 text-teal-500 hover:text-neutral-200 hover:bg-teal-500/50 md:pointer-events-auto">
+                    <i class="self-center px-1 text-xl bi bi-journals"></i>
+                    <div class="mx-5 md:hidden">
+                        Notes
+                    </div>
+                </a> --}}
+            @endauth
+        </div>
+    </div>
+    <div class="fixed z-30 w-56 rounded shadow-lg top-20 sm:top-24 right-1 sm:right-3 backdrop-blur-lg bg-zinc-200/20 dark:bg-white/10 ring-1 ring-white/40 dark:ring-white/20 focus:outline-none" x-show="showDropdown" x-cloak x-transition>
+        <div class="py-1">
+            <button type="button" class="block w-full px-4 py-2 text-sm text-left text-neutral-700 dark:text-neutral-200 hover:text-neutral-200 hover:bg-teal-500/50"
+                x-on:click="changeTheme">
+                Switch Theme
+            </button>
+            @auth
+                <a class="block px-4 py-2 text-sm text-neutral-700 dark:text-neutral-200 hover:text-neutral-200 hover:bg-teal-500/50" href="{{ route('user.edit') }}">
+                    Edit Profile
+                </a>
+                <a class="block px-4 py-2 text-sm text-neutral-700 dark:text-neutral-200 hover:text-neutral-200 hover:bg-teal-500/50" href="{{ route('setting.index') }}">
+                    Settings
+                </a>
+                <hr class="dropdown-divider">
+                <form action="{{ route('logout') }}" method="post">
+                    @csrf
+                    <button type="submit" class="w-full px-4 py-2 text-sm text-left text-red-500 hover:text-neutral-200 hover:bg-red-500/50">
+                        Logout
+                    </button>
+                </form>
+            @endauth
+            @guest
+                @env('local')
+                <a class="block px-4 py-2 text-sm text-neutral-700 dark:text-neutral-200 hover:text-neutral-200 hover:bg-teal-500/50" href="{{ route('register') }}">
+                    Register
+                </a>
+                @endenv
+                <a class="block px-4 py-2 text-sm text-neutral-700 dark:text-neutral-200 hover:text-neutral-200 hover:bg-teal-500/50" href="{{ route('login') }}">
+                    Login
+                </a>
+            @endguest
+        </div>
+    </div>
+</div>

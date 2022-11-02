@@ -17,8 +17,6 @@ class Index extends Component
     public $tags;
     protected $posts;
 
-    protected $paginationTheme = 'bootstrap';
-
     public function mount()
     {
         $this->posts = Post::paginate(10);

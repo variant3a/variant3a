@@ -1,328 +1,216 @@
-<div class="row">
-    <div class="col-md-4">
-        <div class="row">
-            <div class="col-12 mb-3">
-                <div class="card mb-3 text-bg-800">
-                    <div class="card-body text-center">
-                        <div class="mb-3 d-flex justify-content-center">
-                            <div class="w-50 position-relative" style="height:0;padding-top:50%">
-                                <img src="{{ asset("storage/$user->profile_photo_path") }}" class="w-100 h-100 fixed-top position-absolute rounded-4" style="object-fit:cover;z-index:auto">
-                            </div>
-                        </div>
-                        <h5 class="my-3">
-                            {{ $user->user_id }}
-                        </h5>
-                        <p class="text-400 mb-1">
-                            {{ $user->job }}
-                        </p>
-                        <p class="text-400 mb-4">
-                            {{ $user->state }}
-                        </p>
-                        @if ($user->bio)
-                            <hr>
-                            <p class="text-400 mb-4 text-start">
-                                {{ $user->bio }}
-                            </p>
-                        @endif
-                        <hr>
-                        <div class="d-flex justify-content-center">
-                            <a href="mailto:sulfur.monoxide168@gmail.com"class="btn btn-outline-main-500">
-                                Send Email
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="card text-bg-800">
-                    <div class="card-body text-center">
-                        <div class="d-flex justify-content-evenly">
-                            <a href="https://github.com/variant3a" target="_blank no_refferer" class="text-white">
-                                <i class="bi-github"></i>
-                            </a>
-                            <a href="https://github.com/variant3a/variant3a" target="_blank no_refferer" class="text-white">
-                                <img src="{{ asset('images/favicon-512.gif') }}" class="bg-transparent" style="width:1rem;height:auto">
-                            </a>
-                        </div>
-                    </div>
+<div class="grid grid-cols-1 gap-1 md:grid-cols-4 sm:gap-3">
+    <div class="col-span-4 md:col-span-1">
+        <div class="flex flex-col p-2 mb-1 bg-white rounded shadow sm:mb-3 sm:p-3 h-fit dark:bg-zinc-700 text-neutral-700 dark:text-neutral-200 ring-1 ring-black/5">
+            <div class="flex justify-center mb-3">
+                <div class="w-1/2 h-0 pt-[50%] relative">
+                    <img src="{{ asset('storage/' . $user->profile_photo_path) }}" class="absolute inset-0 object-cover w-full h-full rounded-xl">
                 </div>
             </div>
-            <div class="col-12 mb-3 d-none d-md-block">
-                <div class="card text-bg-800">
-                    <div class="card-body pb-3">
-                        @if ($user->id === auth()->id())
-                            <div class="row mb-3"
-                                x-data="{ droping: false, progress: 0 }"
-                                x-cloak>
+            <div class="self-center mx-2">
+                <div class="my-2 text-lg text-center break-all">
+                    {{ $user->name }}
+                </div>
+                <div class="text-center break-all">
+                    {{ $user->user_id }}
+                </div>
+            </div>
+            <div class="self-center mx-2">
+                <p class="text-center break-all text-neutral-400">
+                    {{ $user->job }}
+                </p>
+                <p class="mb-4 text-center break-all text-neutral-400">
+                    {{ $user->state }}
+                </p>
+            </div>
+            @if ($user->bio)
+                <hr>
+                <p class="mb-4 text-neutral-500">
+                    {{ $user->bio }}
+                </p>
+            @endif
+        </div>
+        <div class="flex justify-around p-2 mb-1 bg-white rounded shadow sm:mb-3 sm:p-3 h-fit dark:bg-zinc-700 text-neutral-700 dark:text-neutral-200 ring-1 ring-black/5">
+            <a href="https://github.com/variant3a" target="_blank no_refferer" class="w-6 h-auto text-xl text-center text-neutral-700 dark:text-neutral-200">
+                <i class="bi-github"></i>
+            </a>
+            <a href="https://github.com/variant3a/variant3a" target="_blank no_refferer" class="self-center">
+                <img src="{{ asset('images/logo_only_transparent_trim.png') }}" class="w-6 h-auto bg-transparent">
+            </a>
+        </div>
+        <div class="flex flex-col p-2 pb-0 bg-white rounded shadow sm:p-3 sm:pb-1 h-fit dark:bg-zinc-700 text-neutral-700 dark:text-neutral-200 ring-1 ring-black/5"
+            x-data="{ expand: false }">
+            @if ($user->id === auth()->id())
+                <div class="mb-2 sm:mb-3"
+                    x-data="{ droping: false, progress: 0 }"
+                    x-cloak>
 
-                                <div class="col-12 d-grid gap-2"
-                                    x-on:drop.prevent="$wire.uploadMultiple(
-                                        'files',
-                                        $event.dataTransfer.files,
-                                        () => {droping = false;progress = 0},
-                                        () => {droping = false;progress = 0},
-                                        e => {progress = e.detail.progress}
-                                    )"
-                                    x-on:dragover.prevent="droping = true"
-                                    x-on:dragleave.prevent="droping = false"
-                                    x-on:livewire-upload-finish="droping = false;progress = 0"
-                                    x-on:livewire-upload-error="droping = false;progress = 0"
-                                    x-on:livewire-upload-progress="progress = $event.detail.progress">
+                    <div x-on:drop.prevent="$wire.uploadMultiple(
+                                    'files',
+                                    $event.dataTransfer.files,
+                                    () => {droping = false;progress = 0},
+                                    () => {droping = false;progress = 0},
+                                    e => {progress = e.detail.progress}
+                                )"
+                        x-on:dragover.prevent="droping = true"
+                        x-on:dragleave.prevent="droping = false"
+                        x-on:livewire-upload-finish="droping = false;progress = 0"
+                        x-on:livewire-upload-error="droping = false;progress = 0"
+                        x-on:livewire-upload-progress="progress = $event.detail.progress">
 
-                                    <label class="btn btn-outline-main-500 px-3 py-2 d-hidden"
-                                        x-show="!progress"
-                                        x-bind:style="{ 'border-style': droping ? 'dashed' : 'solid' }">
+                        <label class="block w-full p-2 font-bold text-center rounded shadow hover:shadow-lg hover:bg-teal-400/90 text-neutral-200 ring-1 ring-black/5"
+                            x-show="!progress"
+                            x-bind:class="droping ? 'bg-teal-400/90' : 'bg-teal-500'">
 
-                                        <input type="file" wire:model="files" class="d-none" accept="image/*" multiple>
-                                        Upload File
-                                    </label>
-                                    <div x-show="progress">
-                                        <div class="progress border border-1 border-main-500 text-main-500 bg-transparent fs-6" style="height:unset">
-                                            <div class="progress-bar px-3 py-2 progress-bar-striped progress-bar-animated bg-main-500"
-                                                x-bind:style="{ width: `${progress}%` }">
-                                                &nbsp;
-                                            </div>
-                                        </div>
+                            <input type="file" wire:model="files" class="hidden" accept="image/*" multiple>
+                            Upload File
+                        </label>
+                        <div class="relative top-0 w-full h-10 font-bold text-center align-middle bg-gray-200 rounded dark:bg-gray-700 text-neutral-200"
+                            x-show="progress">
+                            <div class="h-10 transition-all ease-in-out bg-teal-600 rounded top-1 dark:bg-teal-500"
+                                x-bind:style="{ width: `${progress}%` }">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            @endif
+            <div class="grid grid-cols-3 grid-rows-3 overflow-hidden md:grid-rows-auto md:auto-rows-auto md:grid-cols-2 gap-x-2 gap-y-0 sm:gap-x-3"
+                x-bind:class="expand ? '' : 'auto-rows-[0]'">
+                @if ($photos->count())
+                    @foreach ($photos as $photo)
+                        <div x-data="{ hover: false, detail: false }">
+                            <div class="flex justify-center mb-2 sm:mb-3">
+                                <div class="w-full h-0 pt-[100%] relative"
+                                    x-on:mouseover="hover = true"
+                                    x-on:mouseleave="hover = false">
+                                    <img src="{{ asset("storage/$photo->path") }}" class="absolute inset-0 object-cover w-full h-full rounded">
+                                    <div class="absolute top-0 flex w-full h-full text-xl text-center rounded place-items-center justify-evenly start-0"
+                                        x-bind:class="hover ? 'backdrop-blur-lg bg-zinc-200/20 dark:bg-white/10 ring-1 ring-white/40 dark:ring-white/20' : ''"
+                                        x-show="hover" x-cloak>
+                                        <i class="block w-8 rounded cursor-pointer bi bi-arrows-angle-expand hover:bg-teal-500/50 hover:text-neutral-200" x-on:click="detail = !detail">
+                                        </i>
+                                        @if (auth()->id() === $photo->created_by)
+                                            <i class="block w-8 text-red-500 rounded cursor-pointer bi bi-trash hover:bg-red-500/50 hover:text-neutral-200" wire:click="deletePicture({{ $photo->id }})">
+                                            </i>
+                                        @endif
                                     </div>
                                 </div>
                             </div>
-                        @endif
-                        <div class="row px-2">
-                            @if ($photos->count())
-                                @foreach ($photos as $photo)
-                                    <div class="col-4 col-md-6 col-xl-4 p-1"
-                                        x-data="{ hover: false, detail: false }">
-                                        <div class="position-relative">
-                                            <div class="w-100 position-relative" style="height:0;padding-top:100%"
-                                                x-on:mouseover="hover = true"
-                                                x-on:mouseleave="hover = false">
-                                                <img src="{{ asset("storage/$photo->path") }}" class="w-100 h-100 fixed-top position-absolute rounded" style="object-fit:cover;z-index:auto">
-                                                <div class="w-auto h-auto position-absolute top-50 start-50 translate-middle"
-                                                    x-show="hover" x-cloak>
-                                                    <i class="bi bi-arrows-angle-expand fs-4" style="cursor:pointer"
-                                                        x-on:click="detail = !detail">
-                                                    </i>
-                                                    @if (auth()->id() === $photo->created_by)
-                                                        <i class="bi bi-trash fs-4 text-red-500" style="cursor:pointer"
-                                                            wire:click="deletePicture({{ $photo->id }})">
-                                                        </i>
-                                                    @endif
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="position-fixed w-100 vh-100 top-0 start-0" style="background-color: #00000070;z-index:8000"
-                                            x-show="detail"
-                                            x-on:click="detail = !detail" x-cloak>
-                                            <img src="{{ asset("storage/$photo->path") }}" class="w-auto h-auto position-absolute top-50 start-50 translate-middle" style="max-width:98%;max-height:98%">
-                                        </div>
-                                    </div>
-                                @endforeach
-                            @else
-                                <div class="col-12 text-muted">
-                                    No Photos.
-                                </div>
-                            @endif
+                            <div class="fixed top-0 left-0 z-50 w-full h-full bg-black/50"
+                                x-show="detail"
+                                x-on:click="detail = !detail" x-cloak>
+                                <img src="{{ asset("storage/$photo->path") }}" class="absolute max-w-full max-h-full -translate-x-1/2 -translate-y-1/2 w-max h-max top-1/2 left-1/2">
+                            </div>
                         </div>
+                    @endforeach
+                @else
+                    <div class="col-12 text-muted">
+                        No Photos.
                     </div>
+                @endif
+            </div>
+            @if ($photos->count() > 9)
+                <button type="button" class="w-full p-2 mb-2 font-bold text-center bg-teal-500 rounded shadow sm:mb-4 hover:shadow-lg hover:bg-teal-400/90 text-neutral-200 ring-1 ring-black/5 md:hidden"
+                    x-on:click="expand = !expand"
+                    x-text="expand ? 'Collapse' : 'Expand'" x-cloak x-transition>
+                </button>
+            @endif
+        </div>
+    </div>
+    <div class="col-span-4 md:col-span-3">
+        <div class="flex flex-col p-2 bg-white rounded shadow sm:p-3 h-fit dark:bg-zinc-700 text-neutral-700 dark:text-neutral-200 ring-1 ring-black/5">
+            <div class="grid grid-cols-1 gap-1 my-2 md:grid-cols-4 sm:gap-3">
+                <div class="col-span-4 md:col-span-1 text-neutral-400">
+                    Full Name
+                </div>
+                <div class="col-span-4 break-all md:col-span-3 text-neutral-700 dark:text-neutral-200">
+                    {{ $user->name }}
+                </div>
+            </div>
+            <hr>
+            <div class="grid grid-cols-1 gap-1 my-2 md:grid-cols-4 sm:gap-3">
+                <div class="col-span-4 md:col-span-1 text-neutral-400">
+                    Email
+                </div>
+                <div class="col-span-4 break-all md:col-span-3 text-neutral-700 dark:text-neutral-200">
+                    {{ $user->email }}
+                </div>
+            </div>
+            <hr>
+            <div class="grid grid-cols-1 gap-1 my-2 md:grid-cols-4 sm:gap-3">
+                <div class="col-span-4 md:col-span-1 text-neutral-400">
+                    Languages
+                </div>
+                <div class="col-span-4 md:col-span-3 text-neutral-700 dark:text-neutral-200 break-word">
+                    {{ $user->programming_lang }}
+                </div>
+            </div>
+            <hr>
+            <div class="grid grid-cols-1 gap-1 my-2 md:grid-cols-4 sm:gap-3">
+                <div class="col-span-4 md:col-span-1 text-neutral-400">
+                    Frameworks
+                </div>
+                <div class="col-span-4 md:col-span-3 text-neutral-700 dark:text-neutral-200 break-word">
+                    {{ $user->frameworks }}
                 </div>
             </div>
         </div>
-    </div>
-    <div class="col-md-8">
-        <div class="row">
-            <div class="col-12">
-                <div class="row mb-3">
-                    <div class="col-12">
-                        <div class="card text-bg-800">
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-3 text-nowrap">
-                                        Full Name
-                                    </div>
-                                    <div class="col-md-9 col-12 text-400">
-                                        {{ $user->name }}
-                                    </div>
+        <div class="flex flex-col">
+            @if ($timelines->count())
+                @foreach ($timelines as $timeline)
+                    <div class="flex flex-col grid-cols-12 md:grid text-gray-50">
+                        <div class="flex md:contents">
+                            <div class="relative col-start-1 col-end-3 mx-2 md:mx-auto">
+                                <div class="flex items-center justify-center w-8 h-full">
+                                    <div class="h-full w-1 {{ 'bg-' . ($timeline->icon_color ?? 'white dark:bg-zinc-700') }} pointer-events-none"></div>
                                 </div>
-                                <hr>
-                                <div class="row">
-                                    <div class="col-3 text-nowrap">
-                                        Email
-                                    </div>
-                                    <div class="col-md-9 col-12 text-400">
-                                        {{ $user->email }}
-                                    </div>
-                                </div>
-                                <hr>
-                                <div class="row">
-                                    <div class="col-3 text-nowrap">
-                                        Languages
-                                    </div>
-                                    <div class="col-md-9 col-12 text-400">
-                                        {{ $user->programming_lang }}
-                                    </div>
-                                </div>
-                                <hr>
-                                <div class="row">
-                                    <div class="col-3 text-nowrap">
-                                        Frameworks
-                                    </div>
-                                    <div class="col-md-9 col-12 text-400">
-                                        {{ $user->frameworks }}
-                                    </div>
+                                <div class="w-8 h-8 absolute top-1/2 -mt-3 rounded-full {{ 'bg-' . ($timeline->icon_color ?? 'white dark:bg-zinc-700') }} shadow text-center">
+                                    <i class="bi text-xl leading-normal text-neutral-700 dark:text-neutral-200 {{ $timeline->icon ?? 'bi-circle' }}"></i>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row mb-3">
-                    <div class="col-12">
-                        <div class="row">
-                            <div class="col-12">
-                                <span class="ms-1 text-400">
-                                    Timelines
-                                </span>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-12">
-                                @if ($timelines->count())
-                                    @foreach ($timelines as $timeline)
-                                        <div class="timeline-item">
-                                            <div class="py-2 d-flex align-items-center">
-                                                <i class="px-1 fs-4 bi {{ ($timeline->icon ?? 'bi-circle') . ' text-' . ($timeline->icon_color ?? '') }}"></i>
-                                                <span class="px-2 text-muted">
-                                                    {{ $timeline->start_date->format('F, Y') }}
-                                                </span>
-                                            </div>
-                                            <div class="d-flex">
-                                                <div class="mx-3 border-1 border-start {{ 'border-' . ($timeline->icon_color ?? '') }}"></div>
-                                                <div class="ms-2 my-3">
-                                                    <div class="card text-bg-800">
-                                                        <div class="card-body">
-                                                            <div class="row">
-                                                                <div class="col-12">
-                                                                    <h5 class="mb-3">
-                                                                        {{ $timeline->title }}
-                                                                    </h5>
-                                                                </div>
-                                                            </div>
-                                                            <div class="row">
-                                                                <div class="px-4 col-12 markdown overflow-hidden lh-lg">
-                                                                    {!! e(App\Services\MarkdownService::parse($timeline->content)) !!}
-                                                                </div>
-                                                            </div>
-                                                            @if ($timeline->tags->count())
-                                                                <div class="row mt-3">
-                                                                    <div class="col-12">
-                                                                        @foreach ($timeline->tags as $tag)
-                                                                            <span class="mb-1 me-1 py-1 px-3 border border-main-500 small text-main-500 rounded-1">
-                                                                                {{ $tag->name }}
-                                                                            </span>
-                                                                        @endforeach
-                                                                    </div>
-                                                                </div>
-                                                            @endif
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    @endforeach
-                                    <div class="timeline-item">
-                                        <div class="py-2 d-flex align-items-center">
-                                            <i class="px-1 fs-4 text-muted bi bi-code-slash"></i>
-                                            <span class="px-2 text-muted">
-                                                Continuing...
+                            <div class="w-full col-start-3 col-end-12 p-2 mt-3 bg-white rounded shadow md:mt-4 dark:bg-zinc-700 sm:p-3 h-fit ring-1 ring-black/5">
+                                <h3 class="mb-1 text-lg font-semibold break-all text-neutral-700 dark:text-neutral-200">
+                                    {{ $timeline->title }}
+                                </h3>
+                                <div class="mb-1 break-all text-neutral-700 dark:text-neutral-200">
+                                    {!! e(App\Services\MarkdownService::parse($timeline->content)) !!}
+                                </div>
+                                <p class="w-full leading-tight text-justify break-word text-neutral-400">
+                                    {{ $timeline->start_date->format('F, Y') }}
+                                </p>
+                                @if ($timeline->tags->count())
+                                    <div class="flex flex-wrap">
+                                        @foreach ($timeline->tags as $tag)
+                                            <span class="inline mr-2 text-sm text-teal-500 break-all">
+                                                <i class="bi bi-tag"></i>
+                                                {{ $tag->name }}
                                             </span>
-                                        </div>
-                                    </div>
-                                @else
-                                    <div class="mt-3 col-12 text-muted">
-                                        No Timelines.
+                                        @endforeach
                                     </div>
                                 @endif
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-            <div class="col-12 mb-3  d-md-none">
-                <div class="card text-bg-800">
-                    <div class="card-body pb-3">
-                        @if ($user->id === auth()->id())
-                            <div class="row mb-3"
-                                x-data="{ droping: false, progress: 0 }"
-                                x-cloak>
-
-                                <div class="col-12 d-grid gap-2"
-                                    x-on:drop.prevent="$wire.uploadMultiple(
-                                        'files',
-                                        $event.dataTransfer.files,
-                                        () => {droping = false;progress = 0},
-                                        () => {droping = false;progress = 0},
-                                        e => {progress = e.detail.progress}
-                                    )"
-                                    x-on:dragover.prevent="droping = true"
-                                    x-on:dragleave.prevent="droping = false"
-                                    x-on:livewire-upload-finish="droping = false;progress = 0"
-                                    x-on:livewire-upload-error="droping = false;progress = 0"
-                                    x-on:livewire-upload-progress="progress = $event.detail.progress">
-
-                                    <label class="btn btn-outline-main-500 px-3 py-2 d-hidden"
-                                        x-show="!progress"
-                                        x-bind:style="{ 'border-style': droping ? 'dashed' : 'solid' }">
-
-                                        <input type="file" wire:model="files" class="d-none" accept="image/*" multiple>
-                                        Upload File
-                                    </label>
-                                    <div x-show="progress">
-                                        <div class="progress border border-1 border-main-500 text-main-500 bg-transparent fs-6" style="height:unset">
-                                            <div class="progress-bar px-3 py-2 progress-bar-striped progress-bar-animated bg-main-500"
-                                                x-bind:style="{ width: `${progress}%` }">
-                                                &nbsp;
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                @endforeach
+                <div class="flex flex-col grid-cols-12 mb-8 md:grid text-gray-50">
+                    <div class="flex md:contents">
+                        <div class="relative col-start-1 col-end-3 mx-2 md:mx-auto">
+                            <div class="flex items-center justify-center w-8 h-full">
+                                <div class="w-1 h-full bg-white pointer-events-none dark:bg-zinc-700"></div>
                             </div>
-                        @endif
-                        <div class="row px-2">
-                            @if ($photos->count())
-                                @foreach ($photos as $photo)
-                                    <div class="col-4 col-md-6 col-xl-4 p-1"
-                                        x-data="{ hover: false, detail: false }">
-                                        <div class="position-relative">
-                                            <div class="w-100 position-relative" style="height:0;padding-top:100%"
-                                                x-on:mouseover="hover = true"
-                                                x-on:mouseleave="hover = false">
-                                                <img src="{{ asset("storage/$photo->path") }}" class="w-100 h-100 fixed-top position-absolute rounded" style="object-fit:cover;z-index:auto">
-                                                <div class="w-auto h-auto position-absolute top-50 start-50 translate-middle"
-                                                    x-show="hover" x-cloak>
-                                                    <i class="bi bi-arrows-angle-expand fs-4" style="cursor:pointer"
-                                                        x-on:click="detail = !detail">
-                                                    </i>
-                                                    @if (auth()->id() === $photo->created_by)
-                                                        <i class="bi bi-trash fs-4 text-red-500" style="cursor:pointer"
-                                                            wire:click="deletePicture({{ $photo->id }})">
-                                                        </i>
-                                                    @endif
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="position-fixed w-100 vh-100 top-0 start-0" style="background-color: #00000070;z-index:8000"
-                                            x-show="detail"
-                                            x-on:click="detail = !detail" x-cloak>
-                                            <img src="{{ asset("storage/$photo->path") }}" class="w-auto h-auto position-absolute top-50 start-50 translate-middle" style="max-width:98%;max-height:98%">
-                                        </div>
-                                    </div>
-                                @endforeach
-                            @else
-                                <div class="col-12 text-muted">
-                                    No Photos.
-                                </div>
-                            @endif
+                            <div class="absolute w-8 h-8 -mt-3 text-center bg-white rounded-full shadow top-1/2 dark:bg-zinc-700">
+                                <i class="text-xl leading-normal bi bi-code-slash text-neutral-700 dark:text-neutral-200"></i>
+                            </div>
+                        </div>
+                        <div class="w-full col-start-3 col-end-12 p-2 py-12 my-3 md:my-4 sm:p-3 h-fit text-neutral-700 dark:text-neutral-200">
+                            Keep Coding...
                         </div>
                     </div>
                 </div>
-            </div>
+            @else
+                <div class="mt-3 col-12 text-muted">
+                    No Timelines.
+                </div>
+            @endif
         </div>
     </div>
 </div>

@@ -1,5 +1,5 @@
 const mix = require('laravel-mix')
-
+const tailwindcss = require('tailwindcss')
 /*
  |--------------------------------------------------------------------------
  | Mix Asset Management
@@ -13,6 +13,10 @@ const mix = require('laravel-mix')
 
 mix.js('resources/js/app.js', 'public/js')
     .sass('resources/sass/app.sass', 'public/css')
+    .options({
+        processCssUrls: false,
+        postCss: [tailwindcss()],
+    })
     .browserSync({
         notify: false,
         proxy: 'homepage-laradock_nginx_1', // nginx or caddy Docker ip (more on that later)
@@ -22,6 +26,7 @@ mix.js('resources/js/app.js', 'public/js')
             'resources/**/*',
         ]
     })
+    .version()
 
 if (mix.inProduction()) {
     mix.version()

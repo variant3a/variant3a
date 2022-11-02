@@ -24,15 +24,19 @@ class Edit extends Component
         'post.content' => 'required|max:10000',
     ];
 
-    public function mount($id)
+    public function mount($id = null)
     {
-        $post = Post::find($id);
-        $this->previous = url()->previous();
-        $this->post = $post;
-        foreach ($post->tags as $tag) {
-            $this->selected_tag[] = $tag->id;
+        $title = 'Create Posts';
+        if ($id) {
+            $post = Post::find($id);
+            $this->post = $post;
+            foreach ($post->tags as $tag) {
+                $this->selected_tag[] = $tag->id;
+            }
+            $title = 'Edit Posts';
         }
-        $this->calcRow();
+        $this->title = $title;
+        $this->previous = url()->previous();
     }
 
     public function render()
@@ -45,7 +49,6 @@ class Edit extends Component
 
     public function updated($property_name)
     {
-        $this->calcRow();
         $this->validateOnly($property_name);
     }
 
@@ -67,7 +70,7 @@ class Edit extends Component
         $this->getTag();
     }
 
-    public function update()
+    public function store()
     {
         $this->validate();
 
@@ -75,9 +78,8 @@ class Edit extends Component
         $selected_tags = $this->selected_tag;
 
         DB::transaction(function () use ($data, $selected_tags) {
-            $post = Post::find($this->post->id);
-            $post->title = $data->title;
-            $post->content = $data->content;
+            $post = Post::firstOrNew(['id' => $this->post?->id ?? 'null']);
+            $post->fill($data);
             $post->created_by = auth()->id();
             $post->updated_by = auth()->id();
             $post->save();
@@ -120,13 +122,5 @@ class Edit extends Component
         });
 
         return redirect()->route('post.index');
-    }
-
-    public function calcRow()
-    {
-        $content_length = substr_count($this->post['content'] ?? 0, "\n");
-        $row = $content_length > 15  ? $content_length + 5 : 15;
-        $row = $row > 30  ? 30 : $row;
-        $this->row = $row;
     }
 }

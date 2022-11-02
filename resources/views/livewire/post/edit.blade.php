@@ -1,142 +1,101 @@
-<div class="row mb-4">
-    <div class="col-md-3 col-12">
-        <div class="row mb-3">
-            <div class="col-12">
-                <div class="card text-bg-800">
-                    <div class="card-body">
-                        <form wire:submit.prevent="createTag" method="post">
-                            <div class="row mb-3">
-                                <div class="col-12">
-                                    <input type="text" wire:model="new_tag" class="form-control border-700 text-bg-700" placeholder="Tag name">
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-12 d-grid gap-2">
-                                    <button class="btn btn-outline-main-500">
-                                        Add Tag
-                                    </button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
+<div class="grid grid-cols-1 gap-1 md:grid-cols-4 sm:gap-3">
+    <div class="col-span-4 md:col-span-1">
+        <div class="p-3 mb-1 bg-white rounded shadow md:mb-3 dark:bg-zinc-700 ring-1 ring-black/5">
+            <input type="text" wire:model="new_tag" class="w-full p-2 mb-3 bg-white rounded text-neutral-700 dark:text-neutral-200 dark:bg-zinc-600 ring-1 ring-black/10 dark:ring-0 focus:ring-2 dark:focus:ring-2 focus:ring-teal-500 dark:focus:ring-teal-500 focus:outline-0" placeholder="Tag name">
+            <button class="w-full p-2 font-bold text-center bg-teal-500 rounded shadow hover:shadow-lg dark:hover:bg-teal-400/90 text-neutral-200 ring-1 ring-black/5">
+                Add Tag
+            </button>
         </div>
-        <div class="row mb-3">
-            <div class="col-12">
-                <div class="card text-bg-800">
-                    <div class="card-body">
-                        <div class="row mb-3">
-                            <div class="col-12 d-flex">
-                                <input type="text" wire:model="filter_tag" class="form-control border-700 text-bg-700" placeholder="Filter">
-                                <button class="btn btn-700 ms-2" wire:click="sortTag">
-                                    @if ($sort_tag)
-                                        <i class="bi bi-sort-alpha-up"></i>
-                                    @else
-                                        <i class="bi bi-sort-alpha-down"></i>
-                                    @endif
-                                </button>
-                            </div>
-                        </div>
-                        <div class="row mb-3">
-                            <div class="col-12">
-                                @if ($tags->count())
-                                    @foreach ($tags as $tag)
-                                        <input type="checkbox" wire:model="selected_tag" class="btn-check" id="btn-check-{{ $tag->id }}" value="{{ $tag->id }}" autocomplete="off">
-                                        <label class="mb-1 px-3 btn btn-outline-main-500 btn-sm" for="btn-check-{{ $tag->id }}">
-                                            {{ $tag->name }}
-                                        </label>
-                                    @endforeach
-                                @else
-                                    <div class="text-muted">
-                                        no tags.
-                                    </div>
-                                @endif
-                            </div>
-                        </div>
+        <div class="p-3 pb-1 bg-white rounded shadow md:mb-3 dark:bg-zinc-700 ring-1 ring-black/5">
+            <div class="flex mb-2 sm:mb-3">
+                <input type="text" wire:model="filter_tag" class="w-full p-2 mr-3 bg-white rounded text-neutral-700 dark:text-neutral-200 dark:bg-zinc-600 ring-1 ring-black/10 dark:ring-0 focus:ring-2 dark:focus:ring-2 focus:ring-teal-500 dark:focus:ring-teal-500 focus:outline-0" placeholder="Filter">
+                <button class="w-auto h-full px-3 py-2 bg-white rounded text-neutral-700 dark:text-neutral-200 dark:bg-zinc-600 ring-1 ring-black/10 dark:ring-0 active:ring-2 dark:active:ring-2 active:ring-teal-500 dark:active:ring-teal-500 focus:outline-0" wire:click="sortTag">
+                    @if ($sort_tag)
+                        <i class="bi bi-sort-alpha-up"></i>
+                    @else
+                        <i class="bi bi-sort-alpha-down"></i>
+                    @endif
+                </button>
+            </div>
+            <div class="flex flex-wrap">
+                @if ($tags->count())
+                    @foreach ($tags as $tag)
+                        <span>
+                            <input type="checkbox" wire:model="selected_tag" class="hidden peer" id="btn-check-{{ $tag->id }}" value="{{ $tag->id }}" autocomplete="off">
+                            <label class="block px-2 mb-2 mr-2 text-teal-500 break-all border-2 border-teal-500 rounded cursor-pointer hover:bg-teal-500 peer-checked:bg-teal-500 hover:text-neutral-200 peer-checked:text-neutral-200 ring-1 ring-black/5" for="btn-check-{{ $tag->id }}">
+                                {{ $tag->name }}
+                            </label>
+                        </span>
+                    @endforeach
+                @else
+                    <div class="text-neutral-400">
+                        no tags.
                     </div>
-                </div>
+                @endif
             </div>
         </div>
     </div>
-    <div class="col-md-9 col-12">
-        <div class="card text-bg-800">
-            <div class="card-body">
-                <form wire:submit.prevent="update" method="post">
-                    @csrf
-                    <div class="row mb-3">
-                        <div class="col-12">
-                            <input type="text" wire:model.debounce.500ms="post.title" class="form-control border-700 text-bg-700 @error('post.title') is-invalid @enderror" placeholder="Title">
-                            @error('post.title')
-                                <div class="invalid-feedback text-left">
-                                    {{ $message }}
-                                </div>
-                            @enderror
+    <div class="col-span-4 md:col-span-3"
+        x-data="{ editorToggle: false }">
+        <form wire:submit.prevent="store" method="post">
+            @csrf
+            <div class="flex flex-col mb-3 p-3 pb-0 min-h-[calc(100vh_-_6.75rem)] shadow bg-white dark:bg-zinc-700 rounded ring-1 ring-black/5">
+                <div class="mb-3">
+                    <input type="text" wire:model.debounce.500ms="post.title" class="p-2 w-full bg-white dark:bg-zinc-600 rounded ring-1 ring-black/10 dark:ring-0 focus:ring-2 dark:focus:ring-2 focus:ring-teal-500 dark:focus:ring-teal-500 focus:outline-0 @error('post.title') border-2 border-red-500 text-red-500 @else text-neutral-700 dark:text-neutral-200 @enderror" placeholder="Title">
+                    @error('post.title')
+                        <div class="mt-1 text-sm text-red-600 dark:text-red-500">
+                            {{ $message }}
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-12">
-                            <ul class="nav nav-tabs" id="myTab" role="tablist">
-                                <li class="nav-item">
-                                    <button class="nav-link text-bg-hover-main-500 active" id="editor-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">
-                                        Editor
-                                    </button>
-                                </li>
-                                <li class="nav-item">
-                                    <button class="nav-link text-bg-hover-main-500" id="preview-tab" data-bs-toggle="tab" data-bs-target="#profile-tab-pane" type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false">
-                                        Preview
-                                    </button>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="row mb-3">
-                        <div class="col-12">
-                            <div class="tab-content" id="myTabContent">
-                                <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="editor-tab" tabindex="0">
-                                    <textarea wire:model.debounce.500ms="post.content" class="form-control p-3 border-0 text-bg-700 rounded-0 rounded-bottom shadow-none @error('post.content') is-invalid @enderror" rows="{{ $row }}" placeholder="Content"></textarea>
-                                    @error('post.content')
-                                        <div class="invalid-feedback text-left">
-                                            {{ $message }}
-                                        </div>
-                                    @enderror
-                                </div>
-                                <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="preview-tab" tabindex="0">
-                                    <div class="p-3 border-700 text-bg-700 rounded-0 rounded-bottom shadow-none">
-                                        @if ($post['content'] ?? false)
-                                            <div class="markdown lh-lg">
-                                                {!! e(App\Services\MarkdownService::parse($post['content'])) !!}
-                                            </div>
-                                        @else
-                                            <span class="text-muted">
-                                                no preview.
-                                            </span>
-                                        @endif
-                                    </div>
-                                </div>
+                    @enderror
+                </div>
+                <div class="flex justify-end mb-3">
+                    <label class="flex align-middle cursor-pointer text-neutral-700 dark:text-neutral-200">
+                        Preview Mode
+                        <div class="w-12 p-1 mx-2 rounded-full bg-neutral-100 dark:bg-zinc-600 ring-1 ring-black/5">
+                            <input type="checkbox" x-model="editorToggle" class="hidden peer" autocomplete="off">
+                            <div class="relative left-0 w-4 h-4 text-center text-teal-500 transition-all ease-in-out bg-white rounded-full shadow cursor-pointer dark:bg-zinc-500 hover:bg-teal-500 peer-checked:bg-teal-500 dark:text-neutral-200 hover:text-neutral-200 peer-checked:text-neutral-200 peer-checked:left-6 ring-1 ring-black/5">
                             </div>
                         </div>
+                    </label>
+                </div>
+                <div class="mb-3 grow">
+                    <div class="h-full" x-show="!editorToggle">
+                        <textarea wire:model.debounce.500ms="post.content" class="p-2 w-full h-[calc(100vh_-_17.5rem)] bg-white dark:bg-zinc-600 rounded ring-1 ring-black/10 dark:ring-0 focus:ring-2 dark:focus:ring-2 focus:ring-teal-500 dark:focus:ring-teal-500 focus:outline-0 @error('post.content') border-2 border-red-500 text-red-500 @else text-neutral-700 dark:text-neutral-200 @enderror" placeholder="Content"></textarea>
+                        @error('post.content')
+                            <div class="mt-1 text-sm text-red-600 dark:text-red-500">
+                                {{ $message }}
+                            </div>
+                        @enderror
                     </div>
-                    <div class="row mb-3">
-                        <div class="col-12 d-flex justify-content-between">
-                            <span>
-                                <button type="submit" class="btn btn-outline-red-600" form="delete">
-                                    Delete
-                                </button>
+                    <div class="w-full p-2 bg-white rounded markdown lh-lg text-wrap dark:bg-zinc-600 text-neutral-700 dark:text-neutral-200 ring-1 ring-black/10 dark:ring-0" x-show="editorToggle" x-cloak>
+                        @if ($post['content'] ?? false)
+                            {!! e(App\Services\MarkdownService::parse($post['content'])) !!}
+                        @else
+                            <span class="text-neutral-400">
+                                no preview.
                             </span>
-                            <span>
-                                <a href="{{ url($previous) }}" class="btn btn-700">
-                                    Cancel
-                                </a>
-                                <button type="submit" class="btn btn-main-500">
-                                    Save
-                                </button>
-                            </span>
-                        </div>
+                        @endif
                     </div>
-                </form>
-                <form wire:submit.prevent="delete" id="delete" method="post"></form>
+                </div>
+                <div class="flex mb-3 justify-content-between">
+                    @if ($title === 'Edit Posts')
+                        <span class="grow">
+                            <button type="submit" class="px-4 py-2 font-bold text-center bg-red-500 rounded shadow hover:shadow-lg dark:hover:bg-red-400/90 text-neutral-200 ring-1 ring-black/5" form="delete">
+                                Delete
+                            </button>
+                        </span>
+                    @endif
+                    <span class="flex-auto text-end">
+                        <a href="{{ url($previous) }}" class="inline-block px-4 py-2 mr-3 font-bold text-center rounded shadow w-fit hover:shadow-lg bg-neutral-500 dark:hover:bg-neutral-400/90 text-neutral-200 ring-1 ring-black/5">
+                            Cancel
+                        </a>
+                        <button type="submit" class="inline-block px-4 py-2 font-bold text-center bg-teal-500 rounded shadow hover:shadow-lg dark:hover:bg-teal-400/90 text-neutral-200 ring-1 ring-black/5">
+                            Save
+                        </button>
+                    </span>
+                </div>
             </div>
-        </div>
+        </form>
+        <form wire:submit.prevent="delete" id="delete" method="post"></form>
     </div>
 </div>

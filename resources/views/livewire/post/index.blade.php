@@ -1,135 +1,86 @@
-<div class="row">
-    <div class="col-md-3">
-        <div class="sticky-md-top" style="top:6rem">
+<div class="grid grid-cols-1 gap-1 md:grid-cols-4 sm:gap-3">
+    <div class="col-span-4 md:col-span-1">
+        <div class="relative md:sticky md:top-24">
             @auth
-                <div class="row mb-3">
-                    <div class="col-12 d-grid gap-2">
-                        <a href="{{ route('post.create') }}" class="btn btn-main-500">
-                            Create
-                        </a>
-                    </div>
-                </div>
+                <a href="{{ route('post.edit') }}" class="block w-full p-2 mb-2 font-bold text-center bg-teal-500 rounded shadow sm:mb-3 hover:shadow-lg hover:bg-teal-400/90 text-neutral-200 ring-1 ring-black/5">
+                    Create
+                </a>
             @endauth
-            <div class="row mb-3">
-                <div class="col-12 d-grid gap-2">
-                    <div class="card text-bg-800">
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-12">
-                                    <input type="text" wire:model="keyword" class="form-control border-700 text-bg-700" placeholder="Keywords">
-                                </div>
-                            </div>
-                            @if ($tags->count())
-                                <div class="row mt-3">
-                                    <div class="col-12">
-                                        @foreach ($tags as $search_tag)
-                                            <input type="checkbox" wire:model="selected_tag" class="btn-check" id="btn-search-{{ $search_tag->id }}" value="{{ $search_tag->id }}" autocomplete="off">
-                                            <label class="mb-1 px-3 btn btn-outline-main-500 btn-sm" for="btn-search-{{ $search_tag->id }}">
-                                                {{ "$search_tag->name ($search_tag->posts_count)" }}
-                                            </label>
-                                        @endforeach
-                                    </div>
-                                </div>
-                            @endif
-                        </div>
+            <div class="p-3 pb-1 bg-white rounded shadow md:mb-3 dark:bg-zinc-700 ring-1 ring-black/5">
+                <input type="text" wire:model="keyword" class="w-full p-2 mb-3 bg-white rounded dark:bg-zinc-600 ring-1 ring-black/10 dark:ring-0 focus:ring-2 dark:focus:ring-2 focus:ring-teal-500 dark:focus:ring-teal-500 focus:outline-0" placeholder="Keywords">
+                @if ($tags->count())
+                    <div class="flex flex-row flex-wrap">
+                        @foreach ($tags as $search_tag)
+                            <span>
+                                <input type="checkbox" wire:model="selected_tag" class="hidden peer" value="{{ $search_tag->id }}" id="btn-search-{{ $search_tag->id }}" autocomplete="off">
+                                <label class="block px-2 mb-2 mr-2 text-teal-500 break-all border-2 border-teal-500 rounded cursor-pointer hover:bg-teal-500 peer-checked:bg-teal-500 hover:text-neutral-200 peer-checked:text-neutral-200 ring-1 ring-black/5" for="btn-search-{{ $search_tag->id }}">
+                                    {{ "$search_tag->name ($search_tag->posts_count)" }}
+                                </label>
+                            </span>
+                        @endforeach
                     </div>
-                </div>
+                @endif
             </div>
-            <div class="row mb-3 d-none d-md-block">
-                <div class="col-12 d-grid gap-2">
-                    <div id="post-list" class="list-group border-0">
-                        @if ($posts->count())
-                            @foreach ($posts as $post)
-                                <a href="{{ "#post-$post->id" }}" class="list-group-item list-group-item-action border-0">
-                                    {{ $post->title }}
-                                </a>
-                            @endforeach
-                        @endif
-                    </div>
-                </div>
+            <div class="hidden row-auto mb-1 bg-white rounded shadow md:block sm:mb-3 dark:bg-zinc-700 ring-1 ring-black/5">
+                @if ($posts->count())
+                    @foreach ($posts as $post)
+                        <a href="{{ "#post-$post->id" }}" class="block w-full p-1 break-all sm:p-2 text-neutral-700 dark:text-neutral-200 hover:text-neutral-200 hover:bg-teal-500 first:rounded-t last:rounded-b">
+                            {{ $post->title }}
+                        </a>
+                    @endforeach
+                @endif
             </div>
-            <div class="row">
-                <div class="col-12 d-flex justify-content-center">
-                    {{ $posts->onEachSide(1)->links() }}
-                </div>
+            <div class="justify-center hidden mb-5 md:flex">
+                {{ $posts->onEachSide(1)->links() }}
             </div>
         </div>
     </div>
-    <div class="col-md-9">
-        <div class="row mb-4">
-            <div class="col-12">
-                <div class="card text-bg-800">
-                    @if ($posts->count())
-                        @foreach ($posts as $post)
-                            <div id="{{ "post-$post->id" }}" class="card-body">
-                                <div class="row">
-                                    <div class="col-12 d-flex justify-content-between">
-                                        <a href="{{ route('post.detail', ['id' => $post->id]) }}" class="ps-2 py-2 fs-5 border-start border-4 border-main-500 text-break text-white text-decoration-none">
-                                            {{ $post->title }}
-                                        </a>
-                                        <span>
-                                            <a href="{{ route('post.detail', ['id' => $post->id]) }}" class="btn text-bg-hover-main-500 border-0 text-nowrap">
-                                                Details
-                                                <i class="bi bi-chevron-right"></i>
-                                            </a>
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="row mb-3">
-                                    <div class="px-4 col-12 text-400 d-flex justify-content-between">
-                                        <span>
-                                            {{ $post->user->name }}
-                                        </span>
-                                        <span title="{{ $post->created_at->format('Y-m-d H:i:s') }}">
-                                            {{ $post->created_at->format('F j, Y') }}
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="row"
-                                    x-data="{ height: $el.clientHeight }">
-                                    <div class="px-4 col-12 markdown overflow-hidden lh-lg"
-                                        x-bind:style="height > 500 ? 'height:50vh' : ''">
-                                        {!! e(App\Services\MarkdownService::parse($post->content)) !!}
-                                    </div>
-                                    <a class="px-4 text-400 text-end" x-show="height > 500" href="{{ route('post.detail', ['id' => $post->id]) }}">
-                                        Show more...
-                                    </a>
-                                </div>
-                                @if ($post->tags->count())
-                                    <div class="row mt-3">
-                                        <div class="col-12">
-                                            @foreach ($post->tags as $tag)
-                                                <input type="checkbox" wire:model="selected_tag" class="btn-check" id="btn-check-{{ "$post->id-$tag->id" }}" value="{{ $tag->id }}" autocomplete="off">
-                                                <label class="mb-1 px-3 btn btn-outline-main-500 btn-sm" for="btn-check-{{ "$post->id-$tag->id" }}">
-                                                    {{ $tag->name }}
-                                                </label>
-                                            @endforeach
-                                        </div>
-                                    </div>
-                                @endif
-                            </div>
-                            @if (!$loop->last)
-                                <hr>
-                            @endif
-                        @endforeach
-                    @else
-                        <div class="card-body">
-                            <p class="card-text">
-                                There is no articles.
-                            </p>
+    <div class="col-span-4 md:col-span-3">
+        <div class="grid grid-cols-1 gap-1 mb-1 sm:gap-3 sm:grid-cols-2 sm:mb-3">
+            @if ($posts->count())
+                @foreach ($posts as $post)
+                    <div class="flex flex-col px-2 py-2 bg-white rounded shadow md:px-4 h-fit dark:bg-zinc-700 hover:shadow-lg ring-1 ring-black/5">
+                        <a href="{{ route('post.detail', ['id' => $post->id]) }}" id="{{ "post-$post->id" }}" class="text-2xl font-bold break-all text-neutral-700 dark:text-neutral-200 hover:text-teal-500 dark:hover:text-teal-500">
+                            {{ $post->title }}
+                        </a>
+                        <div class="text-neutral-400">
+                            {{ $post->user->user_id }}
                         </div>
-                    @endif
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-12">
-                <div class="row">
-                    <div class="col-12 d-flex justify-content-center">
-                        {{ $posts->onEachSide(1)->links() }}
+                        <div class="px-2 py-4 markdown text-neutral-700 dark:text-neutral-200 max-h-[25vh] break-words overflow-hidden break-all">
+                            {!! e(App\Services\MarkdownService::parse(strip_tags($post->content))) !!}
+                            {{ strip_tags($post->content) }}
+                        </div>
+                        @if ($post->tags->count())
+                            <div class="py-2">
+                                @foreach ($post->tags as $tag)
+                                    <input type="checkbox" wire:model="selected_tag" class="hidden" id="btn-check-{{ "$post->id-$tag->id" }}" value="{{ $tag->id }}" autocomplete="off">
+                                    <label class="inline mr-2 text-sm text-teal-500 cursor-pointer hover:underline" for="btn-check-{{ "$post->id-$tag->id" }}">
+                                        <i class="bi bi-tag"></i>
+                                        {{ $tag->name }}
+                                    </label>
+                                @endforeach
+                            </div>
+                        @endif
+                        <div class="flex justify-between mb-0 text-neutral-400 text-end" href="{{ route('post.detail', ['id' => $post->id]) }}">
+                            <span title="{{ $post->created_at->format('Y-m-d H:i:s') }}">
+                                {{ $post->created_at->format('F j, Y') }}
+                            </span>
+                            <a href="{{ route('post.detail', ['id' => $post->id]) }}" id="{{ "post-$post->id" }}" class="break-all hover:underline">
+                                Show more...
+                            </a>
+                        </div>
                     </div>
+                @endforeach
+            @else
+                <div class="p-1 sm:p-2">
+                    <p class="card-text">
+                        There is no articles.
+                    </p>
                 </div>
-            </div>
+            @endif
+        </div>
+        <div class="flex justify-center mb-5">
+            {{ $posts->onEachSide(1)->links() }}
         </div>
     </div>
 </div>
