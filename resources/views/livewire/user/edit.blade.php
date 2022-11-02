@@ -140,10 +140,10 @@
         <div class="col-span-3 md:col-span-2">
             <div class="flex flex-col p-2 mb-1 bg-white rounded shadow sm:mb-3 sm:p-3 h-fit dark:bg-zinc-700 text-neutral-700 dark:text-neutral-200 ring-1 ring-black/5"
                 x-data="{ editorToggle: false }">
-                <div class="flex justify-between"
+                <div class="flex flex-wrap justify-between"
                     x-data="{ showDropdown: false }">
-                    <div class="flex mb-2 sm:mb-3">
-                        <input type="month" wire:model.debounce.500ms="timeline.start_date" class="p-2 w-fit bg-white dark:bg-zinc-600 rounded ring-1 ring-black/10 dark:ring-0 focus:ring-2 dark:focus:ring-2 focus:ring-teal-500 dark:focus:ring-teal-500 focus:outline-0 @error('timeline.start_date') border-2 border-red-500 text-red-500 @else text-neutral-700 dark:text-neutral-200 @enderror">
+                    <div class="flex flex-wrap">
+                        <input type="month" wire:model.debounce.500ms="timeline.start_date" class="mb-2 sm:mb-3 p-2 w-fit bg-white dark:bg-zinc-600 rounded ring-1 ring-black/10 dark:ring-0 focus:ring-2 dark:focus:ring-2 focus:ring-teal-500 dark:focus:ring-teal-500 focus:outline-0 @error('timeline.start_date') border-2 border-red-500 text-red-500 @else text-neutral-700 dark:text-neutral-200 @enderror">
                         @error('timeline.start_date')
                             <div class="mt-1 text-sm text-red-600 dark:text-red-500">
                                 {{ $message }}
@@ -152,7 +152,7 @@
                         <div class="p-2">
                             -
                         </div>
-                        <input type="month" wire:model.debounce.500ms="timeline.end_date" class="p-2 w-fit bg-white dark:bg-zinc-600 rounded ring-1 ring-black/10 dark:ring-0 focus:ring-2 dark:focus:ring-2 focus:ring-teal-500 dark:focus:ring-teal-500 focus:outline-0 @error('timeline.end_date') border-2 border-red-500 text-red-500 @else text-neutral-700 dark:text-neutral-200 @enderror">
+                        <input type="month" wire:model.debounce.500ms="timeline.end_date" class="mb-2 sm:mb-3 p-2 w-fit bg-white dark:bg-zinc-600 rounded ring-1 ring-black/10 dark:ring-0 focus:ring-2 dark:focus:ring-2 focus:ring-teal-500 dark:focus:ring-teal-500 focus:outline-0 @error('timeline.end_date') border-2 border-red-500 text-red-500 @else text-neutral-700 dark:text-neutral-200 @enderror">
                         @error('timeline.end_date')
                             <div class="mt-1 text-sm text-red-600 dark:text-red-500">
                                 {{ $message }}
@@ -177,17 +177,17 @@
                         </div>
                     @endif
                 </div>
-                <div class="flex mb-2 sm:mb-3">
-                    <div class="p-2">
+                <div class="flex flex-wrap">
+                    <div class="p-2 mb-2 sm:mb-3">
                         <i class="text-xl bi {{ ($timeline->icon ?? 'bi-circle') . ' text-' . ($timeline->icon_color ?? '') }}"></i>
                     </div>
-                    <input type="text" wire:model.500ms="timeline.icon_color" class="mr-2 sm:mr-3 p-2 w-fit bg-white dark:bg-zinc-600 rounded ring-1 ring-black/10 dark:ring-0 focus:ring-2 dark:focus:ring-2 focus:ring-teal-500 dark:focus:ring-teal-500 focus:outline-0 @error('timeline.icon_color') border-2 border-red-500 text-red-500 @else text-neutral-700 dark:text-neutral-200 @enderror" placeholder="color">
+                    <input type="text" wire:model.500ms="timeline.icon_color" class="mb-2 sm:mb-3 mr-2 sm:mr-3 p-2 w-fit bg-white dark:bg-zinc-600 rounded ring-1 ring-black/10 dark:ring-0 focus:ring-2 dark:focus:ring-2 focus:ring-teal-500 dark:focus:ring-teal-500 focus:outline-0 @error('timeline.icon_color') border-2 border-red-500 text-red-500 @else text-neutral-700 dark:text-neutral-200 @enderror" placeholder="color">
                     @error('timeline.icon_color')
                         <div class="mt-1 text-sm text-red-600 dark:text-red-500">
                             {{ $message }}
                         </div>
                     @enderror
-                    <input type="text" wire:model.500ms="timeline.icon" class="p-2 w-fit bg-white dark:bg-zinc-600 rounded ring-1 ring-black/10 dark:ring-0 focus:ring-2 dark:focus:ring-2 focus:ring-teal-500 dark:focus:ring-teal-500 focus:outline-0 @error('timeline.icon') border-2 border-red-500 text-red-500 @else text-neutral-700 dark:text-neutral-200 @enderror" placeholder="bi-circle">
+                    <input type="text" wire:model.500ms="timeline.icon" class="mb-2 sm:mb-3 p-2 w-fit bg-white dark:bg-zinc-600 rounded ring-1 ring-black/10 dark:ring-0 focus:ring-2 dark:focus:ring-2 focus:ring-teal-500 dark:focus:ring-teal-500 focus:outline-0 @error('timeline.icon') border-2 border-red-500 text-red-500 @else text-neutral-700 dark:text-neutral-200 @enderror" placeholder="bi-circle">
                     @error('timeline.icon')
                         <div class="mt-1 text-sm text-red-600 dark:text-red-500">
                             {{ $message }}
