@@ -3,7 +3,7 @@ import * as Turbo from "@hotwired/turbo"
 
 Turbo.start()
 
-document.addEventListener('turbolinks:load', function () {
+document.addEventListener('turbo:load', function () {
     OnLoad()
 })
 
