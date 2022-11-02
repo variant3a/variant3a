@@ -64,15 +64,15 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
         Route::get('edit/{id?}', Post\Edit::class)->name('edit');
     });
 
-    Route::prefix('internal')->name('internal.')->group(function () {
+    // Route::prefix('internal')->name('internal.')->group(function () {
 
 
-        Route::prefix('dashboard')->name('dashboard.')->group(function () {
-            Route::get('index', Internal\Dashboard\Index::class)->name('index');
-        });
+    //     Route::prefix('dashboard')->name('dashboard.')->group(function () {
+    //         Route::get('index', Internal\Dashboard\Index::class)->name('index');
+    //     });
 
-        Route::prefix('schedule')->name('schedule.')->group(function () {
-            Route::get('index', Internal\Schedule\Index::class)->name('index');
-        });
-    });
+    //     Route::prefix('schedule')->name('schedule.')->group(function () {
+    //         Route::get('index', Internal\Schedule\Index::class)->name('index');
+    //     });
+    // });
 });

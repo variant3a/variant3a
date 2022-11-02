@@ -53,43 +53,6 @@
                     About Me
                 </div>
             </a>
-            @auth
-                {{-- <a href="{{ route('internal.dashboard.index') }}" class="flex h-16 p-5 text-teal-500 hover:text-neutral-200 hover:bg-teal-500/50 md:pointer-events-auto"
-                    x-on:click="showSideNav = (window.innerWidth >= 768) ? showSideNav : !showSideNav">
-                    <i class="self-center px-1 text-xl bi bi-boxes"></i>
-                    <div class="mx-5 md:hidden">
-                        Internal System
-                    </div>
-                </a>
-                <a href="{{ route('internal.dashboard.index') }}" class="flex h-16 p-5 text-teal-500 hover:text-neutral-200 hover:bg-teal-500/50 md:pointer-events-auto"
-                    x-on:click="showSideNav = (window.innerWidth >= 768) ? showSideNav : !showSideNav">
-                    <i class="self-center px-1 text-xl bi bi-bar-chart-steps"></i>
-                    <div class="mx-5 md:hidden">
-                        Projects
-                    </div>
-                </a> --}}
-                <a href="{{ route('internal.schedule.index') }}" class="flex h-16 p-5 text-teal-500 hover:text-neutral-200 hover:bg-teal-500/50 md:pointer-events-auto"
-                    x-on:click="showSideNav = (window.innerWidth >= 768) ? showSideNav : !showSideNav">
-                    <i class="self-center px-1 text-xl bi bi-calendar-week"></i>
-                    <div class="mx-5 md:hidden">
-                        Schedules
-                    </div>
-                </a>
-                {{-- <a href="{{ route('internal.dashboard.index') }}" class="flex h-16 p-5 text-teal-500 hover:text-neutral-200 hover:bg-teal-500/50 md:pointer-events-auto"
-                    x-on:click="showSideNav = (window.innerWidth >= 768) ? showSideNav : !showSideNav">
-                    <i class="self-center px-1 text-xl bi bi-coin"></i>
-                    <div class="mx-5 md:hidden">
-                        Expenses
-                    </div>
-                </a>
-                <a href="{{ route('internal.dashboard.index') }}" class="flex h-16 p-5 text-teal-500 hover:text-neutral-200 hover:bg-teal-500/50 md:pointer-events-auto"
-                    x-on:click="showSideNav = (window.innerWidth >= 768) ? showSideNav : !showSideNav">
-                    <i class="self-center px-1 text-xl bi bi-journals"></i>
-                    <div class="mx-5 md:hidden">
-                        Notes
-                    </div>
-                </a> --}}
-            @endauth
         </div>
     </div>
     <div class="fixed z-30 w-56 rounded shadow-lg top-20 sm:top-24 right-1 sm:right-3 backdrop-blur-lg bg-zinc-200/20 dark:bg-white/10 ring-1 ring-white/40 dark:ring-white/20 focus:outline-none" x-show="showDropdown" x-cloak x-transition>
