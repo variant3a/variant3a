@@ -27,13 +27,13 @@
                     <p class="break-all text-neutral-400 md:mb-4 md:text-center">
                         {{ $post->user->state }}
                     </p>
-                    @if ($post->user->bio)
-                        <hr>
-                        <p class="m-2 text-neutral-500">
-                            {{ $post->user->bio }}
-                        </p>
-                    @endif
                 </div>
+                @if ($post->user->bio)
+                    <hr>
+                    <p class="mb-4 text-neutral-500">
+                        {{ $post->user->bio }}
+                    </p>
+                @endif
             </div>
         </div>
     </div>
