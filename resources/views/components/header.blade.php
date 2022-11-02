@@ -111,7 +111,7 @@
                 <form action="{{ route('logout') }}" method="post"
                     x-on:click="showDropdown = (window.innerWidth >= 768) ? showDropdown : !showDropdown">
                     @csrf
-                    <button type="submit" class="w-full px-4 py-2 text-sm text-left text-red-500 hover:text-neutral-200 hover:bg-red-500/50">
+                    <button type="submit" class="w-full px-4 py-2 text-sm text-left text-red-500 hover:text-neutral-200 hover:bg-red-500/50" data-turbo="false">
                         Logout
                     </button>
                 </form>
