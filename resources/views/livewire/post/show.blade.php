@@ -20,20 +20,20 @@
                         {{ $post->user->user_id }}
                     </div>
                 </div>
-                <div class="self-center mx-2">
+                <div class="self-center hidden mx-2 md:block">
                     <p class="break-all text-neutral-400 md:text-center">
                         {{ $post->user->job }}
                     </p>
                     <p class="break-all text-neutral-400 md:mb-4 md:text-center">
                         {{ $post->user->state }}
                     </p>
+                    @if ($post->user->bio)
+                        <hr>
+                        <p class="my-3 break-all text-neutral-500">
+                            {{ $post->user->bio }}
+                        </p>
+                    @endif
                 </div>
-                @if ($post->user->bio)
-                    <hr>
-                    <p class="mb-4 text-neutral-500">
-                        {{ $post->user->bio }}
-                    </p>
-                @endif
             </div>
         </div>
     </div>
