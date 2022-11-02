@@ -46,7 +46,7 @@
                     Posts
                 </div>
             </a>
-            <a href="{{ route('user.index') }}" class="flex h-16 p-5 text-teal-500 hover:text-neutral-200 hover:bg-teal-500/50 md:pointer-events-auto"
+            <a href="{{ route('user.index', 'variant3a') }}" class="flex h-16 p-5 text-teal-500 hover:text-neutral-200 hover:bg-teal-500/50 md:pointer-events-auto"
                 x-on:click="showSideNav = (window.innerWidth >= 768) ? showSideNav : !showSideNav">
                 <i class="self-center px-1 text-xl bi bi-person-workspace"></i>
                 <div class="mx-5 md:hidden">

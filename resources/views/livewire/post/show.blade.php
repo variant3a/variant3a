@@ -16,9 +16,9 @@
                     <div class="text-lg break-all md:my-2 md:text-center">
                         {{ $post->user->name }}
                     </div>
-                    <div class="break-all md:text-center">
-                        {{ $post->user->user_id }}
-                    </div>
+                    <a href="{{ route('user.index', $post->user->user_id) }}" class="block break-all md:text-center text-teal-500 hover:underline">
+                        {{ '@' . $post->user->user_id }}
+                    </a>
                 </div>
                 <div class="self-center hidden mx-2 md:block">
                     <p class="break-all text-neutral-400 md:text-center">
@@ -29,8 +29,8 @@
                     </p>
                     @if ($post->user->bio)
                         <hr>
-                        <p class="my-3 break-all text-neutral-500">
-                            {{ $post->user->bio }}
+                        <p class="my-3 break-all text-neutral-400">
+                            {!! nl2br(e($post->user->bio)) !!}
                         </p>
                     @endif
                 </div>

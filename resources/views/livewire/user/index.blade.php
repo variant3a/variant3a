@@ -24,8 +24,8 @@
             </div>
             @if ($user->bio)
                 <hr>
-                <p class="my-3 break-all text-neutral-500">
-                    {{ $user->bio }}
+                <p class="my-3 break-all text-neutral-400">
+                    {!! nl2br(e($user->bio)) !!}
                 </p>
             @endif
         </div>
@@ -76,9 +76,9 @@
                     </div>
                 </div>
             @endif
-            <div class="grid grid-cols-3 grid-rows-3 overflow-hidden md:grid-rows-auto md:auto-rows-auto md:grid-cols-2 gap-x-2 gap-y-0 sm:gap-x-3"
-                x-bind:class="expand ? '' : 'auto-rows-[0]'">
-                @if ($photos->count())
+            @if ($photos->count())
+                <div class="grid grid-cols-3 grid-rows-3 overflow-hidden md:grid-rows-auto md:auto-rows-auto md:grid-cols-2 gap-x-2 gap-y-0 sm:gap-x-3"
+                    x-bind:class="expand ? '' : 'auto-rows-[0]'">
                     @foreach ($photos as $photo)
                         <div x-data="{ hover: false, detail: false }">
                             <div class="flex justify-center mb-2 sm:mb-3">
@@ -105,12 +105,12 @@
                             </div>
                         </div>
                     @endforeach
-                @else
-                    <div class="col-12 text-muted">
-                        No Photos.
-                    </div>
-                @endif
-            </div>
+                </div>
+            @else
+                <div class="mb-2 sm:mb-3 text-neutral-700 dark:text-neutral-200">
+                    No Photos.
+                </div>
+            @endif
             @if ($photos->count() > 9)
                 <button type="button" class="w-full p-2 mb-2 font-bold text-center bg-teal-500 rounded shadow sm:mb-4 hover:shadow-lg hover:bg-teal-400/90 text-neutral-200 ring-1 ring-black/5 md:hidden"
                     x-on:click="expand = !expand"
@@ -219,7 +219,7 @@
                     </div>
                 </div>
             @else
-                <div class="mt-3 col-12 text-muted">
+                <div class="my-3 md:my-4 p-2 text-neutral-700 dark:text-neutral-200">
                     No Timelines.
                 </div>
             @endif

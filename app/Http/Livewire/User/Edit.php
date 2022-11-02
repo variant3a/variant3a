@@ -82,7 +82,7 @@ class Edit extends Component
         $this->timelines = $timelines->sortBy('start_date');
         if ($this->selected_timeline) {
             $this->addTimeline($this->selected_timeline);
-        } elseif ($timelines) {
+        } elseif ($timelines->count()) {
             $this->addTimeline($timelines->last()->id);
         } else {
             $this->clearTimeline();
