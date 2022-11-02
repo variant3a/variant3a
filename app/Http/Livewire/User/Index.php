@@ -14,6 +14,7 @@ class Index extends Component
     use WithFileUploads;
 
     public string $title = 'Profile';
+    public string $hiddenEmail = '';
     public $files = [];
     public $user;
     public $photos;
@@ -36,6 +37,11 @@ class Index extends Component
     public function updatedFiles()
     {
         $this->upload();
+    }
+
+    public function getHiddenEmail()
+    {
+        $this->hiddenEmail = $this->user->email;
     }
 
     public function getPictures()

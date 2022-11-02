@@ -131,9 +131,18 @@
                 <div class="col-span-4 md:col-span-1 text-neutral-400">
                     Email
                 </div>
-                <div class="col-span-4 break-all md:col-span-3 text-neutral-700 dark:text-neutral-200">
-                    {{ $user->email }}
-                </div>
+                @if ($hiddenEmail)
+                    <div class="self-center col-span-4 break-all md:col-span-3 text-neutral-700 dark:text-neutral-200">
+                        {{ $hiddenEmail }}
+                    </div>
+                @else
+                    <div class="col-span-4 break-all md:col-span-3 text-neutral-700 dark:text-neutral-200">
+                        <button type="button" class="inline-block px-4 py-2 font-bold text-center bg-teal-500 rounded shadow hover:shadow-lg dark:hover:bg-teal-400/90 text-neutral-200 ring-1 ring-black/5"
+                            wire:click="getHiddenEmail()">
+                            Click to Show Email
+                        </button>
+                    </div>
+                @endif
             </div>
             <hr>
             <div class="grid grid-cols-1 gap-1 my-2 md:grid-cols-4 sm:gap-3">
