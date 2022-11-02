@@ -29,7 +29,7 @@ class Edit extends Component
         $title = 'Create Posts';
         if ($id) {
             $post = Post::find($id);
-            $this->post = $post;
+            $this->post = $post->toArray();
             foreach ($post->tags as $tag) {
                 $this->selected_tag[] = $tag->id;
             }
