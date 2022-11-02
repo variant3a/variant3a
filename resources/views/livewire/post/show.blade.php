@@ -48,11 +48,10 @@
             @if ($post->tags->count())
                 <div class="py-2">
                     @foreach ($post->tags as $tag)
-                        <input type="checkbox" wire:model="selected_tag" class="hidden" id="btn-check-{{ "$post->id-$tag->id" }}" value="{{ $tag->id }}" autocomplete="off">
-                        <label class="inline mr-2 text-sm text-teal-500 break-all cursor-pointer hover:underline" for="btn-check-{{ "$post->id-$tag->id" }}">
+                        <div class="inline mr-2 text-sm text-teal-500 break-all">
                             <i class="bi bi-tag"></i>
                             {{ $tag->name }}
-                        </label>
+                        </div>
                     @endforeach
                 </div>
             @endif
