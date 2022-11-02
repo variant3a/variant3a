@@ -1,66 +1,66 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 
-<!--  created with free sitemap generation system www.sitemapxml.jp  --> 
+<!--  created with free sitemap generation system www.sitemapxml.jp  -->
 <url>
   <loc>https://variant3a.ddns.net/</loc>
   <priority>1.0</priority>
-  <changefreq>daily</changefreq>
+  <changefreq>weekly</changefreq>
 </url>
 <url>
   <loc>https://variant3a.ddns.net/home/index</loc>
   <priority>0.8</priority>
-  <changefreq>daily</changefreq>
+  <changefreq>weekly</changefreq>
 </url>
 <url>
   <loc>https://variant3a.ddns.net/post/index</loc>
   <priority>0.8</priority>
-  <changefreq>daily</changefreq>
-</url>
-<url>
-  <loc>https://variant3a.ddns.net/photo/index</loc>
-  <priority>0.8</priority>
-  <changefreq>daily</changefreq>
+  <changefreq>weekly</changefreq>
 </url>
 <url>
   <loc>https://variant3a.ddns.net/user/index</loc>
   <priority>0.8</priority>
-  <changefreq>daily</changefreq>
+  <changefreq>weekly</changefreq>
 </url>
 <url>
   <loc>https://variant3a.ddns.net/login</loc>
   <priority>0.8</priority>
-  <changefreq>daily</changefreq>
+  <changefreq>weekly</changefreq>
 </url>
 <url>
   <loc>https://variant3a.ddns.net/post/detail/8</loc>
   <priority>0.8</priority>
-  <changefreq>daily</changefreq>
+  <changefreq>weekly</changefreq>
 </url>
 <url>
   <loc>https://variant3a.ddns.net/post/detail/7</loc>
   <priority>0.7</priority>
-  <changefreq>daily</changefreq>
+  <changefreq>weekly</changefreq>
 </url>
 <url>
   <loc>https://variant3a.ddns.net/post/detail/5</loc>
   <priority>0.7</priority>
-  <changefreq>daily</changefreq>
+  <changefreq>weekly</changefreq>
 </url>
 <url>
   <loc>https://variant3a.ddns.net/post/detail/4</loc>
   <priority>0.7</priority>
-  <changefreq>daily</changefreq>
+  <changefreq>weekly</changefreq>
 </url>
 <url>
   <loc>https://variant3a.ddns.net/post/detail/3</loc>
   <priority>0.7</priority>
-  <changefreq>daily</changefreq>
+  <changefreq>weekly</changefreq>
 </url>
 <url>
   <loc>https://variant3a.ddns.net/post/detail/2</loc>
   <priority>0.7</priority>
-  <changefreq>daily</changefreq>
+  <changefreq>weekly</changefreq>
+</url>
+<url>
+  <loc>https://variant3a.ddns.net/oauth/redirect</loc>
+  <priority>0.7</priority>
+  <changefreq>weekly</changefreq>
 </url>
 
 </urlset>
