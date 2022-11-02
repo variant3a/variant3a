@@ -1,90 +1,49 @@
-<div class="grid grid-flow-col grid-rows-1 gap-1">
-    <div class="bg-white rounded shadow-lg dark:bg-zinc-700 ring-1 ring-black ring-opacity-5">
-        <div class="card text-bg-700">
-            <div class="card-body">
-                <div class="text-main-500">
-                    Posts
+<div class="grid grid-cols-1 gap-1 md:grid-cols-2 sm:gap-3">
+    <div class="col-span-2 md:col-span-1">
+        <div class="flex flex-col items-stretch p-2 bg-white rounded shadow sm:p-3 h-fit dark:bg-zinc-700 text-neutral-700 dark:text-neutral-200 ring-1 ring-black/5">
+            <div class="grid grid-cols-1 gap-1 md:grid-cols-3 sm:gap-3">
+                <div class="flex flex-col w-full col-span-3 p-2 bg-white rounded shadow md:col-span-1 sm:p-3 dark:bg-zinc-600 text-neutral-700 dark:text-neutral-200 ring-1 ring-black/5">
+                    <div class="text-main-500">
+                        Posts
+                    </div>
+                    <span class="fs-5">
+                        {{ $posts->count() }}
+                    </span>
                 </div>
-                <span class="fs-5">
-                    {{ $posts->count() }}
-                </span>
-            </div>
-        </div>
-        <div class="card text-bg-700">
-            <div class="card-body">
-                <div class="text-main-500">
-                    Users
+                <div class="flex flex-col w-full col-span-3 p-2 bg-white rounded shadow md:col-span-1 sm:p-3 dark:bg-zinc-600 text-neutral-700 dark:text-neutral-200 ring-1 ring-black/5">
+                    <div class="text-main-500">
+                        Users
+                    </div>
+                    <span class="fs-5">
+                        {{ $users->count() }}
+                    </span>
                 </div>
-                <span class="fs-5">
-                    {{ $users->count() }}
-                </span>
-            </div>
-        </div>
-        <div class="card text-bg-700">
-            <div class="card-body">
-                <div class="text-main-500">
-                    Last Activity
+                <div class="flex flex-col w-full col-span-3 p-2 bg-white rounded shadow md:col-span-1 sm:p-3 dark:bg-zinc-600 text-neutral-700 dark:text-neutral-200 ring-1 ring-black/5">
+                    <div class="text-main-500">
+                        Last Activity
+                    </div>
+                    <span class="fs-5">
+                        {{ $posts?->sortByDesc('updated_at')?->first()?->updated_at?->format('m/d H:i') ?? '' }}
+                    </span>
                 </div>
-                <span class="fs-5">
-                    {{ $posts?->sortByDesc('updated_at')?->first()?->updated_at?->format('m/d H:i') ?? '' }}
-                </span>
             </div>
+            @if ($post)
+                <a href="{{ route('post.detail', ['id' => $post->id]) }}" class="p-2 pb-0 break-all text-neutral-700 dark:text-neutral-200 hover:text-teal-500 dark:hover:text-teal-500">
+                    {{ $post->title }}
+                </a>
+            @else
+                <span class="p-2 pb-0 text-neutral-400">
+                    No articles.
+                </span>
+            @endif
         </div>
     </div>
-</div>
-
-<div class="row">
-    <div class="col-md-7">
-        <div class="card text-bg-800">
-            <div class="card-body">
-                <div class="mb-3 row">
-                    <div class="col-12">
-                        <span class="ms-1 text-400">
-                            Dashboard:
-                        </span>
-                    </div>
-                </div>
-                <div class="mb-3 row">
-                </div>
-                <div class="mb-3 row">
-                    <div class="col-12">
-                        <span class="ms-1 text-400">
-                            Latest Post:
-                        </span>
-                    </div>
-                </div>
-                <div class="mb-3 row">
-                    <div class="col-12 d-flex justify-content-between">
-                        @if ($post)
-                            <a href="{{ route('post.detail', ['id' => $post->id]) }}" class="py-2 border-4 ps-2 fs-5 border-start border-main-500 text-break text-neutral-200 text-decoration-none">
-                                {{ $post->title }}
-                            </a>
-                            <span>
-                                <a href="{{ route('post.detail', ['id' => $post->id]) }}" class="border-0 btn text-bg-hover-main-500 text-nowrap">
-                                    Details
-                                    <i class="bi bi-chevron-right"></i>
-                                </a>
-                            </span>
-                        @else
-                            <span class="ms-1 text-muted">
-                                No articles.
-                            </span>
-                        @endif
-                    </div>
-                </div>
-            </div>
+    <div class="col-span-2 mb-3 md:col-span-1">
+        <div class="flex flex-col p-2 bg-white rounded shadow sm:p-3 h-fit dark:bg-zinc-700 ring-1 ring-black/5">
+            @auth
+                <textarea wire:model.lazy="memo.content" class="w-full p-2 bg-white rounded dark:bg-zinc-600 ring-1 ring-black/10 dark:ring-0 focus:ring-2 dark:focus:ring-2 focus:ring-teal-500 dark:focus:ring-teal-500 focus:outline-0" rows="10" placeholder="Memo" style="resize:none"></textarea>
+            @endauth
+            @guest
+                <textarea class="w-full p-2 bg-white rounded dark:bg-zinc-600 ring-1 ring-black/10 dark:ring-0 focus:ring-2 dark:focus:ring-2 focus:ring-teal-500 dark:focus:ring-teal-500 focus:outline-0" rows="10" placeholder="Guest account can't use this area." style="resize:none" disabled></textarea>
+            @endguest
         </div>
-    </div>
-    <div class="mt-3 col-md-5 mt-md-0">
-        <div class="card text-bg-800">
-            <div class="card-body">
-                @auth
-                    <textarea wire:model.lazy="memo.content" class="p-3 border-0 rounded shadow-none form-control text-bg-700" rows="10" placeholder="Memo" style="resize:none"></textarea>
-                @endauth
-                @guest
-                    <textarea class="p-3 border-0 rounded shadow-none form-control text-bg-700" rows="10" placeholder="Guest account can't use this area." style="resize:none" disabled></textarea>
-                @endguest
-            </div>
-        </div>
-    </div>
-</div>
