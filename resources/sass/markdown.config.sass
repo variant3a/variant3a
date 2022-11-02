@@ -1,4 +1,8 @@
 .markdown
+    *
+        list-style-type: revert
+        margin: revert
+        padding: revert
     h1
         @apply text-2xl font-bold -left-2 my-5 pl-2 border-l-8 border-teal-500
     h2
@@ -14,7 +18,9 @@
     a
         @apply text-teal-500 underline
     code
-        @apply text-lg rounded text-base
+        @apply rounded text-base
+        &:not(.hljs)
+            @apply rounded text-neutral-200 bg-black/50 px-1
     table
         @apply border border-neutral-400
         thead th,
