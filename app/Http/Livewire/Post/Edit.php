@@ -78,7 +78,7 @@ class Edit extends Component
         $selected_tags = $this->selected_tag;
 
         DB::transaction(function () use ($data, $selected_tags) {
-            $post = Post::firstOrNew(['id' => $this->post?->id ?? 'null']);
+            $post = Post::firstOrNew(['id' => $this->post['id'] ?? 'null']);
             $post->fill($data);
             $post->created_by = auth()->id();
             $post->updated_by = auth()->id();
@@ -116,7 +116,7 @@ class Edit extends Component
         $selected_tags = $this->selected_tag;
 
         DB::transaction(function () use ($selected_tags) {
-            $post = Post::find($this->post->id);
+            $post = Post::find($this->post['id']);
             $post->delete();
             $post->tags()->detach($selected_tags);
         });
