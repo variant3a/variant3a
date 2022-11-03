@@ -41,9 +41,21 @@
     <div class="col-span-2 mb-3 md:col-span-1">
         <div class="flex flex-col p-2 bg-white rounded shadow sm:p-3 h-fit dark:bg-zinc-700 ring-1 ring-black/5">
             @auth
-                <textarea wire:model.lazy="memo.content" class="w-full p-2 bg-white rounded dark:bg-zinc-600 ring-1 ring-black/10 dark:ring-0 focus:ring-2 dark:focus:ring-2 focus:ring-teal-500 dark:focus:ring-teal-500 focus:outline-0" rows="10" placeholder="Memo" style="resize:none"></textarea>
+                <textarea wire:model.lazy="memo.content" class="w-full p-2 bg-white rounded dark:bg-zinc-600 ring-1 ring-black/10 dark:ring-0 focus:ring-2 dark:focus:ring-2 focus:ring-teal-500 dark:focus:ring-teal-500 focus:outline-0" rows="10" placeholder="Memo" style="resize:none"
+                    x-data="{ start: 0 }"
+                    x-on:keydown.tab.prevent="
+                    start = $el.selectionStart
+                    $el.value = $el.value.substr(0, $el.selectionEnd) + '    ' + $el.value.substr($el.selectionEnd);
+                    $el.selectionStart = $el.selectionEnd = start + 4;
+                "></textarea>
             @endauth
             @guest
-                <textarea class="w-full p-2 bg-white rounded dark:bg-zinc-600 ring-1 ring-black/10 dark:ring-0 focus:ring-2 dark:focus:ring-2 focus:ring-teal-500 dark:focus:ring-teal-500 focus:outline-0" rows="10" placeholder="Guest account can't use this area." style="resize:none" disabled></textarea>
+                <textarea class="w-full p-2 bg-white rounded dark:bg-zinc-600 ring-1 ring-black/10 dark:ring-0 focus:ring-2 dark:focus:ring-2 focus:ring-teal-500 dark:focus:ring-teal-500 focus:outline-0" rows="10" placeholder="Guest account can't use this area." style="resize:none" disabled
+                    x-data="{ start: 0 }"
+                    x-on:keydown.tab.prevent="
+                    start = $el.selectionStart
+                    $el.value = $el.value.substr(0, $el.selectionEnd) + '    ' + $el.value.substr($el.selectionEnd);
+                    $el.selectionStart = $el.selectionEnd = start + 4;
+                "></textarea>
             @endguest
         </div>
