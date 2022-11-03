@@ -6,6 +6,7 @@ use App\Http\Livewire\Home;
 use App\Http\Livewire\Internal;
 use App\Http\Livewire\Post;
 use App\Http\Livewire\User;
+use App\Http\Livewire\Documents;
 use App\Http\Livewire\Setting;
 use Illuminate\Support\Facades\Route;
 
@@ -34,6 +35,7 @@ if (app()->isLocal()) {
 //     Route::get('redirect', [LoginController::class, 'redirectToOAuth'])->name('redirect');
 //     Route::get('callback', [LoginController::class, 'callbackFromOAuth'])->name('callback');
 // });
+Route::get('privacy-policy', Documents\PrivacyPolicy::class)->name('privacy-policy');
 
 Route::prefix('login')->group(function () {
     Route::get('/', [LoginController::class, 'showLoginForm'])->name('login');
