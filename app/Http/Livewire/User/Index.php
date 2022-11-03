@@ -20,11 +20,10 @@ class Index extends Component
     public $photos;
     public $timelines;
 
-    public function mount($id)
+    public function mount()
     {
-        $user_id = $id ?? 'variant3a';
-        $this->user = User::where('user_id', $user_id)->first();
-        $this->getPictures($this->user->id);
+        $this->getPictures();
+        $this->user = User::where('user_id', '=', 'variant3a')->first();
         $this->timelines = Timeline::where('created_by', $this->user->id)->orderBy('start_date', 'asc')->with('tags')->get();
     }
 
@@ -45,9 +44,9 @@ class Index extends Component
         $this->hiddenEmail = $this->user->email;
     }
 
-    public function getPictures($id)
+    public function getPictures()
     {
-        $this->photos = Photo::where('created_by', $id)->orderBy('id', 'desc')->get();
+        $this->photos = Photo::orderBy('id', 'desc')->get();
     }
 
     public function deletePicture($id)
@@ -56,7 +55,7 @@ class Index extends Component
         Storage::disk('public')->delete($photo->path);
         $photo->delete();
 
-        $this->getPictures($this->user->id);
+        $this->getPictures();
     }
 
     public function upload()
@@ -76,6 +75,6 @@ class Index extends Component
             $photo->save();
         }
 
-        $this->getPictures($this->user->id);
+        $this->getPictures();
     }
 }
