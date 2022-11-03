@@ -12,7 +12,7 @@
         <div class="col-span-1 md:col-span-1 mb-1 sm:mb-3 overflow-auto max-h-[50vh]">
             <ul class="mx-1 my-1 list-group sm:my-3">
                 @foreach ($tags as $tag)
-                    <div class="flex mb-3">
+                    <div class="flex mb-3" wire:key="tag-{{ $tag->id }}">
                         <input wire:model="selected_tag" class="hidden peer" type="checkbox" value="{{ $tag->id }}" id="{{ "tag-$tag->id" }}" autocomplete="off" @disabled($tag->posts->count()) @disabled($tag->timelines->count())>
                         <label class="px-4 py-3 bg-white border-r rounded-l w-fit text-neutral-700 peer-disabled:text-neutral-200 dark:text-neutral-200 dark:peer-disabled:text-neutral-400 dark:bg-zinc-600 ring-1 ring-black/10 dark:ring-0 focus:ring-2 dark:focus:ring-2 focus:ring-teal-500 dark:focus:ring-teal-500 focus:outline-0 peer-checked:bg-teal-500 peer-checked:text-neutral-200 border-neutral-200 dark:border-neutral-700" for="{{ "tag-$tag->id" }}">
                             <i class="bi bi-check-lg"></i>

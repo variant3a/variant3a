@@ -59,7 +59,7 @@
             @if ($post->tags->count())
                 <div class="py-2">
                     @foreach ($post->tags as $tag)
-                        <div class="inline mr-2 text-sm text-teal-500 break-all">
+                        <div class="inline mr-2 text-sm text-teal-500 break-all" wire:key="article-tag-{{ "$post->id-$tag->id" }}">
                             <i class="bi bi-tag"></i>
                             {{ $tag->name }}
                         </div>

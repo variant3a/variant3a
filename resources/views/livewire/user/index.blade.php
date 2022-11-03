@@ -82,7 +82,7 @@
                 <div class="grid grid-cols-3 grid-rows-3 overflow-hidden md:grid-rows-auto md:auto-rows-auto md:grid-cols-2 gap-x-2 gap-y-0 sm:gap-x-3"
                     x-bind:class="expand ? '' : 'auto-rows-[0]'">
                     @foreach ($photos as $photo)
-                        <div x-data="{ hover: false, detail: false }">
+                        <div x-data="{ hover: false, detail: false }" wire:key="photo-{{ $photo->id }}">
                             <div class="flex justify-center mb-2 sm:mb-3">
                                 <div class="w-full h-0 pt-[100%] relative"
                                     x-on:mouseover="hover = true"
@@ -171,7 +171,7 @@
         <div class="flex flex-col">
             @if ($timelines->count())
                 @foreach ($timelines as $timeline)
-                    <div class="flex flex-col grid-cols-12 md:grid text-gray-50">
+                    <div class="flex flex-col grid-cols-12 md:grid text-gray-50" wire:key="timeline-{{ $photo->id }}">
                         <div class="flex md:contents">
                             <div class="relative col-start-1 col-end-3 mx-2 md:mx-auto">
                                 <div class="flex items-center justify-center w-8 h-full">
@@ -194,7 +194,7 @@
                                 @if ($timeline->tags->count())
                                     <div class="flex flex-wrap">
                                         @foreach ($timeline->tags as $tag)
-                                            <span class="inline mr-2 text-sm text-teal-500 break-all">
+                                            <span class="inline mr-2 text-sm text-teal-500 break-all" wire:key="timeline-tag-{{ "$timeline->id-$tag->id" }}">
                                                 <i class="bi bi-tag"></i>
                                                 {{ $tag->name }}
                                             </span>

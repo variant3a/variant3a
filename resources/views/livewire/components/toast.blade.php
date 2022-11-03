@@ -3,6 +3,7 @@
         @if ($toasts)
             @foreach ($toasts as $toast)
                 <div class="flex flex-col justify-between align-items-center m-2 md:m-3 p-2 min-w-[300px] shadow-lg rounded backdrop-blur-lg bg-zinc-200/20 dark:bg-white/10 ring-1 ring-white/40 dark:ring-white/20"
+                    wire:key="toast-{{ $toast->id }}"
                     x-data="{ show: $wire.entangle('show.{{ $loop->index }}') }"
                     x-show="show"
                     x-init="setTimeout(() => { show = false }, 3000)"

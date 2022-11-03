@@ -11,7 +11,7 @@
                 @if ($tags->count())
                     <div class="flex flex-row flex-wrap">
                         @foreach ($tags as $search_tag)
-                            <span>
+                            <span wire:key="{{ "search-tag-$search_tag->id" }}">
                                 <input type="checkbox" wire:model="selected_tag" class="hidden peer" value="{{ $search_tag->id }}" id="btn-search-{{ $search_tag->id }}" autocomplete="off">
                                 <label class="block px-2 mb-2 mr-2 text-teal-500 break-all border-2 border-teal-500 rounded cursor-pointer hover:bg-teal-500 peer-checked:bg-teal-500 hover:text-neutral-200 peer-checked:text-neutral-200 ring-1 ring-black/5" for="btn-search-{{ $search_tag->id }}">
                                     {{ "$search_tag->name ($search_tag->posts_count)" }}
@@ -24,7 +24,7 @@
             <div class="hidden row-auto mb-1 bg-white rounded shadow md:block sm:mb-3 dark:bg-zinc-700 ring-1 ring-black/5">
                 @if ($posts->count())
                     @foreach ($posts as $post)
-                        <a href="{{ route('post.detail', ['id' => $post->id]) }}" class="block w-full p-1 break-all sm:p-2 text-neutral-700 dark:text-neutral-200 hover:text-neutral-200 hover:bg-teal-500 first:rounded-t last:rounded-b">
+                        <a href="{{ route('post.detail', ['id' => $post->id]) }}" class="block w-full p-1 break-all sm:p-2 text-neutral-700 dark:text-neutral-200 hover:text-neutral-200 hover:bg-teal-500 first:rounded-t last:rounded-b" wire:key="{{ "article-detail-$post->id" }}">
                             {{ $post->title }}
                         </a>
                     @endforeach
@@ -39,7 +39,7 @@
         <div class="grid grid-cols-1 gap-1 mb-1 sm:gap-3 sm:grid-cols-2 sm:mb-3">
             @if ($posts->count())
                 @foreach ($posts as $post)
-                    <div class="flex flex-col px-2 py-2 bg-white rounded shadow md:px-4 h-fit dark:bg-zinc-700 hover:shadow-lg ring-1 ring-black/5">
+                    <div class="flex flex-col px-2 py-2 bg-white rounded shadow md:px-4 h-fit dark:bg-zinc-700 hover:shadow-lg ring-1 ring-black/5" wire:key="{{ "article-$post->id" }}">
                         <a href="{{ route('post.detail', ['id' => $post->id]) }}" id="{{ "post-$post->id" }}" class="text-2xl font-bold break-all text-neutral-700 dark:text-neutral-200 hover:text-teal-500 dark:hover:text-teal-500">
                             {{ $post->title }}
                         </a>
