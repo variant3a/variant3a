@@ -1,5 +1,9 @@
 <div
-    x-data="{ showDropdown: false, showSideNav: (screen.width >= 768) ? true : false }">
+    x-data="{
+        showDropdown: false,
+        showSideNav: (screen.width >= 768) ? true : false,
+        showNavTitle: false
+    }">
     <div class="fixed z-10 m-1 sm:m-3 top-0 left-0 w-[calc(100%_-_0.5rem)] sm:w-[calc(100%_-_1.5rem)] shadow-lg rounded backdrop-blur-lg bg-zinc-200/20 dark:bg-white/10 ring-1 ring-white/40 dark:ring-white/20">
         <div class="flex justify-between">
             <div class="relative flex items-center justify-between z-1 md:hidden">
@@ -25,7 +29,7 @@
         </div>
     </div>
     <div class="fixed inset-0 z-20 w-screen h-screen md:hidden" x-on:click="showSideNav = !showSideNav" x-show="showSideNav" x-cloak></div>
-    <div class="fixed z-30 md:pointer-events-none top-20 sm:top-24 left-1 sm:left-3 md:inset-0 md:m-3 w-[calc(100vw_-_0.5rem)] sm:w-[calc(100vw_-_1.5rem)] max-h-[calc(100vh_-_6.25rem)] shadow-lg md:shadow-none md:backdrop-blur-0 bg-zinc-200/20 md:bg-transparent dark:bg-white/10 dark:md:bg-transparent rounded backdrop-blur-lg ring-1 ring-white/40 dark:ring-white/20 md:ring-0 overflow-auto" x-show="showSideNav" x-cloak x-transition>
+    <div class="fixed z-30 md:pointer-events-none top-20 sm:top-24 left-1 sm:left-3 md:inset-0 md:m-3 w-[calc(100vw_-_0.5rem)] sm:w-[calc(100vw_-_2.25rem)] max-h-[calc(100vh_-_6.25rem)] shadow-lg md:shadow-none md:backdrop-blur-0 bg-zinc-200/20 md:bg-transparent dark:bg-white/10 dark:md:bg-transparent rounded backdrop-blur-lg ring-1 ring-white/40 dark:ring-white/20 md:ring-0 overflow-auto" x-show="showSideNav" x-cloak x-transition>
         <div class="flex flex-col flex-1 md:flex-row md:justify-center">
             <div class="flex p-5 md:hidden">
                 <h5 class="inline-block my-0 font-semibold text-neutral-700 dark:text-neutral-200">
@@ -33,6 +37,8 @@
                 </h5>
             </div>
             <a href="{{ route('home.index') }}" class="flex h-16 p-5 text-teal-500 hover:text-neutral-200 hover:bg-teal-500/50 md:pointer-events-auto"
+                x-on:mouseover="showNavTitle = 'Home'"
+                x-on:mouseleave="showNavTitle = ''"
                 x-on:click="showSideNav = (screen.width >= 768) ? showSideNav : !showSideNav">
                 <i class="self-center px-1 text-xl bi bi-house-door-fill"></i>
                 <div class="mx-5 md:hidden">
@@ -40,6 +46,8 @@
                 </div>
             </a>
             <a href="{{ route('post.index') }}" class="flex h-16 p-5 text-teal-500 hover:text-neutral-200 hover:bg-teal-500/50 md:pointer-events-auto"
+                x-on:mouseover="showNavTitle = 'Posts'"
+                x-on:mouseleave="showNavTitle = ''"
                 x-on:click="showSideNav = (screen.width >= 768) ? showSideNav : !showSideNav">
                 <i class="self-center px-1 text-xl bi bi-newspaper"></i>
                 <div class="mx-5 md:hidden">
@@ -47,6 +55,8 @@
                 </div>
             </a>
             <a href="{{ route('user.index', 'variant3a') }}" class="flex h-16 p-5 text-teal-500 hover:text-neutral-200 hover:bg-teal-500/50 md:pointer-events-auto"
+                x-on:mouseover="showNavTitle = 'About Me'"
+                x-on:mouseleave="showNavTitle = ''"
                 x-on:click="showSideNav = (screen.width >= 768) ? showSideNav : !showSideNav">
                 <i class="self-center px-1 text-xl bi bi-person-workspace"></i>
                 <div class="mx-5 md:hidden">
@@ -54,6 +64,8 @@
                 </div>
             </a>
         </div>
+    </div>
+    <div class="hidden md:block fixed top-20 left-0 right-0 z-30 w-32 p-2 m-auto rounded shadow-lg backdrop-blur-lg bg-zinc-200/20 dark:bg-white/10 ring-1 ring-white/40 dark:ring-white/20 focus:outline-none text-teal-500 text-center" x-show="showNavTitle" x-text="showNavTitle" x-cloak x-transition>
     </div>
     <div class="fixed z-30 w-56 rounded shadow-lg top-20 sm:top-24 right-1 sm:right-3 backdrop-blur-lg bg-zinc-200/20 dark:bg-white/10 ring-1 ring-white/40 dark:ring-white/20 focus:outline-none" x-show="showDropdown" x-cloak x-transition>
         <div class="py-1">
