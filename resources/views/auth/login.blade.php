@@ -24,11 +24,12 @@
                     </div>
                 @enderror
             </div>
-            <div class="flex justify-between">
-                <a href="{{ route('oauth.redirect') }}" class="inline-block px-4 py-2 mr-3 font-bold text-center text-white bg-red-500 rounded shadow w-fit h-fit hover:shadow-lg hover:bg-red-400/90 ring-1 ring-black/5">
+            <div class="flex justify-end">
+                {{-- google oauth --}}
+                {{-- <a href="{{ route('oauth.redirect') }}" class="inline-block px-4 py-2 mr-3 font-bold text-center text-white bg-red-500 rounded shadow w-fit h-fit hover:shadow-lg hover:bg-red-400/90 ring-1 ring-black/5">
                     <i class="bi bi-google"></i>
                     Sign in as Google
-                </a>
+                </a> --}}
                 <button type="submit" class="inline-block px-4 py-2 font-bold text-center text-white bg-teal-500 rounded shadow w-fit h-fit hover:shadow-lg hover:bg-teal-400/90 ring-1 ring-black/5" data-turbo="false">
                     Login
                 </button>

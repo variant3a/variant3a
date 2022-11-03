@@ -29,10 +29,11 @@ if (app()->isLocal()) {
     });
 }
 
-Route::prefix('oauth')->name('oauth.')->group(function () {
-    Route::get('redirect', [LoginController::class, 'redirectToOAuth'])->name('redirect');
-    Route::get('callback', [LoginController::class, 'callbackFromOAuth'])->name('callback');
-});
+// google oauth
+// Route::prefix('oauth')->name('oauth.')->group(function () {
+//     Route::get('redirect', [LoginController::class, 'redirectToOAuth'])->name('redirect');
+//     Route::get('callback', [LoginController::class, 'callbackFromOAuth'])->name('callback');
+// });
 
 Route::prefix('login')->group(function () {
     Route::get('/', [LoginController::class, 'showLoginForm'])->name('login');
