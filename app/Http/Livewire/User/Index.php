@@ -23,8 +23,8 @@ class Index extends Component
     public function mount($id)
     {
         $user_id = $id ?? 'variant3a';
-        $this->getPictures($user_id);
         $this->user = User::where('user_id', $user_id)->first();
+        $this->getPictures($this->user->id);
         $this->timelines = Timeline::where('created_by', $this->user->id)->orderBy('start_date', 'asc')->with('tags')->get();
     }
 
