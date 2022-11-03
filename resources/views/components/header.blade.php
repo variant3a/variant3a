@@ -1,5 +1,5 @@
 <div
-    x-data="{ showDropdown: false, showSideNav: (window.innerWidth >= 768) ? true : false }">
+    x-data="{ showDropdown: false, showSideNav: (screen.width >= 768) ? true : false }">
     <div class="fixed z-10 m-1 sm:m-3 top-0 left-0 w-[calc(100%_-_0.5rem)] sm:w-[calc(100%_-_1.5rem)] shadow-lg rounded backdrop-blur-lg bg-zinc-200/20 dark:bg-white/10 ring-1 ring-white/40 dark:ring-white/20">
         <div class="flex justify-between">
             <div class="relative flex items-center justify-between z-1 md:hidden">
@@ -33,21 +33,21 @@
                 </h5>
             </div>
             <a href="{{ route('home.index') }}" class="flex h-16 p-5 text-teal-500 hover:text-neutral-200 hover:bg-teal-500/50 md:pointer-events-auto"
-                x-on:click="showSideNav = (window.innerWidth >= 768) ? showSideNav : !showSideNav">
+                x-on:click="showSideNav = (screen.width >= 768) ? showSideNav : !showSideNav">
                 <i class="self-center px-1 text-xl bi bi-house-door-fill"></i>
                 <div class="mx-5 md:hidden">
                     Home
                 </div>
             </a>
             <a href="{{ route('post.index') }}" class="flex h-16 p-5 text-teal-500 hover:text-neutral-200 hover:bg-teal-500/50 md:pointer-events-auto"
-                x-on:click="showSideNav = (window.innerWidth >= 768) ? showSideNav : !showSideNav">
+                x-on:click="showSideNav = (screen.width >= 768) ? showSideNav : !showSideNav">
                 <i class="self-center px-1 text-xl bi bi-newspaper"></i>
                 <div class="mx-5 md:hidden">
                     Posts
                 </div>
             </a>
             <a href="{{ route('user.index', 'variant3a') }}" class="flex h-16 p-5 text-teal-500 hover:text-neutral-200 hover:bg-teal-500/50 md:pointer-events-auto"
-                x-on:click="showSideNav = (window.innerWidth >= 768) ? showSideNav : !showSideNav">
+                x-on:click="showSideNav = (screen.width >= 768) ? showSideNav : !showSideNav">
                 <i class="self-center px-1 text-xl bi bi-person-workspace"></i>
                 <div class="mx-5 md:hidden">
                     About Me
