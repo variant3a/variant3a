@@ -68,6 +68,10 @@ class Index extends Component
 
         $this->new_tag = '';
         $this->getTag();
+        $this->emitTo('components.toast', 'bakeToast', [
+            'status' => 'Success',
+            'message' => 'Tag Created successfully.'
+        ]);
     }
 
     public function updateTag()
@@ -83,6 +87,10 @@ class Index extends Component
         $this->new_tag = '';
         $this->selected_tag = [];
         $this->getTag();
+        $this->emitTo('components.toast', 'bakeToast', [
+            'status' => 'Success',
+            'message' => 'Tag has been updated.'
+        ]);
     }
 
     public function deleteTag()

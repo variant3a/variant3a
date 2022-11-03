@@ -33,6 +33,7 @@
         <div class="mx-1 mt-20 sm:mx-3 sm:mt-24">
             @yield('content')
         </div>
+        @livewire('components.toast', ['status' => ($status = 'success'), 'message' => ($message = 'update successful')])
     </main>
     <footer id="footer" data-turbo-permanent>
         @include('components.footer')

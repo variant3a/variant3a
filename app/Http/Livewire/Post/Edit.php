@@ -102,6 +102,10 @@ class Edit extends Component
             $tags->updated_by = auth()->id();
 
             $tags->save();
+            $this->emitTo('components.toast', 'bakeToast', [
+                'status' => 'Success',
+                'message' => 'Tag Created successfully.'
+            ]);
         }
 
         $this->new_tag = '';

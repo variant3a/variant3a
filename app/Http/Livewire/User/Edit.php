@@ -131,6 +131,10 @@ class Edit extends Component
         $timeline->save();
 
         $this->getTimelines();
+        $this->emitTo('components.toast', 'bakeToast', [
+            'status' => 'Success',
+            'message' => 'Timeline has been Updated.'
+        ]);
     }
 
     public function updatedSelectedTag($property_name)
@@ -166,6 +170,10 @@ class Edit extends Component
         });
 
         $this->getUser();
+        $this->emitTo('components.toast', 'bakeToast', [
+            'status' => 'Success',
+            'message' => 'Profile Image updated successfully.'
+        ]);
     }
 
     public function update()
@@ -179,6 +187,10 @@ class Edit extends Component
         $user->save();
 
         $this->getUser();
+        $this->emitTo('components.toast', 'bakeToast', [
+            'status' => 'Success',
+            'message' => 'Profile updated successfully.'
+        ]);
     }
 
     public function createTag()
@@ -202,5 +214,9 @@ class Edit extends Component
         }
 
         $this->getTag();
+        $this->emitTo('components.toast', 'bakeToast', [
+            'status' => 'Success',
+            'message' => 'Tag Created successfully.'
+        ]);
     }
 }
