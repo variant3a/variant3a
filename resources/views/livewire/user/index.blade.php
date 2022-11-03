@@ -31,13 +31,13 @@
         </div>
         @if ($user->user_id === 'variant3a')
             <div class="flex justify-around p-2 mb-1 bg-white rounded shadow sm:mb-3 sm:p-3 h-fit dark:bg-zinc-700 text-neutral-700 dark:text-neutral-200 ring-1 ring-black/5">
-                <a href="https://github.com/variant3a" target="_blank no_refferer" class="w-6 h-auto text-xl text-center text-neutral-700 dark:text-neutral-200">
+                <a href="https://github.com/variant3a" target="_blank no_refferer" class="w-4 h-auto text-center text-neutral-700 dark:text-neutral-200">
                     <i class="bi-github"></i>
                 </a>
                 <a href="https://github.com/variant3a/variant3a" target="_blank no_refferer" class="self-center">
-                    <img src="{{ asset('images/logo_only_transparent_trim.png') }}" class="w-6 h-auto bg-transparent">
+                    <img src="{{ asset('images/logo_only_transparent_trim.png') }}" class="w-4 h-auto bg-transparent">
                 </a>
-                <a href="https://www.tumblr.com/variant3a" target="_blank no_refferer" class="w-6 h-auto text-xl text-center text-neutral-700 dark:text-neutral-200">
+                <a href="https://www.tumblr.com/variant3a" target="_blank no_refferer" class="w-4 h-auto text-center text-neutral-700 dark:text-neutral-200">
                     <i class="bi-images"></i>
                 </a>
             </div>
