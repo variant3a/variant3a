@@ -28,12 +28,6 @@
                     <p class="break-all text-neutral-400 md:mb-4 md:text-center">
                         {{ $post->user->state }}
                     </p>
-                    @if ($post->user->bio)
-                        <hr>
-                        <p class="my-3 break-all text-neutral-400">
-                            {!! nl2br(e($post->user->bio)) !!}
-                        </p>
-                    @endif
                 </div>
             </div>
             <button type="button" class="w-full p-2 flex justify-between font-bold text-center bg-teal-500 rounded shadow hover:shadow-lg hover:bg-teal-400/90 text-neutral-200 ring-1 ring-black/5"
