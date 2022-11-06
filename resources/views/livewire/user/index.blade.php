@@ -144,7 +144,7 @@
                     <div class="col-span-4 break-all md:col-span-3 text-neutral-700 dark:text-neutral-200">
                         <button type="button" class="inline-block px-4 py-2 font-bold text-center bg-teal-500 rounded shadow hover:shadow-lg dark:hover:bg-teal-400/90 text-neutral-200 ring-1 ring-black/5"
                             wire:click="getHiddenEmail()">
-                            Click to Show Email
+                            Show Email
                         </button>
                     </div>
                 @endif
@@ -221,7 +221,7 @@
                     </div>
                 </div>
             @else
-                <div class="my-3 md:my-4 p-2 text-neutral-700 dark:text-neutral-200">
+                <div class="p-2 my-3 md:my-4 text-neutral-700 dark:text-neutral-200">
                     No Timelines.
                 </div>
             @endif
