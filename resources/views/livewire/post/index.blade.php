@@ -7,7 +7,7 @@
                 </a>
             @endauth
             <div class="p-3 pb-1 bg-white rounded shadow md:mb-3 dark:bg-zinc-700 ring-1 ring-black/5">
-                <input type="text" wire:model="keyword" class="w-full p-2 mb-3 bg-white rounded dark:bg-zinc-600 ring-1 ring-black/10 dark:ring-0 focus:ring-2 dark:focus:ring-2 focus:ring-teal-500 dark:focus:ring-teal-500 focus:outline-0" placeholder="Keywords">
+                <input type="text" wire:model="keyword" class="w-full p-2 mb-3 bg-white rounded text-neutral-700 dark:text-neutral-200 dark:bg-zinc-600 ring-1 ring-black/10 dark:ring-0 focus:ring-2 dark:focus:ring-2 focus:ring-teal-500 dark:focus:ring-teal-500 focus:outline-0" placeholder="Keywords">
                 @if ($tags->count())
                     <div class="flex flex-row flex-wrap">
                         @foreach ($tags as $search_tag)
