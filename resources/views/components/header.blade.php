@@ -36,7 +36,7 @@
                     variant3a
                 </h5>
             </div>
-            <a href="{{ route('home.index') }}" class="flex h-16 p-5 text-teal-500 hover:text-neutral-200 hover:bg-teal-500/50 md:pointer-events-auto"
+            <a href="{{ route('/') }}" class="flex h-16 p-5 text-teal-500 hover:text-neutral-200 hover:bg-teal-500/50 md:pointer-events-auto"
                 x-on:mouseover="showNavTitle = 'Home'"
                 x-on:mouseleave="showNavTitle = ''"
                 x-on:click="showSideNav = (screen.width >= 768) ? showSideNav : !showSideNav">
@@ -65,7 +65,7 @@
             </a>
         </div>
     </div>
-    <div class="hidden md:block fixed top-20 left-0 right-0 z-30 w-32 p-2 m-auto rounded shadow-lg backdrop-blur-lg bg-zinc-200/20 dark:bg-white/10 ring-1 ring-white/40 dark:ring-white/20 focus:outline-none text-teal-500 text-center" x-show="showNavTitle" x-text="showNavTitle" x-cloak x-transition>
+    <div class="fixed left-0 right-0 z-30 hidden w-32 p-2 m-auto text-center text-teal-500 rounded shadow-lg md:block top-20 backdrop-blur-lg bg-zinc-200/20 dark:bg-white/10 ring-1 ring-white/40 dark:ring-white/20 focus:outline-none" x-show="showNavTitle" x-text="showNavTitle" x-cloak x-transition>
     </div>
     <div class="fixed z-30 w-56 rounded shadow-lg top-20 sm:top-24 right-1 sm:right-3 backdrop-blur-lg bg-zinc-200/20 dark:bg-white/10 ring-1 ring-white/40 dark:ring-white/20 focus:outline-none" x-show="showDropdown" x-cloak x-transition>
         <div class="py-1">

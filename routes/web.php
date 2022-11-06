@@ -21,7 +21,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', fn () => redirect()->route('home.index'))->name('/');
+Route::get('/', Home\Index::class)->name('/');
 
 if (app()->isLocal()) {
     Route::prefix('register')->group(function () {
@@ -40,10 +40,6 @@ Route::get('privacy-policy', Documents\PrivacyPolicy::class)->name('privacy-poli
 Route::prefix('login')->group(function () {
     Route::get('/', [LoginController::class, 'showLoginForm'])->name('login');
     Route::post('/', [LoginController::class, 'login']);
-});
-
-Route::prefix('home')->name('home.')->group(function () {
-    Route::get('index', Home\Index::class)->name('index');
 });
 
 Route::prefix('post')->name('post.')->group(function () {
@@ -66,16 +62,4 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
     Route::prefix('post')->name('post.')->group(function () {
         Route::get('edit/{id?}', Post\Edit::class)->name('edit');
     });
-
-    // Route::prefix('internal')->name('internal.')->group(function () {
-
-
-    //     Route::prefix('dashboard')->name('dashboard.')->group(function () {
-    //         Route::get('index', Internal\Dashboard\Index::class)->name('index');
-    //     });
-
-    //     Route::prefix('schedule')->name('schedule.')->group(function () {
-    //         Route::get('index', Internal\Schedule\Index::class)->name('index');
-    //     });
-    // });
 });
