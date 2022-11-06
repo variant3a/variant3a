@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Components;
 
+use Illuminate\Support\Str;
 use Livewire\Component;
 
 class Toast extends Component
@@ -14,6 +15,7 @@ class Toast extends Component
     public function bakeToast($request)
     {
         $this->toasts[] = [
+            'id' => Str::random('5'),
             'status' => $request['status'],
             'message' => $request['message'],
         ];
