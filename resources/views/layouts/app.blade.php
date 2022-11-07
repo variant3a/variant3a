@@ -5,6 +5,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    <!-- Canonical Tag -->
+    <link rel="canonical" href="{{ url()->current() }}">
+
     <!-- PWA -->
     <link rel="manifest" href="{{ asset('manifest.json') }}">
 
