@@ -1,15 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 
-<!--  created with free sitemap generation system www.sitemapxml.jp  -->
+<!--  created with free sitemap generation system www.sitemapxml.jp  --> 
 <url>
   <loc>https://variant3a.ddns.net/</loc>
   <priority>1.0</priority>
-  <changefreq>weekly</changefreq>
-</url>
-<url>
-  <loc>https://variant3a.ddns.net/home/index</loc>
-  <priority>0.8</priority>
   <changefreq>weekly</changefreq>
 </url>
 <url>
@@ -28,37 +23,42 @@
   <changefreq>weekly</changefreq>
 </url>
 <url>
-  <loc>https://variant3a.ddns.net/post/detail/8</loc>
+  <loc>https://variant3a.ddns.net/post/detail/z8rn5q04-0owv</loc>
   <priority>0.8</priority>
   <changefreq>weekly</changefreq>
 </url>
 <url>
-  <loc>https://variant3a.ddns.net/post/detail/7</loc>
+  <loc>https://variant3a.ddns.net/privacy-policy</loc>
+  <priority>0.8</priority>
+  <changefreq>weekly</changefreq>
+</url>
+<url>
+  <loc>https://variant3a.ddns.net/post/detail/kxnrl-p5d0e96</loc>
   <priority>0.7</priority>
   <changefreq>weekly</changefreq>
 </url>
 <url>
-  <loc>https://variant3a.ddns.net/post/detail/5</loc>
+  <loc>https://variant3a.ddns.net/post/detail/50697drgqz3go</loc>
   <priority>0.7</priority>
   <changefreq>weekly</changefreq>
 </url>
 <url>
-  <loc>https://variant3a.ddns.net/post/detail/4</loc>
+  <loc>https://variant3a.ddns.net/post/detail/8xve1dzy-rg4l</loc>
   <priority>0.7</priority>
   <changefreq>weekly</changefreq>
 </url>
 <url>
-  <loc>https://variant3a.ddns.net/post/detail/3</loc>
+  <loc>https://variant3a.ddns.net/post/detail/8oel5qj4qw4nv</loc>
   <priority>0.7</priority>
   <changefreq>weekly</changefreq>
 </url>
 <url>
-  <loc>https://variant3a.ddns.net/post/detail/2</loc>
+  <loc>https://variant3a.ddns.net/post/detail/n4k3jq87de29w</loc>
   <priority>0.7</priority>
   <changefreq>weekly</changefreq>
 </url>
 <url>
-  <loc>https://variant3a.ddns.net/oauth/redirect</loc>
+  <loc>https://variant3a.ddns.net/post/detail/v0zeldnp-g7nx</loc>
   <priority>0.7</priority>
   <changefreq>weekly</changefreq>
 </url>
