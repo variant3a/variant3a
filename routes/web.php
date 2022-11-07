@@ -44,7 +44,7 @@ Route::prefix('login')->group(function () {
 
 Route::prefix('post')->name('post.')->group(function () {
     Route::get('index', Post\Index::class)->name('index');
-    Route::get('detail/{id}', Post\Show::class)->name('detail');
+    Route::get('detail/{post}', Post\Show::class)->name('detail');
 });
 
 Route::prefix('user')->name('user.')->group(function () {
@@ -60,6 +60,6 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
     });
 
     Route::prefix('post')->name('post.')->group(function () {
-        Route::get('edit/{id?}', Post\Edit::class)->name('edit');
+        Route::get('edit/{post?}', Post\Edit::class)->name('edit');
     });
 });

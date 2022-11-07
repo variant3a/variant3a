@@ -24,7 +24,7 @@
             <div class="hidden row-auto mb-1 bg-white rounded shadow md:block sm:mb-3 dark:bg-zinc-700 ring-1 ring-black/5">
                 @if ($posts->count())
                     @foreach ($posts as $post)
-                        <a href="{{ route('post.detail', ['id' => $post->id]) }}" class="block w-full p-1 break-all sm:p-2 text-neutral-700 dark:text-neutral-200 hover:text-neutral-200 hover:bg-teal-500 first:rounded-t last:rounded-b" wire:key="{{ "article-detail-$post->id" }}">
+                        <a href="{{ route('post.detail', $post) }}" class="block w-full p-1 break-all sm:p-2 text-neutral-700 dark:text-neutral-200 hover:text-neutral-200 hover:bg-teal-500 first:rounded-t last:rounded-b" wire:key="{{ "article-detail-$post->id" }}">
                             {{ $post->title }}
                         </a>
                     @endforeach
@@ -40,7 +40,7 @@
             @if ($posts->count())
                 @foreach ($posts as $post)
                     <div class="flex flex-col px-2 py-2 bg-white rounded shadow md:px-4 h-fit dark:bg-zinc-700 hover:shadow-lg ring-1 ring-black/5" wire:key="{{ "article-$post->id" }}">
-                        <a href="{{ route('post.detail', ['id' => $post->id]) }}" id="{{ "post-$post->id" }}" class="text-2xl font-bold break-all text-neutral-700 dark:text-neutral-200 hover:text-teal-500 dark:hover:text-teal-500">
+                        <a href="{{ route('post.detail', $post) }}" id="{{ "post-$post->id" }}" class="text-2xl font-bold break-all text-neutral-700 dark:text-neutral-200 hover:text-teal-500 dark:hover:text-teal-500">
                             {{ $post->title }}
                         </a>
                         <div class="text-neutral-400">
@@ -48,7 +48,6 @@
                         </div>
                         <div class="px-2 py-4 markdown text-neutral-700 dark:text-neutral-200 max-h-[25vh] break-words overflow-hidden break-all">
                             {!! e(App\Services\MarkdownService::parse(strip_tags($post->content))) !!}
-                            {{ strip_tags($post->content) }}
                         </div>
                         @if ($post->tags->count())
                             <div class="py-2">
@@ -61,11 +60,11 @@
                                 @endforeach
                             </div>
                         @endif
-                        <div class="flex justify-between mb-0 text-neutral-400 text-end" href="{{ route('post.detail', ['id' => $post->id]) }}">
+                        <div class="flex justify-between mb-0 text-neutral-400 text-end" href="{{ route('post.detail', $post) }}">
                             <span title="{{ $post->created_at->format('Y-m-d H:i:s') }}">
                                 {{ $post->created_at->format('F j, Y') }}
                             </span>
-                            <a href="{{ route('post.detail', ['id' => $post->id]) }}" id="{{ "post-$post->id" }}" class="break-all hover:underline">
+                            <a href="{{ route('post.detail', $post) }}" id="{{ "post-$post->id" }}" class="break-all hover:underline">
                                 Show more...
                             </a>
                         </div>

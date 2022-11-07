@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
+use Vinkla\Hashids\Facades\Hashids;
 
 class Post extends Model
 {
@@ -49,5 +50,17 @@ class Post extends Model
     public function user()
     {
         return $this->belongsTo(User::class, 'created_by', 'id');
+    }
+
+    public function getRouteKey(): string
+    {
+        return Hashids::encode($this->getKey());
+    }
+
+    public function resolveRouteBinding($value, $field = null)
+    {
+        $value = Hashids::decode($value)[0] ?? null;
+
+        return $this->find($value);
     }
 }

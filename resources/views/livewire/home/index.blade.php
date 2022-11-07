@@ -28,7 +28,7 @@
                 </div>
             </div>
             @if ($post)
-                <a href="{{ route('post.detail', ['id' => $post->id]) }}" class="p-2 pb-0 break-all text-neutral-700 dark:text-neutral-200 hover:text-teal-500 dark:hover:text-teal-500">
+                <a href="{{ route('post.detail', $post) }}" class="p-2 pb-0 break-all text-neutral-700 dark:text-neutral-200 hover:text-teal-500 dark:hover:text-teal-500">
                     {{ $post->title }}
                 </a>
             @else

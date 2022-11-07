@@ -12,9 +12,8 @@ class Show extends Component
     public string $share_string = '';
     public $post;
 
-    public function mount($id)
+    public function mount(Post $post)
     {
-        $post = Post::find($id);
         $this->post = $post;
         $this->title = $post->title;
         $this->share_string = $post->title . ' - ' . env('APP_NAME', 'Laravel') . "\n" . url()->current();

@@ -24,11 +24,10 @@ class Edit extends Component
         'post.content' => 'required|max:10000',
     ];
 
-    public function mount($id = null)
+    public function mount(Post $post)
     {
         $title = 'Create Posts';
-        if ($id) {
-            $post = Post::find($id);
+        if ($post) {
             $this->post = $post->toArray();
             foreach ($post->tags as $tag) {
                 $this->selected_tag[] = $tag->id;
