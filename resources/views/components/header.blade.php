@@ -37,12 +37,12 @@
                 </h5>
             </div>
             <a href="{{ route('/') }}" class="flex h-16 p-5 text-teal-500 hover:text-neutral-200 hover:bg-teal-500/50 md:pointer-events-auto"
-                x-on:mouseover="showNavTitle = 'Home'"
+                x-on:mouseover="showNavTitle = 'Top'"
                 x-on:mouseleave="showNavTitle = ''"
                 x-on:click="showSideNav = (screen.width >= 768) ? showSideNav : !showSideNav">
                 <i class="self-center px-1 text-xl bi bi-house-door-fill"></i>
                 <div class="mx-5 md:hidden">
-                    Home
+                    Top
                 </div>
             </a>
             <a href="{{ route('post.index') }}" class="flex h-16 p-5 text-teal-500 hover:text-neutral-200 hover:bg-teal-500/50 md:pointer-events-auto"

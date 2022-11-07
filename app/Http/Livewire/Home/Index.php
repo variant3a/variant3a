@@ -11,7 +11,7 @@ use Livewire\Component;
 class Index extends Component
 {
 
-    public string $title = 'Home';
+    public string $title = '';
     public $posts, $post, $users;
     public $memo;
 
