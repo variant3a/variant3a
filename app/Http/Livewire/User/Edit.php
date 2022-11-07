@@ -97,7 +97,10 @@ class Edit extends Component
         $this->timeline = $timeline;
         $this->selected_tag = [];
         $this->selected_timeline = $id;
-        foreach ($timeline->tags as $tag) {
+
+        if (!$timeline?->tags) return;
+
+        foreach ($timeline?->tags as $tag) {
             $this->selected_tag[] = $tag->id;
         }
     }
