@@ -13,7 +13,7 @@ class Index extends Component
 {
     use WithFileUploads;
 
-    public string $title = 'Profile';
+    public string $title = 'About me';
     public string $hiddenEmail = '';
     public $files = [];
     public $user;

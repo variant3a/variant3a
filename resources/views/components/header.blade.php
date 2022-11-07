@@ -55,12 +55,12 @@
                 </div>
             </a>
             <a href="{{ route('user.index') }}" class="flex h-16 p-5 text-teal-500 hover:text-neutral-200 hover:bg-teal-500/50 md:pointer-events-auto"
-                x-on:mouseover="showNavTitle = 'About Me'"
+                x-on:mouseover="showNavTitle = 'About me'"
                 x-on:mouseleave="showNavTitle = ''"
                 x-on:click="showSideNav = (screen.width >= 768) ? showSideNav : !showSideNav">
                 <i class="self-center px-1 text-xl bi bi-person-workspace"></i>
                 <div class="mx-5 md:hidden">
-                    About Me
+                    About me
                 </div>
             </a>
         </div>
