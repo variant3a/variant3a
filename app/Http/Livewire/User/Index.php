@@ -5,7 +5,9 @@ namespace App\Http\Livewire\User;
 use App\Models\Photo;
 use App\Models\Timeline;
 use App\Models\User;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
@@ -52,9 +54,17 @@ class Index extends Component
     public function deletePicture($id)
     {
         $photo = Photo::find($id);
-        Storage::disk('public')->delete($photo->path);
-        $photo->delete();
-
+        DB::transaction(function () use ($photo) {
+            Storage::disk('public')->delete($photo->path);
+            Storage::disk('public')->delete(
+                'webp/' .
+                    pathinfo($photo->path, PATHINFO_DIRNAME)  .
+                    '/' .
+                    pathinfo($photo->path, PATHINFO_FILENAME) .
+                    '.webp'
+            );
+            $photo->delete();
+        });
         $this->getPictures();
     }
 
@@ -65,14 +75,38 @@ class Index extends Component
         ]);
 
         foreach ($this->files as $file) {
-            $path = $file->store('photos');
-            $photo = new Photo;
 
-            $photo->path = $path;
-            $photo->comment = '';
-            $photo->created_by = auth()->id();
-            $photo->updated_by = auth()->id();
-            $photo->save();
+            $zipped = Image::make($file);
+
+            DB::transaction(function () use ($file, $zipped) {
+                $path = $file->store('photos');
+
+                $zipped
+                    ->orientate()
+                    ->fit(500, null, function ($constraint) {
+                        $constraint->aspectRatio();
+                        $constraint->upsize();
+                    })
+                    ->limitColors(null)
+                    ->encode('webp')
+                    ->save(
+                        Storage::disk('public')->path(
+                            'webp/' .
+                                pathinfo($path, PATHINFO_DIRNAME)  .
+                                '/' .
+                                pathinfo($path, PATHINFO_FILENAME) .
+                                '.webp'
+                        )
+                    );
+
+                $photo = new Photo;
+
+                $photo->path = $path;
+                $photo->comment = '';
+                $photo->created_by = auth()->id();
+                $photo->updated_by = auth()->id();
+                $photo->save();
+            });
         }
 
         $this->getPictures();

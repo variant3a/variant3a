@@ -87,7 +87,7 @@
                                 <div class="w-full h-0 pt-[100%] relative"
                                     x-on:mouseover="hover = true"
                                     x-on:mouseleave="hover = false">
-                                    <img src="{{ asset("storage/$photo->path") }}" class="absolute inset-0 object-cover w-full h-full rounded">
+                                    <img src="{{ asset('storage/webp/' . pathinfo($photo->path, PATHINFO_DIRNAME) . '/' . pathinfo($photo->path, PATHINFO_FILENAME) . '.webp') }}" class="absolute inset-0 object-cover w-full h-full rounded">
                                     <div class="absolute top-0 flex w-full h-full text-xl text-center rounded place-items-center justify-evenly start-0"
                                         x-bind:class="hover ? 'backdrop-blur-lg bg-zinc-200/20 dark:bg-white/10 ring-1 ring-white/40 dark:ring-white/20' : ''"
                                         x-show="hover" x-cloak>
@@ -103,7 +103,7 @@
                             <div class="fixed top-0 left-0 z-50 w-full h-full bg-black/50"
                                 x-show="detail"
                                 x-on:click="detail = !detail" x-cloak>
-                                <img src="{{ asset("storage/$photo->path") }}" class="absolute max-w-full max-h-full -translate-x-1/2 -translate-y-1/2 w-max h-max top-1/2 left-1/2">
+                                <img src="{{ asset("storage/$photo->path") }}" loading="lazy" class="absolute max-w-full max-h-full -translate-x-1/2 -translate-y-1/2 w-max h-max top-1/2 left-1/2">
                             </div>
                         </div>
                     @endforeach
@@ -171,7 +171,7 @@
         <div class="flex flex-col">
             @if ($timelines->count())
                 @foreach ($timelines as $timeline)
-                    <div class="flex flex-col grid-cols-12 md:grid text-gray-50" wire:key="timeline-{{ $photo->id }}">
+                    <div class="flex flex-col grid-cols-12 md:grid text-gray-50" wire:key="timeline-{{ $timeline->id }}">
                         <div class="flex md:contents">
                             <div class="relative col-start-1 col-end-3 mx-2 md:mx-auto">
                                 <div class="flex items-center justify-center w-8 h-full">
