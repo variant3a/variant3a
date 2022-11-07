@@ -18,6 +18,8 @@ class Edit extends Component
     public string $previous = '';
     public string $new_tag = '';
     public string $filter_tag = '';
+    public int $bio_height = 10;
+    public int $timeline_detail_height = 10;
     public bool $sort_tag = false;
     public $selected_tag = [];
     public $selected_timeline, $file, $user, $timelines, $timeline, $tags;

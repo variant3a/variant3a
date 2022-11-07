@@ -53,7 +53,10 @@
                                 {{ $message }}
                             </div>
                         @enderror
-                        <textarea wire:model.debounce.500ms="user.bio" class="p-2 w-full bg-white dark:bg-zinc-600 rounded ring-1 ring-black/10 dark:ring-0 focus:ring-2 dark:focus:ring-2 focus:ring-teal-500 dark:focus:ring-teal-500 focus:outline-0 @error('user.bio') border-2 border-red-500 text-red-500 @else text-neutral-700 dark:text-neutral-200 @enderror" placeholder="Bio"></textarea>
+                        <textarea wire:model.debounce.500ms="user.bio" class="p-2 w-full bg-white dark:bg-zinc-600 rounded ring-1 ring-black/10 dark:ring-0 focus:ring-2 dark:focus:ring-2 focus:ring-teal-500 dark:focus:ring-teal-500 focus:outline-0 @error('user.bio') border-2 border-red-500 text-red-500 @else text-neutral-700 dark:text-neutral-200 @enderror" placeholder="Bio"
+                            x-data="{ height: $el.scrollHeight }"
+                            x-bind:style="{ 'height': height + 'px' }"
+                            x-on:input="height = $el.scrollHeight"></textarea>
                         @error('user.bio')
                             <div class="text-sm text-red-600 dark:text-red-500">
                                 {{ $message }}
@@ -215,12 +218,14 @@
                 <div class="grow">
                     <div class="h-full" x-show="!editorToggle">
                         <textarea wire:model.debounce.500ms="timeline.content" class="p-2 w-full bg-white dark:bg-zinc-600 font-mono rounded ring-1 ring-black/10 dark:ring-0 focus:ring-2 dark:focus:ring-2 focus:ring-teal-500 dark:focus:ring-teal-500 focus:outline-0 @error('timeline.content') border-2 border-red-500 text-red-500 @else text-neutral-700 dark:text-neutral-200 @enderror" placeholder="Content"
-                            x-data="{ start: 0 }"
+                            x-data="{ start: 0, height: $el.scrollHeight }"
                             x-on:keydown.tab.prevent="
                             start = $el.selectionStart
                             $el.value = $el.value.substr(0, $el.selectionEnd) + '    ' + $el.value.substr($el.selectionEnd);
                             $el.selectionStart = $el.selectionEnd = start + 4;
-                        "></textarea>
+                        "
+                            x-bind:style="{ 'height': height + 'px' }"
+                            x-on:input="height = $el.scrollHeight"></textarea>
                         @error('timeline.content')
                             <div class="mt-1 text-sm text-red-600 dark:text-red-500">
                                 {{ $message }}
