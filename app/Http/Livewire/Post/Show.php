@@ -16,7 +16,7 @@ class Show extends Component
     {
         $this->post = $post;
         $this->title = $post->title;
-        $this->share_string = $post->title . ' - ' . env('APP_NAME', 'Laravel') . "\n" . url()->current();
+        $this->share_string = $post->title . ' - ' . config('app.name', 'Laravel') . "\n" . url()->current();
     }
 
     public function render()
