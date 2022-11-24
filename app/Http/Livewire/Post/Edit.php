@@ -27,7 +27,7 @@ class Edit extends Component
     public function mount(Post $post)
     {
         $title = 'Create Posts';
-        if ($post) {
+        if ($post->exists) {
             $this->post_data = $post->toArray();
             foreach ($post->tags as $tag) {
                 $this->selected_tag[] = $tag->id;
