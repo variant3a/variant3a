@@ -41,8 +41,8 @@
             @csrf
             <div class="flex flex-col mb-3 p-3 pb-0 min-h-[calc(100vh_-_6.75rem)] shadow bg-white dark:bg-zinc-700 rounded ring-1 ring-black/5">
                 <div class="mb-3">
-                    <input type="text" wire:model.debounce.500ms="post.title" class="p-2 w-full bg-white dark:bg-zinc-600 rounded ring-1 ring-black/10 dark:ring-0 focus:ring-2 dark:focus:ring-2 focus:ring-teal-500 dark:focus:ring-teal-500 focus:outline-0 @error('post.title') border-2 border-red-500 text-red-500 @else text-neutral-700 dark:text-neutral-200 @enderror" placeholder="Title">
-                    @error('post.title')
+                    <input type="text" wire:model.debounce.500ms="post_data.title" class="p-2 w-full bg-white dark:bg-zinc-600 rounded ring-1 ring-black/10 dark:ring-0 focus:ring-2 dark:focus:ring-2 focus:ring-teal-500 dark:focus:ring-teal-500 focus:outline-0 @error('post_data.title') border-2 border-red-500 text-red-500 @else text-neutral-700 dark:text-neutral-200 @enderror" placeholder="Title">
+                    @error('post_data.title')
                         <div class="mt-1 text-sm text-red-600 dark:text-red-500">
                             {{ $message }}
                         </div>
@@ -60,14 +60,14 @@
                 </div>
                 <div class="mb-3 grow">
                     <div class="h-full" x-show="!editorToggle">
-                        <textarea wire:model.debounce.500ms="post.content" class="p-2 w-full h-[calc(100vh_-_17.5rem)] font-mono bg-white dark:bg-zinc-600 rounded ring-1 ring-black/10 dark:ring-0 focus:ring-2 dark:focus:ring-2 focus:ring-teal-500 dark:focus:ring-teal-500 focus:outline-0 @error('post.content') border-2 border-red-500 text-red-500 @else text-neutral-700 dark:text-neutral-200 @enderror" placeholder="Content"
+                        <textarea wire:model.debounce.500ms="post_data.content" class="p-2 w-full h-[calc(100vh_-_17.5rem)] font-mono bg-white dark:bg-zinc-600 rounded ring-1 ring-black/10 dark:ring-0 focus:ring-2 dark:focus:ring-2 focus:ring-teal-500 dark:focus:ring-teal-500 focus:outline-0 @error('post_data.content') border-2 border-red-500 text-red-500 @else text-neutral-700 dark:text-neutral-200 @enderror" placeholder="Content"
                             x-data="{ start: 0 }"
                             x-on:keydown.tab.prevent="
                             start = $el.selectionStart
                             $el.value = $el.value.substr(0, $el.selectionEnd) + '    ' + $el.value.substr($el.selectionEnd);
                             $el.selectionStart = $el.selectionEnd = start + 4;
                         "></textarea>
-                        @error('post.content')
+                        @error('post_data.content')
                             <div class="mt-1 text-sm text-red-600 dark:text-red-500">
                                 {{ $message }}
                             </div>

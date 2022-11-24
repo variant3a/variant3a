@@ -17,18 +17,18 @@ class Edit extends Component
     public int $row = 15;
     public bool $sort_tag = false;
     public $selected_tag = [];
-    public $post, $tags;
+    public $post_data, $tags;
 
     protected $rules = [
-        'post.title' => 'required|max:255',
-        'post.content' => 'required|max:10000',
+        'post_data.title' => 'required|max:255',
+        'post_data.content' => 'required|max:10000',
     ];
 
     public function mount(Post $post)
     {
         $title = 'Create Posts';
         if ($post) {
-            $this->post = $post->toArray();
+            $this->post_data = $post->toArray();
             foreach ($post->tags as $tag) {
                 $this->selected_tag[] = $tag->id;
             }
@@ -73,11 +73,11 @@ class Edit extends Component
     {
         $this->validate();
 
-        $data = $this->post;
+        $data = $this->post_data;
         $selected_tags = $this->selected_tag;
 
         DB::transaction(function () use ($data, $selected_tags) {
-            $post = Post::firstOrNew(['id' => $this->post['id'] ?? 'null']);
+            $post = Post::firstOrNew(['id' => $this->post_data['id'] ?? 'null']);
             $post->fill($data);
             $post->created_by = auth()->id();
             $post->updated_by = auth()->id();
@@ -119,7 +119,7 @@ class Edit extends Component
         $selected_tags = $this->selected_tag;
 
         DB::transaction(function () use ($selected_tags) {
-            $post = Post::find($this->post['id']);
+            $post = Post::find($this->post_data['id']);
             $post->delete();
             $post->tags()->detach($selected_tags);
         });
