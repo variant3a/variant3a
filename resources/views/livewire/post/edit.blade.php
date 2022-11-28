@@ -74,8 +74,8 @@
                         @enderror
                     </div>
                     <div class="w-full p-2 bg-white rounded markdown lh-lg text-wrap dark:bg-zinc-600 text-neutral-700 dark:text-neutral-200 ring-1 ring-black/10 dark:ring-0" x-show="editorToggle" x-cloak>
-                        @if ($post['content'] ?? false)
-                            {!! e(App\Services\MarkdownService::parse($post['content'])) !!}
+                        @if ($post_data['content'] ?? false)
+                            {!! e(App\Services\MarkdownService::parse($post_data['content'])) !!}
                         @else
                             <span class="text-neutral-400">
                                 no preview.
