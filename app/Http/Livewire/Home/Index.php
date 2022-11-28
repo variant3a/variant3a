@@ -24,7 +24,7 @@ class Index extends Component
     public function mount()
     {
         $this->users = User::all();
-        $this->posts = Post::all();
+        $this->posts = Post::select('title')->get();
         $this->post = Post::latest()->first();
         $this->memo = Memo::where('created_by', auth()->id())->latest()->first() ?? new Memo();
     }
