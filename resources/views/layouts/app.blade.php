@@ -28,11 +28,11 @@
     <meta name="google-site-verification" content="2ZseLlPEz2jQX_FTIz1UkNzLEpovoPTGEdn0S4YgbzE" />
 </head>
 
-<body class="bg-gray-100 dark:bg-zinc-800">
+<body class="flex flex-col min-h-screen bg-gray-100 dark:bg-zinc-800">
     <header id="header" data-turbo-permanent>
         @include('components.header')
     </header>
-    <main>
+    <main class="flex-1">
         <div class="mx-1 mt-20 sm:mx-3 sm:mt-24">
             @yield('content')
         </div>
