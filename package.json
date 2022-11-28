@@ -31,8 +31,6 @@
         "@fullcalendar/timegrid": "^5.11.3",
         "@hotwired/turbo": "^7.2.4",
         "highlight.js": "^11.5.1",
-        "jquery-ui-dist": "^1.13.1",
-        "livewire-turbolinks": "^0.1.4",
-        "simplemde": "^1.11.2"
+        "livewire-turbolinks": "^0.1.4"
     }
 }
