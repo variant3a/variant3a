@@ -1,5 +1,5 @@
     <div class="relative flex flex-col items-center justify-center mt-8 text-center pointer-events-none text-neutral-400">
-        <div class="flex items-center w-full">
+        <div class="flex items-center w-11/12">
             <a href="{{ route('/') }}" class="block mx-4 my-1 text-teal-500 cursor-pointer pointer-events-auto hover:underline">
                 Home
             </a>
@@ -24,7 +24,7 @@
             @endguest
         </div>
         <div class="flex flex-rows justify-between rounded items-center w-11/12 h-2 bg-gradient-to-r from-teal-300 to-fuchsia-300 dark:from-cyan-500/30 dark:to-purple-500/30 animate-gradient bg-[length:400%]"></div>
-        <div class="flex items-center justify-end w-full">
+        <div class="flex items-center justify-end w-11/12">
             <div class="mx-4 my-1">
                 &copy;variant3a
             </div>
