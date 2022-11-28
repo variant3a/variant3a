@@ -4,8 +4,8 @@
         <div class="flex items-center justify-between w-1/2 p-4 duration-300 ease-out rounded shadow-lg h-fit hover:w-2/3 hover:shadow-2xl backdrop-blur-lg bg-zinc-200/20 dark:bg-white/10 ring-1 ring-white/40 dark:ring-white/20 focus:outline-none text-neutral-700 dark:text-neutral-200"
             x-data="{ hover: false }" x-on:mouseover="hover = true" x-on:mouseleave="hover = false">
             <p x-show="!hover">Welcome to variant3a's Knowledge Base.</p>
-            <p x-show="hover">Will be post technical stories, knowledge and insights.</p>
-            <a x-show="hover" href="{{ route('post.index') }}" class="self-center text-teal-500 underline">Visit</a>
+            <p x-show="hover" x-cloak>Will be post technical stories, knowledge and insights.</p>
+            <a x-show="hover" x-cloak href="{{ route('post.index') }}" class="self-center text-teal-500 underline">Visit</a>
         </div>
     </div>
     <div class="flex flex-row justify-center">
