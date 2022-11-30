@@ -1,5 +1,5 @@
     <div class="relative flex flex-col items-center justify-center mt-8 text-center pointer-events-none text-neutral-400">
-        <div class="flex items-center w-11/12">
+        <div class="flex flex-wrap items-center w-11/12">
             <a href="{{ route('/') }}" class="block mx-4 my-1 text-teal-500 cursor-pointer pointer-events-auto hover:underline">
                 Home
             </a>
