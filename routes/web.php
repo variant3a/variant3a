@@ -49,11 +49,9 @@ Route::prefix('post')->name('post.')->group(function () {
 
 Route::prefix('user')->name('user.')->group(function () {
     Route::get('index', User\Index::class)->name('index');
-    Route::get('edit', User\Edit::class)->name('edit');
 });
 
 Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified'])->group(function () {
-
 
     Route::prefix('setting')->name('setting.')->group(function () {
         Route::get('index', Setting\Index::class)->name('index');
@@ -61,5 +59,9 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
 
     Route::prefix('post')->name('post.')->group(function () {
         Route::get('edit/{post?}', Post\Edit::class)->name('edit');
+    });
+
+    Route::prefix('user')->name('user.')->group(function () {
+        Route::get('edit', User\Edit::class)->name('edit');
     });
 });
