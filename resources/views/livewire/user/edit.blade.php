@@ -246,10 +246,12 @@
             <div class="grid grid-cols-1 gap-1 mb-1 md:grid-cols-3 sm:gap-3 sm:mb-3">
                 <div class="col-span-3 md:col-span-1">
                     <div class="p-3 bg-white rounded shadow dark:bg-zinc-700 ring-1 ring-black/5">
-                        <input type="text" wire:model="new_tag" class="w-full p-2 mb-3 bg-white rounded text-neutral-700 dark:text-neutral-200 dark:bg-zinc-600 ring-1 ring-black/10 dark:ring-0 focus:ring-2 dark:focus:ring-2 focus:ring-teal-500 dark:focus:ring-teal-500 focus:outline-0" placeholder="Tag name">
-                        <button class="w-full p-2 font-bold text-center bg-teal-500 rounded shadow hover:shadow-lg dark:hover:bg-teal-400/90 text-neutral-200 ring-1 ring-black/5">
-                            Add Tag
-                        </button>
+                        <form wire:submit.prevent="createTag" method="post">
+                            <input type="text" wire:model="new_tag" class="w-full p-2 mb-3 bg-white rounded text-neutral-700 dark:text-neutral-200 dark:bg-zinc-600 ring-1 ring-black/10 dark:ring-0 focus:ring-2 dark:focus:ring-2 focus:ring-teal-500 dark:focus:ring-teal-500 focus:outline-0" placeholder="Tag name">
+                            <button class="w-full p-2 font-bold text-center bg-teal-500 rounded shadow hover:shadow-lg dark:hover:bg-teal-400/90 text-neutral-200 ring-1 ring-black/5">
+                                Add Tag
+                            </button>
+                        </form>
                     </div>
                 </div>
                 <div class="col-span-3 md:col-span-2">
