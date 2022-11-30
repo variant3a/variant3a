@@ -11,7 +11,7 @@
                     {{ $user->name }}
                 </div>
                 <div class="text-center break-all">
-                    {{ $user->user_id }}
+                    {{ '@' . $user->user_id }}
                 </div>
             </div>
             <div class="self-center mx-2">
@@ -185,7 +185,7 @@
                                 <h3 class="mb-1 text-lg font-semibold break-all text-neutral-700 dark:text-neutral-200">
                                     {{ $timeline->title }}
                                 </h3>
-                                <div class="markdown mb-1 break-all text-neutral-700 dark:text-neutral-200">
+                                <div class="mb-1 break-all markdown text-neutral-700 dark:text-neutral-200">
                                     {!! e(App\Services\MarkdownService::parse($timeline->content)) !!}
                                 </div>
                                 <p class="w-full leading-tight text-justify break-word text-neutral-400">

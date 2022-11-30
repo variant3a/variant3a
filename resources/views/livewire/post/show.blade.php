@@ -7,25 +7,25 @@
                     Edit
                 </a>
             @endauth
-            <div class="flex p-2 mb-1 bg-white rounded shadow sm:mb-3 md:flex-col sm:p-3 h-fit dark:bg-zinc-700 text-neutral-700 dark:text-neutral-200 ring-1 ring-black/5">
-                <div class="flex flex-col justify-center flex-shrink-0 md:mb-3 md:flex-row">
-                    <div class="w-16 md:w-1/2 h-full md:h-0 pt-16 md:pt-[50%] relative aspect-square">
+            <div class="flex p-2 mb-1 bg-white rounded shadow sm:mb-3 sm:p-3 h-fit dark:bg-zinc-700 text-neutral-700 dark:text-neutral-200 ring-1 ring-black/5">
+                <div class="flex flex-col justify-center flex-shrink-0">
+                    <div class="relative w-16 h-full pt-16 aspect-square">
                         <img src="{{ asset('storage/' . $post->user->profile_photo_path) }}" class="absolute inset-0 object-cover w-full h-full rounded-xl">
                     </div>
                 </div>
                 <div class="self-center mx-2">
-                    <div class="text-lg break-all md:my-2 md:text-center">
+                    <div class="text-lg break-all">
                         {{ $post->user->name }}
                     </div>
-                    <div class="break-all md:text-center">
-                        {{ $post->user->user_id }}
+                    <div class="break-all">
+                        {{ '@' . $post->user->user_id }}
                     </div>
                 </div>
-                <div class="self-center hidden mx-2 md:block">
-                    <p class="break-all text-neutral-400 md:text-center">
+                <div class="self-center hidden mx-2">
+                    <p class="break-all text-neutral-400">
                         {{ $post->user->job }}
                     </p>
-                    <p class="break-all text-neutral-400 md:mb-4 md:text-center">
+                    <p class="break-all text-neutral-400">
                         {{ $post->user->state }}
                     </p>
                 </div>
