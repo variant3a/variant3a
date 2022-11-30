@@ -1,3 +1,4 @@
 User-agent: *
-Disallow:
+Disallow: /nogooglebot/
+Allow: /
 Sitemap: https://variant3a.ddns.net/sitemap.xml
