@@ -142,7 +142,7 @@
                     </div>
                 @else
                     <div class="col-span-4 break-all md:col-span-3 text-neutral-700 dark:text-neutral-200">
-                        <button type="button" class="inline-block px-4 py-2 font-bold text-center bg-teal-500 rounded shadow hover:shadow-lg dark:hover:bg-teal-400/90 text-neutral-200 ring-1 ring-black/5"
+                        <button type="button" class="inline text-teal-500 hover:underline"
                             wire:click="getHiddenEmail()">
                             Show Email
                         </button>
