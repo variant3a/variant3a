@@ -12,8 +12,8 @@
                     <div x-data="{ droping: false, progress: 0 }"
                         x-cloak>
 
-                        <div x-on:drop.prevent="$wire.uploadMultiple(
-                                    'files',
+                        <div x-on:drop.prevent="$wire.upload(
+                                    'file',
                                     $event.dataTransfer.files,
                                     () => {droping = false;progress = 0},
                                     () => {droping = false;progress = 0},
@@ -29,7 +29,7 @@
                                 x-show="!progress"
                                 x-bind:class="droping ? 'bg-teal-400/90' : 'bg-teal-500'">
 
-                                <input type="file" wire:model="files" class="hidden" accept="image/*" multiple>
+                                <input type="file" wire:model="file" class="hidden" accept="image/*">
                                 Upload File
                             </label>
                             <div class="relative top-0 w-full h-10 mb-2 font-bold text-center align-middle bg-gray-200 rounded sm:mb-3 dark:bg-gray-700 text-neutral-200"
