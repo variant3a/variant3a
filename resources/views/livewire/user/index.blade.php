@@ -3,7 +3,13 @@
         <div class="flex flex-col p-2 mb-1 bg-white rounded shadow sm:mb-3 sm:p-3 h-fit dark:bg-zinc-700 text-neutral-700 dark:text-neutral-200 ring-1 ring-black/5">
             <div class="flex justify-center mb-3">
                 <div class="w-1/2 h-0 pt-[50%] relative">
-                    <img src="{{ asset('storage/' . $user->profile_photo_path) }}" class="absolute inset-0 object-cover w-full h-full rounded-xl">
+                    @if ($user->profile_photo_path)
+                        <img src="{{ asset('storage/' . $user->profile_photo_path) }}" class="absolute inset-0 object-cover w-full h-full rounded-xl">
+                    @else
+                        <div class="absolute inset-0 flex items-center justify-center rounded-xl ring-1 ring-black/10">
+                            no photos
+                        </div>
+                    @endif
                 </div>
             </div>
             <div class="self-center mx-2">

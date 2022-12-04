@@ -6,7 +6,13 @@
                 <div class="col-span-4 md:col-span-1">
                     <div class="flex justify-center mb-2 sm:mb-3">
                         <div class="w-1/2 h-0 pt-[50%] relative">
-                            <img src="{{ asset('storage/' . $user->profile_photo_path) }}" class="absolute inset-0 object-cover w-full h-full rounded-xl">
+                            @if ($user->profile_photo_path)
+                                <img src="{{ asset('storage/' . $user->profile_photo_path) }}" class="absolute inset-0 object-cover w-full h-full rounded-xl">
+                            @else
+                                <div class="absolute inset-0 flex items-center justify-center rounded-xl ring-1 ring-black/10">
+                                    no photos
+                                </div>
+                            @endif
                         </div>
                     </div>
                     <div x-data="{ droping: false, progress: 0 }"
