@@ -132,5 +132,13 @@ class Preloader
         \Illuminate\Http\Testing\File::class,
         \Illuminate\Http\UploadedFile::class,
         \Illuminate\Support\Carbon::class,
+        \Illuminate\Database\PDO\PostgresDriver::class,
+        \Illuminate\Database\PDO\MySqlDriver::class,
+        \Illuminate\Database\PDO\SqlServerConnection::class,
+        \Illuminate\Database\PDO\SQLiteDriver::class,
+        \Illuminate\Database\PDO\SqlServerDriver::class,
+        \Illuminate\Database\PDO\Connection::class,
+        \Illuminate\Database\DBAL\TimestampType::class,
+        \Illuminate\Testing\ParallelRunner::class,
     )
     ->load();
