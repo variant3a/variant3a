@@ -32,7 +32,7 @@ class Index extends Component
     public function render()
     {
         return view('livewire.user.index')
-            ->extends('layouts.app', ['title' => $this->title])
+            ->extends('layouts.app', ['title' => $this->title, 'tags' => $this->timelines->pluck('tags')->collapse()])
             ->section('content');
     }
 

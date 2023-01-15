@@ -28,7 +28,7 @@ class Index extends Component
         return view('livewire.post.index', [
             'posts' => $this->posts,
         ])
-            ->extends('layouts.app', ['title' => $this->title])
+            ->extends('layouts.app', ['title' => $this->title, 'tags' => $this->tags])
             ->section('content');
     }
 

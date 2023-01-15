@@ -4,6 +4,9 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    @if (isset($tags))
+        <meta name="keyword" content="{{ $tags->implode('name', ', ') }}">
+    @endif
 
     <!-- Canonical Tag -->
     <link rel="canonical" href="{{ url()->current() }}">

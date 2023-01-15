@@ -22,7 +22,7 @@ class Show extends Component
     public function render()
     {
         return view('livewire.post.show')
-            ->extends('layouts.app', ['title' => $this->title])
+            ->extends('layouts.app', ['title' => $this->title, 'tags' => $this->post->tags])
             ->section('content');
     }
 }
