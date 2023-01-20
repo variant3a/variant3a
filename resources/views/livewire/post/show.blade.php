@@ -46,6 +46,18 @@
                     </button>
                 </div>
             </div>
+            @if (!$like)
+                <button type="button" class="flex justify-center w-full p-2 font-semibold align-middle bg-white rounded-full shadow hover:shadow-lg hover:text-teal-500 text-neutral-200 ring-1 ring-black/5" wire:click="like()">
+                    <i class="px-2 bi bi-heart"></i>
+                    {{ $reactions->count() }}
+                </button>
+            @else
+                <div class="flex justify-center p-2 font-semibold text-teal-500 align-middle bg-white rounded-full shadow ring-1 ring-black/5" wire:click="like()">
+                    <i class="px-2 bi bi-heart-fill"></i>
+                    {{ $reactions->count() }}
+                </div>
+            @endif
+
         </div>
     </div>
     <div class="col-span-4 mb-3 md:col-span-3">
@@ -70,21 +82,6 @@
                 <span title="{{ $post->created_at->format('Y-m-d H:i:s') }}" class="self-end">
                     {{ $post->created_at->format('F j, Y') }}
                 </span>
-                @if (!$like)
-                    <button type="button" class="flex p-2 font-semibold text-center align-middle bg-white rounded-full hover:bg-teal-500 text-neutral-200 ring-2 ring-black/10 hover:ring-teal-500" wire:click="like()">
-                        <i class="ps-1 bi bi-heart"></i>
-                        <div class="w-16">
-                            {{ $reactions->count() }}
-                        </div>
-                    </button>
-                @else
-                    <div class="flex p-2 font-semibold text-center align-middle bg-teal-500 rounded-full text-neutral-200 ring-2 ring-teal-500" wire:click="like()">
-                        <i class="ps-1 bi bi-heart"></i>
-                        <div class="w-16">
-                            {{ $reactions->count() }}
-                        </div>
-                    </div>
-                @endif
             </div>
         </div>
     </div>
