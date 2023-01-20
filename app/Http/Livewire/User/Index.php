@@ -48,7 +48,7 @@ class Index extends Component
 
     public function getPictures()
     {
-        $this->photos = Photo::whereNot('json->type', '!=', 'post')->orderBy('id', 'desc')->get();
+        $this->photos = Photo::where('json->type', null)->orderBy('id', 'desc')->get();
     }
 
     public function deletePicture($id)
