@@ -52,6 +52,11 @@ class Post extends Model
         return $this->belongsToMany(Tag::class);
     }
 
+    public function reactions()
+    {
+        return $this->hasMany(Reaction::class);
+    }
+
     public function user()
     {
         return $this->belongsTo(User::class, 'created_by', 'id');
