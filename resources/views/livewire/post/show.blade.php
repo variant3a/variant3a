@@ -78,8 +78,13 @@
                     @endforeach
                 @endif
             </div>
-            <div class="flex justify-between mb-0 text-neutral-400 text-end" href="{{ route('post.detail', $post) }}">
+            <div class="flex mb-0 space-x-3 text-neutral-400 text-end" href="{{ route('post.detail', $post) }}">
+                <span>
+                    <i class="bi bi-bar-chart-fill"></i>
+                    {{ 'Views: ' . $post->json['view'] }}
+                </span>
                 <span title="{{ $post->created_at->format('Y-m-d H:i:s') }}" class="self-end">
+                    <i class="bi bi-calendar2-event"></i>
                     {{ $post->created_at->format('F j, Y') }}
                 </span>
             </div>

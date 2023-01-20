@@ -61,12 +61,16 @@
                             </div>
                         @endif
                         <div class="flex justify-between mb-0 text-neutral-400 text-end" href="{{ route('post.detail', $post) }}">
-                            <span title="{{ $post->created_at->format('Y-m-d H:i:s') }}">
-                                {{ $post->created_at->format('F j, Y') }}
+                            <span class="space-x-3">
+                                <span>
+                                    <i class="bi bi-bar-chart-fill"></i>
+                                    {{ 'Views: ' . $post->json['view'] }}
+                                </span>
+                                <span title="{{ $post->created_at->format('Y-m-d H:i:s') }}">
+                                    <i class="bi bi-calendar2-event"></i>
+                                    {{ $post->created_at->format('F j, Y') }}
+                                </span>
                             </span>
-                            <a href="{{ route('post.detail', $post) }}" id="{{ "post-$post->id" }}" class="break-all hover:underline">
-                                Show more...
-                            </a>
                         </div>
                     </div>
                 @endforeach

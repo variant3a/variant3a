@@ -22,6 +22,7 @@ class Show extends Component
         $this->reactions = $post->reactions()->get();
         $this->like = $post->reactions()->where('json->ip', request()->ip())->get()->isNotEmpty();
         $this->share_string = $post->title . ' - ' . config('app.name', 'Laravel') . "\n" . url()->current();
+        $this->viewCount();
     }
 
     public function render()
@@ -29,6 +30,15 @@ class Show extends Component
         return view('livewire.post.show')
             ->extends('layouts.app', ['title' => $this->title, 'tags' => $this->post->tags])
             ->section('content');
+    }
+
+    public function viewCount()
+    {
+        $post = $this->post;
+        $post->json = ['view' => ($post->json['view'] ?? 0) + 1];
+        $post->timestamps = false;
+        $post->save();
+        $this->post = $post;
     }
 
     public function like()
