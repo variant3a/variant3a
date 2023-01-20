@@ -192,7 +192,7 @@
                                     {{ $timeline->title }}
                                 </h3>
                                 <div class="mb-1 break-all markdown text-neutral-700 dark:text-neutral-200">
-                                    {!! e(App\Services\MarkdownService::parse($timeline->content)) !!}
+                                    {!! e(Markdown::parse($timeline->content)) !!}
                                 </div>
                                 <p class="w-full leading-tight text-justify break-word text-neutral-400">
                                     {{ $timeline->start_date->format('F, Y') }}

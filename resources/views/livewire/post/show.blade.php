@@ -86,7 +86,7 @@
                 {{ $post->title }}
             </div>
             <div class="py-4 break-all sm:px-2 markdown text-neutral-700 dark:text-neutral-200">
-                {!! e(App\Services\MarkdownService::parse($post->content)) !!}
+                {!! e(Markdown::parse($post->content)) !!}
             </div>
             <div class="py-2">
                 @if ($post->tags->count())

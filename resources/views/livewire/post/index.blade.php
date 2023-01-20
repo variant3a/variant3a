@@ -47,7 +47,7 @@
                             {{ '@' . $post->user->user_id }}
                         </div>
                         <div class="px-2 py-4 markdown text-neutral-700 dark:text-neutral-200 max-h-[25vh] break-words overflow-hidden break-all">
-                            {!! e(App\Services\MarkdownService::parse(strip_tags($post->content))) !!}
+                            {!! e(Markdown::parse(strip_tags($post->content))) !!}
                         </div>
                         @if ($post->tags->count())
                             <div class="py-2">
