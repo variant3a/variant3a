@@ -62,6 +62,16 @@
                     </div>
                 @endif
             </div>
+            <div class="hidden row-auto p-2 mb-1 space-y-1 font-mono bg-white rounded shadow md:block sm:mb-3 dark:bg-zinc-700 ring-1 ring-black/5" x-data="{ position: '' }">
+                <template x-for="link in document.querySelectorAll(`[id^='content-']`)">
+                    <a class="flex justify-between w-full p-1 break-all rounded hover:bg-teal-500/50 text-neutral-700 dark:text-neutral-200 hover:text-white first:rounded-t last:rounded-b" x-bind:href="`#${link.id}`" x-bind:key="link.id" x-text="'#'.repeat(link.parentElement.tagName.replace('H', '')) + ' ' + link.parentElement.innerText" data-turbo="false"
+                        x-on:scroll.window="
+                        section = document.querySelectorAll(`[id^='content-']`)
+                        position = [...section].filter(v => v.getBoundingClientRect().top > 0)[0].id
+                    " x-bind:class="position === link.id ? 'bg-teal-500/50 text-white' : ''">
+                    </a>
+                </template>
+            </div>
             <div class="hidden row-auto mb-1 bg-white rounded shadow md:block sm:mb-3 dark:bg-zinc-700 ring-1 ring-black/5">
                 <div class="p-2 text-neutral-400">
                     Most viewed
