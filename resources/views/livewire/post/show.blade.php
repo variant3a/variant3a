@@ -47,12 +47,12 @@
                 </div>
             </div>
             @if (!$like)
-                <button type="button" class="flex justify-center w-full p-2 font-semibold align-middle bg-white rounded-full shadow hover:shadow-lg hover:text-teal-500 text-neutral-200 ring-1 ring-black/5" wire:click="like()">
+                <button type="button" class="flex justify-center w-full p-2 font-semibold align-middle bg-white rounded-full shadow dark:bg-zinc-700 dark:text-neutral-200 dark:hover:text-teal-500 hover:shadow-lg hover:text-teal-500 text-neutral-200 ring-1 ring-black/5" wire:click="like()">
                     <i class="px-2 bi bi-heart"></i>
                     {{ $reactions->count() }}
                 </button>
             @else
-                <div class="flex justify-center p-2 font-semibold text-teal-500 align-middle bg-white rounded-full shadow ring-1 ring-black/5" wire:click="like()">
+                <div class="flex justify-center p-2 font-semibold text-teal-500 align-middle bg-white rounded-full shadow dark:bg-zinc-700 ring-1 ring-black/5" wire:click="like()">
                     <i class="px-2 bi bi-heart-fill"></i>
                     {{ $reactions->count() }}
                 </div>
