@@ -30,32 +30,53 @@
                     </p>
                 </div>
             </div>
-            @if (!$like)
-                <button type="button" class="flex justify-center w-full p-2 font-semibold align-middle bg-white rounded-full shadow dark:bg-zinc-700 dark:text-neutral-200 dark:hover:text-teal-500 hover:shadow-lg hover:text-teal-500 text-neutral-200 ring-1 ring-black/5" wire:click="like()">
-                    <i class="px-2 bi bi-heart"></i>
-                    {{ $reactions->count() }}
-                </button>
-            @else
-                <div class="flex justify-center p-2 font-semibold text-teal-500 align-middle bg-white rounded-full shadow dark:bg-zinc-700 ring-1 ring-black/5" wire:click="like()">
-                    <i class="px-2 bi bi-heart-fill"></i>
-                    {{ $reactions->count() }}
-                </div>
-            @endif
-            <button type="button" class="flex justify-between w-full p-2 font-bold text-center bg-teal-500 rounded shadow hover:shadow-lg hover:bg-teal-400/90 text-neutral-200 ring-1 ring-black/5"
-                x-on:click="showShareDropdown = !showShareDropdown">
-                <i class="invisible bi bi-chevron-down"></i>
-                Share
-                <i class="bi bi-chevron-down"></i>
-            </button>
-            <div class="absolute right-0 z-30 w-full rounded shadow-lg sm:mt-3 backdrop-blur-lg bg-zinc-200/20 dark:bg-white/10 ring-1 ring-white/40 dark:ring-white/20 focus:outline-none" x-show="showShareDropdown" x-cloak x-transition>
-                <div class="py-1">
-                    <button type="button" class="block w-full px-4 py-2 text-sm text-left text-neutral-700 dark:text-neutral-200 hover:text-neutral-200 hover:bg-teal-500/50"
-                        x-on:click="
-                            navigator.clipboard.writeText($wire.share_string);
-                            showShareDropdown = !showShareDropdown;">
-                        Copy link to clipboard
+            <div class="flex justify-between space-x-3">
+                <div class="grow">
+                    <button type="button" class="flex justify-between w-full p-2 font-bold text-center bg-teal-500 rounded shadow hover:shadow-lg hover:bg-teal-400/90 text-neutral-200 ring-1 ring-black/5"
+                        x-on:click="showShareDropdown = !showShareDropdown">
+                        <span class="grow">
+                            Share
+                        </span>
+                        <i class="bi bi-chevron-down"></i>
                     </button>
+                    <div class="absolute left-0 z-30 rounded shadow-lg sm:mt-3 backdrop-blur-lg bg-zinc-200/20 dark:bg-white/10 ring-1 ring-white/40 dark:ring-white/20 focus:outline-none" x-show="showShareDropdown" x-cloak x-transition>
+                        <div class="py-1">
+                            <button type="button" class="block w-full px-4 py-2 text-sm text-left text-neutral-700 dark:text-neutral-200 hover:text-neutral-200 hover:bg-teal-500/50"
+                                x-on:click="
+                                navigator.clipboard.writeText($wire.share_string);
+                                showShareDropdown = !showShareDropdown;">
+                                Copy link to clipboard
+                            </button>
+                        </div>
+                    </div>
                 </div>
+                @if (!$like)
+                    <button type="button" class="flex justify-center p-2 font-semibold align-middle bg-white rounded-full shadow grow dark:bg-zinc-700 dark:text-neutral-200 dark:hover:text-teal-500 hover:shadow-lg hover:text-teal-500 text-neutral-200 ring-1 ring-black/5" wire:click="like()">
+                        <i class="px-2 bi bi-heart"></i>
+                        {{ $reactions->count() }}
+                    </button>
+                @else
+                    <div class="flex justify-center p-2 font-semibold text-teal-500 align-middle bg-white rounded-full shadow grow dark:bg-zinc-700 ring-1 ring-black/5" wire:click="like()">
+                        <i class="px-2 bi bi-heart-fill"></i>
+                        {{ $reactions->count() }}
+                    </div>
+                @endif
+            </div>
+            <div class="hidden row-auto mb-1 bg-white rounded shadow md:block sm:mb-3 dark:bg-zinc-700 ring-1 ring-black/5">
+                <div class="p-2 text-neutral-400">
+                    Most viewed
+                </div>
+                @if ($popular_posts->count())
+                    @foreach ($popular_posts as $popular_post)
+                        <a href="{{ route('post.detail', $popular_post) }}" class="flex justify-between w-full p-1 break-all sm:p-2 text-neutral-700 dark:text-neutral-200 hover:text-neutral-200 hover:bg-teal-500 first:rounded-t last:rounded-b" wire:key="{{ "article-detail-$popular_post->id" }}">
+                            <span>{{ $loop->iteration . '. ' . $popular_post->title }}</span>
+                            {{-- <span>
+                                <i class="bi bi-bar-chart-fill"></i>
+                                {{ $popular_post->json['view'] ?? 0 }}
+                            </span> --}}
+                        </a>
+                    @endforeach
+                @endif
             </div>
         </div>
     </div>

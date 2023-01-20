@@ -13,11 +13,13 @@ class Show extends Component
     public string $share_string = '';
     public bool $like = false;
     public $post;
+    public $popular_posts;
     public $reactions;
 
     public function mount(Post $post)
     {
         $this->post = $post;
+        $this->popular_posts = Post::orderBy('json->view', 'desc')->limit(5)->get();
         $this->title = $post->title;
         $this->reactions = $post->reactions()->get();
         $this->like = $post->reactions()->where('json->ip', request()->ip())->get()->isNotEmpty();
