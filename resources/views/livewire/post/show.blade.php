@@ -68,7 +68,7 @@
                 </div>
                 @if ($popular_posts->count())
                     @foreach ($popular_posts as $popular_post)
-                        <a href="{{ route('post.detail', $popular_post) }}" class="flex justify-between w-full p-1 break-all sm:p-2 text-neutral-700 dark:text-neutral-200 hover:text-neutral-200 hover:bg-teal-500 first:rounded-t last:rounded-b" wire:key="{{ "article-detail-$popular_post->id" }}">
+                        <a href="{{ route('post.detail', $popular_post) }}" class="flex justify-between w-full p-2 break-all text-neutral-700 dark:text-neutral-200 hover:text-neutral-200 hover:bg-teal-500 first:rounded-t last:rounded-b" wire:key="{{ "article-detail-$popular_post->id" }}">
                             <span>{{ $loop->iteration . '. ' . $popular_post->title }}</span>
                             {{-- <span>
                                 <i class="bi bi-bar-chart-fill"></i>
@@ -80,7 +80,7 @@
             </div>
         </div>
     </div>
-    <div class="col-span-4 mb-3 md:col-span-3">
+    <div class="col-span-4 md:col-span-3">
         <div class="flex flex-col p-2 bg-white rounded shadow sm:p-3 h-fit dark:bg-zinc-700 ring-1 ring-black/5">
             <div class="pl-2 text-3xl font-bold break-all border-l-8 border-teal-500 text-break text-neutral-700 dark:text-neutral-200">
                 {{ $post->title }}
@@ -108,6 +108,24 @@
                     {{ $post->created_at->format('F j, Y') }}
                 </span>
             </div>
+        </div>
+    </div>
+    <div class="col-span-4 mb-3 md:col-span-3">
+        <div class="block row-auto mb-1 bg-white rounded shadow md:hidden sm:mb-3 dark:bg-zinc-700 ring-1 ring-black/5">
+            <div class="p-2 text-neutral-400">
+                Most viewed
+            </div>
+            @if ($popular_posts->count())
+                @foreach ($popular_posts as $popular_post)
+                    <a href="{{ route('post.detail', $popular_post) }}" class="flex justify-between w-full p-2 break-all text-neutral-700 dark:text-neutral-200 hover:text-neutral-200 hover:bg-teal-500 first:rounded-t last:rounded-b" wire:key="{{ "article-detail-$popular_post->id" }}">
+                        <span>{{ $loop->iteration . '. ' . $popular_post->title }}</span>
+                        {{-- <span>
+                        <i class="bi bi-bar-chart-fill"></i>
+                        {{ $popular_post->json['view'] ?? 0 }}
+                    </span> --}}
+                    </a>
+                @endforeach
+            @endif
         </div>
     </div>
 </div>
