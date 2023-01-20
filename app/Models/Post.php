@@ -57,6 +57,11 @@ class Post extends Model
         return $this->hasMany(Reaction::class);
     }
 
+    public function photos()
+    {
+        return $this->hasMany(Photo::class);
+    }
+
     public function user()
     {
         return $this->belongsTo(User::class, 'created_by', 'id');

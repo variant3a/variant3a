@@ -61,14 +61,34 @@
                     </label>
                 </div>
                 <div class="mb-3 grow">
-                    <div class="h-full" x-show="!editorToggle">
-                        <textarea wire:model.debounce.500ms="post_data.content" class="p-2 w-full h-[calc(100vh_-_17.5rem)] font-mono bg-white dark:bg-zinc-600 rounded ring-1 ring-black/10 dark:ring-0 focus:ring-2 dark:focus:ring-2 focus:ring-teal-500 dark:focus:ring-teal-500 focus:outline-0 @error('post_data.content') border-2 border-red-500 text-red-500 @else text-neutral-700 dark:text-neutral-200 @enderror" placeholder="Content"
-                            x-data="{ start: 0 }"
+                    <div class="h-full" x-data="{ start: 0, droping: false, progress: 0 }"
+                        x-show="!editorToggle">
+                        <textarea wire:model.debounce.500ms="post_data.content" class="p-2 w-full h-[calc(100vh_-_17.5rem)] font-mono bg-white dark:bg-zinc-600 rounded dark:ring-0 focus:ring-2 dark:focus:ring-2 focus:ring-teal-500 dark:focus:ring-teal-500 focus:outline-0 @error('post_data.content') border-2 border-red-500 text-red-500 @else text-neutral-700 dark:text-neutral-200 @enderror" placeholder="Content"
                             x-on:keydown.tab.prevent="
                             start = $el.selectionStart
                             $el.value = $el.value.substr(0, $el.selectionEnd) + '    ' + $el.value.substr($el.selectionEnd);
                             $el.selectionStart = $el.selectionEnd = start + 4;
-                        "></textarea>
+                        "
+                            x-bind:class="droping ? 'ring-2 dark:ring-2 ring-teal-500' : 'ring-1 ring-black/10'"
+                            x-on:drop.prevent="$wire.upload(
+                                'file',
+                                $event.dataTransfer.files[0],
+                                () => {
+                                    droping = false;
+                                    progress = 0;
+                                    start = $el.selectionStart;
+                                    $el.value = $el.value.substr(0, $el.selectionEnd) + `![${$wire.file_path}](${$wire.file_path})` + $el.value.substr($el.selectionEnd);
+                                    $el.selectionStart = $el.selectionEnd = start + $wire.file_path.length;
+                                },
+                                ()=> {droping = false;progress = 0},
+                                e => {progress = e.detail.progress}
+                            )"
+                            x-on:dragover.prevent="droping = true"
+                            x-on:dragleave.prevent="droping = false"
+                            x-on:livewire-upload-finish="droping = false;progress = 0"
+                            x-on:livewire-upload-error="droping = false;progress = 0"
+                            x-on:livewire-upload-progress="progress = $event.detail.progress"></textarea>
+                        <input type="file" wire:model="file" class="hidden" accept="image/*" multiple>
                         @error('post_data.content')
                             <div class="mt-1 text-sm text-red-600 dark:text-red-500">
                                 {{ $message }}

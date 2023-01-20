@@ -2,13 +2,18 @@
 
 namespace App\Http\Livewire\Post;
 
+use App\Models\Photo;
 use App\Models\Post;
 use App\Models\Tag;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image;
 use Livewire\Component;
+use Livewire\WithFileUploads;
 
 class Edit extends Component
 {
+    use WithFileUploads;
 
     public string $title = 'Edit Posts';
     public string $previous = '';
@@ -17,6 +22,8 @@ class Edit extends Component
     public int $row = 15;
     public bool $sort_tag = false;
     public $selected_tag = [];
+    public $file;
+    public $file_path = '';
     public $post_data, $tags;
 
     protected $rules = [
@@ -49,6 +56,11 @@ class Edit extends Component
     public function updated($property_name)
     {
         $this->validateOnly($property_name);
+    }
+
+    public function updatedFile()
+    {
+        $this->upload();
     }
 
     public function getTag()
@@ -112,6 +124,43 @@ class Edit extends Component
         if (!in_array($tags->id, $this->selected_tag)) {
             $this->selected_tag[] = $tags->id;
         }
+    }
+
+    public function upload()
+    {
+        $this->validate([
+            'file' => 'image|max:256000',
+        ]);
+
+        $zipped = Image::make($this->file);
+
+        DB::transaction(function () use ($zipped) {
+            $path = $this->file->store('posts/pictures');
+
+            $zipped
+                ->orientate()
+                ->widen(1280)
+                ->limitColors(null)
+                ->encode('webp')
+                ->save(
+                    Storage::disk('public')->path(
+                        'webp/' .
+                            pathinfo($path, PATHINFO_DIRNAME)  .
+                            '/' .
+                            pathinfo($path, PATHINFO_FILENAME) .
+                            '.webp'
+                    )
+                );
+
+            $photo = new Photo;
+
+            $photo->path = $path;
+            $photo->json = ['type' => 'posts'];
+            $photo->created_by = auth()->id();
+            $photo->updated_by = auth()->id();
+            $photo->save();
+            $this->file_path = asset('storage/webp/' . pathinfo($photo->path, PATHINFO_DIRNAME) . '/' . pathinfo($photo->path, PATHINFO_FILENAME) . '.webp');
+        });
     }
 
     public function delete()
