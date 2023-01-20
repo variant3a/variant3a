@@ -64,7 +64,7 @@
                             <span class="space-x-3">
                                 <span>
                                     <i class="bi bi-bar-chart-fill"></i>
-                                    {{ 'Views: ' . $post->json['view'] }}
+                                    {{ 'Views: ' . ($post->json['view'] ?? 0) }}
                                 </span>
                                 <span title="{{ $post->created_at->format('Y-m-d H:i:s') }}">
                                     <i class="bi bi-calendar2-event"></i>
