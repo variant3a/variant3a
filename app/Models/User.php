@@ -28,11 +28,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'state',
-        'job',
-        'bio',
-        'programming_lang',
-        'frameworks',
+        'json',
         'access_token',
         'refresh_token',
     ];
@@ -58,6 +54,7 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'json' => 'json',
     ];
 
     /**

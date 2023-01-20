@@ -27,14 +27,14 @@ class Edit extends Component
     protected $rules = [
         'user.user_id' => ['required', 'string', 'max:32'],
         'user.name' => ['required', 'string', 'max:255'],
-        'user.state' => ['nullable', 'string', 'max:255'],
-        'user.job' => ['nullable', 'string', 'max:255'],
-        'user.bio' => ['nullable', 'string', 'max:65535'],
-        'user.programming_lang' => ['nullable', 'string', 'max:65535'],
-        'user.frameworks' => ['nullable', 'string', 'max:65535'],
+        'user.json.state' => ['nullable', 'string', 'max:255'],
+        'user.json.job' => ['nullable', 'string', 'max:255'],
+        'user.json.bio' => ['nullable', 'string', 'max:65535'],
+        'user.json.programming_lang' => ['nullable', 'string', 'max:65535'],
+        'user.json.frameworks' => ['nullable', 'string', 'max:65535'],
         'file' => ['nullable', 'image', 'max:4096'],
-        'timeline.icon' => ['nullable', 'string', 'max:64'],
-        'timeline.icon_color' => ['nullable', 'string', 'max:32'],
+        'timeline.json.icon' => ['nullable', 'string', 'max:64'],
+        'timeline.json.icon_color' => ['nullable', 'string', 'max:32'],
         'timeline.start_date' => ['required', 'string', 'max:32'],
         'timeline.end_date' => ['nullable', 'string', 'max:32'],
         'timeline.title' => ['required', 'string', 'max:255'],
@@ -127,8 +127,7 @@ class Edit extends Component
         $timeline = Timeline::findOrNew($this->selected_timeline);
         $timeline->title = $data->title;
         $timeline->content = $data->content;
-        $timeline->icon = $data->icon;
-        $timeline->icon_color = $data->icon_color;
+        $timeline->json = $data->json;
         $timeline->start_date = $data->start_date;
         $timeline->end_date = $data->end_date;
         $timeline->created_by = auth()->id();
@@ -188,7 +187,7 @@ class Edit extends Component
         $data = $this->user;
 
         $user = User::findOrFail(auth()->id());
-        $user->fill($data->only(['name', 'state', 'job', 'bio', 'programming_lang', 'frameworks']));
+        $user->fill($data->only(['name', 'json']));
         $user->save();
 
         $this->getUser();

@@ -47,23 +47,23 @@
                         </div>
                     </div>
                     <div>
-                        <input type="text" wire:model="user.job" class="mb-2 sm:mb-3 p-2 w-full bg-white dark:bg-zinc-600 rounded ring-1 ring-black/10 dark:ring-0 focus:ring-2 dark:focus:ring-2 focus:ring-teal-500 dark:focus:ring-teal-500 focus:outline-0 @error('user.job') border-2 border-red-500 text-red-500 @else text-neutral-700 dark:text-neutral-200 @enderror" placeholder="Job">
-                        @error('user.job')
+                        <input type="text" wire:model="user.json.job" class="mb-2 sm:mb-3 p-2 w-full bg-white dark:bg-zinc-600 rounded ring-1 ring-black/10 dark:ring-0 focus:ring-2 dark:focus:ring-2 focus:ring-teal-500 dark:focus:ring-teal-500 focus:outline-0 @error('user.json.job') border-2 border-red-500 text-red-500 @else text-neutral-700 dark:text-neutral-200 @enderror" placeholder="Job">
+                        @error('user.json.job')
                             <div class="mb-1 text-sm text-red-600 sm:mb-3 dark:text-red-500">
                                 {{ $message }}
                             </div>
                         @enderror
-                        <input type="text" wire:model="user.state" class="mb-2 sm:mb-3 p-2 w-full bg-white dark:bg-zinc-600 rounded ring-1 ring-black/10 dark:ring-0 focus:ring-2 dark:focus:ring-2 focus:ring-teal-500 dark:focus:ring-teal-500 focus:outline-0 @error('user.state') border-2 border-red-500 text-red-500 @else text-neutral-700 dark:text-neutral-200 @enderror" placeholder="State">
-                        @error('user.state')
+                        <input type="text" wire:model="user.json.state" class="mb-2 sm:mb-3 p-2 w-full bg-white dark:bg-zinc-600 rounded ring-1 ring-black/10 dark:ring-0 focus:ring-2 dark:focus:ring-2 focus:ring-teal-500 dark:focus:ring-teal-500 focus:outline-0 @error('user.json.state') border-2 border-red-500 text-red-500 @else text-neutral-700 dark:text-neutral-200 @enderror" placeholder="State">
+                        @error('user.json.state')
                             <div class="mb-1 text-sm text-red-600 sm:mb-3 dark:text-red-500">
                                 {{ $message }}
                             </div>
                         @enderror
-                        <textarea wire:model.debounce.500ms="user.bio" class="p-2 w-full bg-white dark:bg-zinc-600 rounded ring-1 ring-black/10 dark:ring-0 focus:ring-2 dark:focus:ring-2 focus:ring-teal-500 dark:focus:ring-teal-500 focus:outline-0 @error('user.bio') border-2 border-red-500 text-red-500 @else text-neutral-700 dark:text-neutral-200 @enderror" placeholder="Bio"
+                        <textarea wire:model.debounce.500ms="user.json.bio" class="p-2 w-full bg-white dark:bg-zinc-600 rounded ring-1 ring-black/10 dark:ring-0 focus:ring-2 dark:focus:ring-2 focus:ring-teal-500 dark:focus:ring-teal-500 focus:outline-0 @error('user.json.bio') border-2 border-red-500 text-red-500 @else text-neutral-700 dark:text-neutral-200 @enderror" placeholder="Bio"
                             x-data="{ height: $el.scrollHeight }"
                             x-bind:style="{ 'height': height + 'px' }"
                             x-on:input="height = $el.scrollHeight"></textarea>
-                        @error('user.bio')
+                        @error('user.json.bio')
                             <div class="text-sm text-red-600 dark:text-red-500">
                                 {{ $message }}
                             </div>
@@ -83,14 +83,14 @@
                             {{ $message }}
                         </div>
                     @enderror
-                    <input type="text" wire:model="user.programming_lang" class="mb-2 sm:mb-3 p-2 w-full bg-white dark:bg-zinc-600 rounded ring-1 ring-black/10 dark:ring-0 focus:ring-2 dark:focus:ring-2 focus:ring-teal-500 dark:focus:ring-teal-500 focus:outline-0 @error('user.programming_lang') border-2 border-red-500 text-red-500 @else text-neutral-700 dark:text-neutral-200 @enderror" placeholder="JavaScript, PHP, HTML">
-                    @error('user.programming_lang')
+                    <input type="text" wire:model="user.json.programming_lang" class="mb-2 sm:mb-3 p-2 w-full bg-white dark:bg-zinc-600 rounded ring-1 ring-black/10 dark:ring-0 focus:ring-2 dark:focus:ring-2 focus:ring-teal-500 dark:focus:ring-teal-500 focus:outline-0 @error('user.json.programming_lang') border-2 border-red-500 text-red-500 @else text-neutral-700 dark:text-neutral-200 @enderror" placeholder="JavaScript, PHP, HTML">
+                    @error('user.json.programming_lang')
                         <div class="text-sm text-red-600 dark:text-red-500">
                             {{ $message }}
                         </div>
                     @enderror
-                    <input type="text" wire:model="user.frameworks" class="mb-2 sm:mb-3 p-2 w-full bg-white dark:bg-zinc-600 rounded ring-1 ring-black/10 dark:ring-0 focus:ring-2 dark:focus:ring-2 focus:ring-teal-500 dark:focus:ring-teal-500 focus:outline-0 @error('user.frameworks') border-2 border-red-500 text-red-500 @else text-neutral-700 dark:text-neutral-200 @enderror" placeholder="Laravel, Livewire, AlpineJS">
-                    @error('user.frameworks')
+                    <input type="text" wire:model="user.json.frameworks" class="mb-2 sm:mb-3 p-2 w-full bg-white dark:bg-zinc-600 rounded ring-1 ring-black/10 dark:ring-0 focus:ring-2 dark:focus:ring-2 focus:ring-teal-500 dark:focus:ring-teal-500 focus:outline-0 @error('user.json.frameworks') border-2 border-red-500 text-red-500 @else text-neutral-700 dark:text-neutral-200 @enderror" placeholder="Laravel, Livewire, AlpineJS">
+                    @error('user.json.frameworks')
                         <div class="text-sm text-red-600 dark:text-red-500">
                             {{ $message }}
                         </div>
@@ -112,10 +112,10 @@
                         <div class="flex">
                             <div class="relative col-start-1 col-end-3 mx-1 md:mx-auto">
                                 <div class="flex items-center justify-center w-8 h-full">
-                                    <div class="h-full w-1 {{ 'bg-' . ($item->icon_color ?? 'white dark:bg-zinc-700') }} pointer-events-none"></div>
+                                    <div class="h-full w-1 {{ 'bg-' . ($item->json['icon_color'] ?? 'white dark:bg-zinc-700') }} pointer-events-none"></div>
                                 </div>
-                                <div class="w-8 h-8 absolute top-1/2 -mt-3 rounded-full {{ 'bg-' . ($item->icon_color ?? 'white dark:bg-zinc-700') }} shadow text-center">
-                                    <i class="bi text-xl leading-normal text-neutral-700 dark:text-neutral-200 {{ $item->icon ?? 'bi-circle' }}"></i>
+                                <div class="w-8 h-8 absolute top-1/2 -mt-3 rounded-full {{ 'bg-' . ($item->json['icon_color'] ?? 'white dark:bg-zinc-700') }} shadow text-center">
+                                    <i class="bi text-xl leading-normal text-neutral-700 dark:text-neutral-200 {{ $item->json['icon'] ?? 'bi-circle' }}"></i>
                                 </div>
                             </div>
                             <input type="radio" wire:model="selected_timeline" class="hidden peer" id="timeline-check-{{ $item->id }}" value="{{ $item->id }}" autocomplete="off">
@@ -188,16 +188,16 @@
                 </div>
                 <div class="flex flex-wrap">
                     <div class="p-2 mb-2 sm:mb-3">
-                        <i class="text-xl bi {{ ($timeline->icon ?? 'bi-circle') . ' text-' . ($timeline->icon_color ?? '') }}"></i>
+                        <i class="text-xl bi {{ ($timeline->json['icon'] ?? 'bi-circle') . ' text-' . ($timeline->json['icon_color'] ?? '') }}"></i>
                     </div>
-                    <input type="text" wire:model.500ms="timeline.icon_color" class="mb-2 sm:mb-3 mr-2 sm:mr-3 p-2 w-fit bg-white dark:bg-zinc-600 rounded ring-1 ring-black/10 dark:ring-0 focus:ring-2 dark:focus:ring-2 focus:ring-teal-500 dark:focus:ring-teal-500 focus:outline-0 @error('timeline.icon_color') border-2 border-red-500 text-red-500 @else text-neutral-700 dark:text-neutral-200 @enderror" placeholder="color">
-                    @error('timeline.icon_color')
+                    <input type="text" wire:model.500ms="timeline.json.icon_color" class="mb-2 sm:mb-3 mr-2 sm:mr-3 p-2 w-fit bg-white dark:bg-zinc-600 rounded ring-1 ring-black/10 dark:ring-0 focus:ring-2 dark:focus:ring-2 focus:ring-teal-500 dark:focus:ring-teal-500 focus:outline-0 @error('timeline.json.icon_color') border-2 border-red-500 text-red-500 @else text-neutral-700 dark:text-neutral-200 @enderror" placeholder="color">
+                    @error('timeline.json.icon_color')
                         <div class="mt-1 text-sm text-red-600 dark:text-red-500">
                             {{ $message }}
                         </div>
                     @enderror
-                    <input type="text" wire:model.500ms="timeline.icon" class="mb-2 sm:mb-3 p-2 w-fit bg-white dark:bg-zinc-600 rounded ring-1 ring-black/10 dark:ring-0 focus:ring-2 dark:focus:ring-2 focus:ring-teal-500 dark:focus:ring-teal-500 focus:outline-0 @error('timeline.icon') border-2 border-red-500 text-red-500 @else text-neutral-700 dark:text-neutral-200 @enderror" placeholder="bi-circle">
-                    @error('timeline.icon')
+                    <input type="text" wire:model.500ms="timeline.json.icon" class="mb-2 sm:mb-3 p-2 w-fit bg-white dark:bg-zinc-600 rounded ring-1 ring-black/10 dark:ring-0 focus:ring-2 dark:focus:ring-2 focus:ring-teal-500 dark:focus:ring-teal-500 focus:outline-0 @error('timeline.json.icon') border-2 border-red-500 text-red-500 @else text-neutral-700 dark:text-neutral-200 @enderror" placeholder="bi-circle">
+                    @error('timeline.json.icon')
                         <div class="mt-1 text-sm text-red-600 dark:text-red-500">
                             {{ $message }}
                         </div>

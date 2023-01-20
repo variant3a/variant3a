@@ -22,16 +22,16 @@
             </div>
             <div class="self-center mx-2">
                 <p class="text-center break-all text-neutral-400">
-                    {{ $user->job }}
+                    {{ $user->json['job'] }}
                 </p>
                 <p class="mb-4 text-center break-all text-neutral-400">
-                    {{ $user->state }}
+                    {{ $user->json['state'] }}
                 </p>
             </div>
-            @if ($user->bio)
+            @if ($user->json['bio'])
                 <hr>
                 <p class="my-3 break-all text-neutral-400">
-                    {!! nl2br(e($user->bio)) !!}
+                    {!! nl2br(e($user->json['bio'])) !!}
                 </p>
             @endif
         </div>
@@ -161,7 +161,7 @@
                     Languages
                 </div>
                 <div class="col-span-4 md:col-span-3 text-neutral-700 dark:text-neutral-200 break-word">
-                    {{ $user->programming_lang }}
+                    {{ $user->json['programming_lang'] }}
                 </div>
             </div>
             <hr>
@@ -170,7 +170,7 @@
                     Frameworks
                 </div>
                 <div class="col-span-4 md:col-span-3 text-neutral-700 dark:text-neutral-200 break-word">
-                    {{ $user->frameworks }}
+                    {{ $user->json['frameworks'] }}
                 </div>
             </div>
         </div>
@@ -184,7 +184,7 @@
                                     <div class="w-1 h-full bg-white pointer-events-none dark:bg-zinc-700"></div>
                                 </div>
                                 <div class="absolute w-8 h-8 -mt-3 text-center bg-white rounded-full shadow top-1/2 dark:bg-zinc-700">
-                                    <i class="bi text-xl leading-normal text-neutral-700 dark:text-neutral-200 {{ $timeline->icon ?? 'bi-circle' }}"></i>
+                                    <i class="bi text-xl leading-normal text-neutral-700 dark:text-neutral-200 {{ $timeline->json['icon'] ?? 'bi-circle' }}"></i>
                                 </div>
                             </div>
                             <div class="w-full col-start-3 col-end-12 p-2 mt-3 bg-white rounded shadow md:mt-4 dark:bg-zinc-700 sm:p-3 h-fit ring-1 ring-black/5">

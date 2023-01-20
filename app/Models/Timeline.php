@@ -12,8 +12,7 @@ class Timeline extends Model
     protected $fillable = [
         'title',
         'content',
-        'icon',
-        'icon_color',
+        'json',
         'start_date',
         'end_date',
         'created_by',
@@ -28,6 +27,7 @@ class Timeline extends Model
     protected $casts = [
         'start_date' => 'date:Y-m',
         'end_date' => 'date:Y-m',
+        'json' => 'json',
     ];
 
     public function tags()

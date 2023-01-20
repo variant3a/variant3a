@@ -102,7 +102,7 @@ class Index extends Component
                 $photo = new Photo;
 
                 $photo->path = $path;
-                $photo->comment = '';
+                $photo->json = [];
                 $photo->created_by = auth()->id();
                 $photo->updated_by = auth()->id();
                 $photo->save();

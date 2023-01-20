@@ -12,8 +12,13 @@ class Photo extends Model
     protected $fillable = [
         'path',
         'comment',
+        'json',
         'created_by',
         'updated_by',
+    ];
+
+    protected $casts = [
+        'json' => 'json',
     ];
 
     protected $dates = [

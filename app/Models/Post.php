@@ -14,8 +14,13 @@ class Post extends Model
     protected $fillable = [
         'title',
         'content',
+        'json',
         'created_by',
         'updated_by',
+    ];
+
+    protected $casts = [
+        'json' => 'json',
     ];
 
     protected $dates = [
