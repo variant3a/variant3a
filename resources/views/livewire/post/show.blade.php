@@ -30,6 +30,17 @@
                     </p>
                 </div>
             </div>
+            @if (!$like)
+                <button type="button" class="flex justify-center w-full p-2 font-semibold align-middle bg-white rounded-full shadow dark:bg-zinc-700 dark:text-neutral-200 dark:hover:text-teal-500 hover:shadow-lg hover:text-teal-500 text-neutral-200 ring-1 ring-black/5" wire:click="like()">
+                    <i class="px-2 bi bi-heart"></i>
+                    {{ $reactions->count() }}
+                </button>
+            @else
+                <div class="flex justify-center p-2 font-semibold text-teal-500 align-middle bg-white rounded-full shadow dark:bg-zinc-700 ring-1 ring-black/5" wire:click="like()">
+                    <i class="px-2 bi bi-heart-fill"></i>
+                    {{ $reactions->count() }}
+                </div>
+            @endif
             <button type="button" class="flex justify-between w-full p-2 font-bold text-center bg-teal-500 rounded shadow hover:shadow-lg hover:bg-teal-400/90 text-neutral-200 ring-1 ring-black/5"
                 x-on:click="showShareDropdown = !showShareDropdown">
                 <i class="invisible bi bi-chevron-down"></i>
@@ -46,18 +57,6 @@
                     </button>
                 </div>
             </div>
-            @if (!$like)
-                <button type="button" class="flex justify-center w-full p-2 font-semibold align-middle bg-white rounded-full shadow dark:bg-zinc-700 dark:text-neutral-200 dark:hover:text-teal-500 hover:shadow-lg hover:text-teal-500 text-neutral-200 ring-1 ring-black/5" wire:click="like()">
-                    <i class="px-2 bi bi-heart"></i>
-                    {{ $reactions->count() }}
-                </button>
-            @else
-                <div class="flex justify-center p-2 font-semibold text-teal-500 align-middle bg-white rounded-full shadow dark:bg-zinc-700 ring-1 ring-black/5" wire:click="like()">
-                    <i class="px-2 bi bi-heart-fill"></i>
-                    {{ $reactions->count() }}
-                </div>
-            @endif
-
         </div>
     </div>
     <div class="col-span-4 mb-3 md:col-span-3">
