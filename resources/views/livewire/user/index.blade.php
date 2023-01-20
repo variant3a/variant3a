@@ -184,7 +184,7 @@
                                     <div class="w-1 h-full bg-white pointer-events-none dark:bg-zinc-700"></div>
                                 </div>
                                 <div class="absolute w-8 h-8 -mt-3 text-center bg-white rounded-full shadow top-1/2 dark:bg-zinc-700">
-                                    <i class="bi text-xl leading-normal text-neutral-700 dark:text-neutral-200 {{ $timeline->[icon] ?? 'bi-circle' }}"></i>
+                                    <i class="bi text-xl leading-normal text-neutral-700 dark:text-neutral-200 {{ $timeline->json['icon'] ?? 'bi-circle' }}"></i>
                                 </div>
                             </div>
                             <div class="w-full col-start-3 col-end-12 p-2 mt-3 bg-white rounded shadow md:mt-4 dark:bg-zinc-700 sm:p-3 h-fit ring-1 ring-black/5">
