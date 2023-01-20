@@ -19,7 +19,7 @@ class Show extends Component
     public function mount(Post $post)
     {
         $this->post = $post;
-        $this->popular_posts = Post::orderBy('json->view', 'desc')->limit(5)->get();
+        $this->popular_posts = Post::limit(5)->get()->sortByDesc('json.view');
         $this->title = $post->title;
         $this->reactions = $post->reactions()->get();
         $this->like = $post->reactions()->where('json->ip', request()->ip())->get()->isNotEmpty();
