@@ -10,7 +10,7 @@
             <div class="flex p-2 bg-white rounded shadow sm:p-3 h-fit dark:bg-zinc-700 text-neutral-700 dark:text-neutral-200 ring-1 ring-black/5">
                 <div class="flex flex-col justify-center flex-shrink-0">
                     <div class="relative w-16 h-full pt-16 aspect-square">
-                        <img src="{{ asset('storage/' . $post->user->profile_photo_path) }}" class="absolute inset-0 object-cover w-full h-full rounded-xl">
+                        <img src="{{ asset('storage/' . $post->user->profile_photo_path) }}" class="absolute inset-0 object-cover w-full h-full rounded-xl" alt="profile photo">
                     </div>
                 </div>
                 <div class="self-center mx-2">
