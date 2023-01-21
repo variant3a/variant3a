@@ -191,14 +191,11 @@
                                 <h3 class="mb-1 text-lg font-semibold break-all text-neutral-700 dark:text-neutral-200">
                                     {{ $timeline->title }}
                                 </h3>
-                                <div class="mb-1 break-all markdown text-neutral-700 dark:text-neutral-200">
+                                <div class="mb-2 break-all markdown text-neutral-700 dark:text-neutral-200">
                                     {!! e(Markdown::parse($timeline->content)) !!}
                                 </div>
-                                <p class="w-full leading-tight text-justify break-word text-neutral-400">
-                                    {{ $timeline->start_date->format('F, Y') }}
-                                </p>
                                 @if ($timeline->tags->count())
-                                    <div class="flex flex-wrap">
+                                    <div class="flex flex-wrap mb-2">
                                         @foreach ($timeline->tags as $tag)
                                             <span class="inline mr-2 text-sm text-teal-500 break-all" wire:key="timeline-tag-{{ "$timeline->id-$tag->id" }}">
                                                 <i class="bi bi-tag"></i>
@@ -207,6 +204,10 @@
                                         @endforeach
                                     </div>
                                 @endif
+                                <p class="w-full leading-tight text-justify break-word text-neutral-400">
+                                    <i class="bi bi-calendar2-event"></i>
+                                    {{ $timeline->start_date->format('F, Y') }}
+                                </p>
                             </div>
                         </div>
                     </div>
