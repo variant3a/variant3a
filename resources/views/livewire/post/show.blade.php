@@ -162,4 +162,60 @@
             @endif
         </div>
     </div>
+    <script type="application/ld+json">
+        [
+            {
+                "@context": "https://schema.org",
+                "@type": "BreadcrumbList",
+                "itemListElement": [{
+                    "@type": "ListItem",
+                    "position": 1,
+                    "name": "Home",
+                    "item": "{{ url('/') }}"
+                },
+                {
+                    "@type": "ListItem",
+                    "position": 2,
+                    "name": "Posts",
+                    "item": "{{ route('post.index') }}"
+                },
+                {
+                    "@type": "ListItem",
+                    "position": 3,
+                    "name": "{{ $post->title }}"
+                }]
+            },
+            {
+                "@context": "https://schema.org",
+                "@type": "BlogPosting",
+                "url": "{{ config('app.url') }}",
+                "logo": "{{ asset('images/logo_only_transparent_trim.png') }}",
+                "mainEntityOfPage": {
+                    "@type": "WebPage",
+                    "@id": "{{ url()->current() }}"
+                },
+                "headline": "{{ $post->title }}",
+                "description": "{{ $post->json['description'] ?? '' }}",
+                "author": {
+                    "@type": "Person",
+                    "name": "{{ $post->user->name }}",
+                    "url": "{{ config('app.url') }}",
+                    "image": "{{ $post->user->profile_photo_path }}",
+                    "jobTitle": "{{ $post->user->json['job'] ?? '' }}"
+                },
+                "publisher": {
+                    "@type": "Organization",
+                    "name": "{{ config('app.name', 'Laravel') }}",
+                    "logo":{
+                        "@type": "ImageObject",
+                        "url": "{{ asset('images/logo_only_transparent_trim.png') }}",
+                        "width": "512",
+                        "height": "512"
+                    }
+                },
+                "datePublished": "2023-01-22",
+                "dateModified": "2023-01-22"
+            }
+        ]
+    </script>
 </div>
