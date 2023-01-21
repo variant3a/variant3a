@@ -20,7 +20,7 @@ class Index extends Component
 
     public function mount()
     {
-        $this->posts = Post::paginate(10);
+        $this->posts = Post::orderBy('created_at', 'desc')->paginate(10);
         $this->description = $this->posts->implode('title', '・');
         $this->tags = Tag::whereHas('posts', function ($query) {
             $query->whereExists(fn ($q) => $q);
