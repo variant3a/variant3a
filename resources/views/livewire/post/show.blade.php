@@ -51,7 +51,7 @@
                     </div>
                 </div>
                 @if (!$like)
-                    <button type="button" class="flex justify-center p-2 font-semibold align-middle bg-white rounded-full shadow grow dark:bg-zinc-700 dark:text-neutral-200 dark:hover:text-teal-500 hover:shadow-lg hover:text-teal-500 text-neutral-200 ring-1 ring-black/5" wire:click="like()">
+                    <button type="button" class="flex justify-center p-2 font-semibold align-middle bg-white rounded-full shadow grow dark:bg-zinc-700 dark:hover:text-teal-500 hover:shadow-lg hover:text-teal-500 text-neutral-400 ring-1 ring-black/5" wire:click="like()">
                         <i class="px-2 bi bi-heart"></i>
                         {{ $reactions->count() }}
                     </button>
@@ -62,13 +62,17 @@
                     </div>
                 @endif
             </div>
-            <div class="hidden row-auto p-2 mb-1 space-y-1 font-mono bg-white rounded shadow md:block sm:mb-3 dark:bg-zinc-700 ring-1 ring-black/5" x-data="{ position: '' }">
-                <template x-for="link in document.querySelectorAll(`[id^='content-']`)">
-                    <a class="flex justify-between w-full p-1 break-all rounded hover:bg-teal-500/50 text-neutral-700 dark:text-neutral-200 hover:text-white first:rounded-t last:rounded-b" x-bind:href="`#${link.id}`" x-bind:key="link.id" x-text="'#'.repeat(link.parentElement.tagName.replace('H', '')) + ' ' + link.parentElement.innerText" data-turbo="false"
-                        x-on:scroll.window="
-                        section = document.querySelectorAll(`[id^='content-']`)
-                        position = [...section].filter(v => v.getBoundingClientRect().top > 0)[0].id
-                    " x-bind:class="position === link.id ? 'bg-teal-500/50 text-white' : ''">
+            <div class="hidden row-auto p-2 mb-1 space-y-1 font-mono bg-white rounded shadow md:block sm:mb-3 dark:bg-zinc-700 ring-1 ring-black/5"
+                x-data="{ position: '', links: document.querySelectorAll(`[id^='content-']`) }"
+                x-show="links.length">
+                <template x-for="link in links">
+                    <a class="flex justify-between w-full p-1 break-all rounded hover:bg-teal-500/50 text-neutral-700 dark:text-neutral-200 hover:text-white first:rounded-t last:rounded-b"
+                        x-bind:href="`#${link.id}`"
+                        x-bind:key="link.id"
+                        x-text="link.parentElement.innerText"
+                        data-turbo="false"
+                        x-on:scroll.window="position = [...links].filter(v => v.getBoundingClientRect().top > 0)[0].id"
+                        x-bind:class="{ 'bg-teal-500/50 text-white': position === link.id }">
                     </a>
                 </template>
             </div>
