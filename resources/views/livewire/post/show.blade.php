@@ -96,8 +96,28 @@
     </div>
     <div class="col-span-4 md:col-span-3">
         <div class="flex flex-col p-2 bg-white rounded shadow sm:p-3 h-fit dark:bg-zinc-700 ring-1 ring-black/5">
-            <div class="pl-2 text-3xl font-bold break-all border-l-8 border-teal-500 text-break text-neutral-700 dark:text-neutral-200">
+            <div class="pl-2 mb-3 text-3xl font-bold break-all border-l-8 border-teal-500 text-break text-neutral-700 dark:text-neutral-200">
                 {{ $post->title }}
+            </div>
+            <div class="flex justify-between space-x-3 text-neutral-400 text-end" href="{{ route('post.detail', $post) }}">
+                <span title="{{ $post->created_at->format('Y-m-d H:i:s') }}" class="self-end">
+                    <i class="bi bi-calendar2-event"></i>
+                    {{ $post->created_at->format('F j, Y') }}
+                </span>
+                <span>
+                    <i class="bi bi-bar-chart-fill"></i>
+                    {{ 'Views: ' . ($post->json['view'] ?? 0) }}
+                </span>
+            </div>
+            <div>
+                @if ($post->tags->count())
+                    @foreach ($post->tags as $tag)
+                        <div class="inline mr-2 text-sm text-teal-500 break-all" wire:key="article-tag-{{ "$post->id-$tag->id" }}">
+                            <i class="bi bi-tag"></i>
+                            {{ $tag->name }}
+                        </div>
+                    @endforeach
+                @endif
             </div>
             <div class="py-4 break-all sm:px-2 markdown text-neutral-700 dark:text-neutral-200">
                 {!! e(Markdown::parse($post->content)) !!}
@@ -113,13 +133,13 @@
                 @endif
             </div>
             <div class="flex mb-0 space-x-3 text-neutral-400 text-end" href="{{ route('post.detail', $post) }}">
-                <span>
-                    <i class="bi bi-bar-chart-fill"></i>
-                    {{ 'Views: ' . ($post->json['view'] ?? 0) }}
-                </span>
                 <span title="{{ $post->created_at->format('Y-m-d H:i:s') }}" class="self-end">
                     <i class="bi bi-calendar2-event"></i>
                     {{ $post->created_at->format('F j, Y') }}
+                </span>
+                <span>
+                    <i class="bi bi-bar-chart-fill"></i>
+                    {{ 'Views: ' . ($post->json['view'] ?? 0) }}
                 </span>
             </div>
         </div>
