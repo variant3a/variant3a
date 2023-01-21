@@ -7,7 +7,7 @@
                     <div class="flex justify-center mb-2 sm:mb-3">
                         <div class="w-1/2 h-0 pt-[50%] relative">
                             @if ($user->profile_photo_path)
-                                <img src="{{ asset('storage/' . $user->profile_photo_path) }}" class="absolute inset-0 object-cover w-full h-full rounded-xl">
+                                <img src="{{ asset('storage/' . $user->profile_photo_path) }}" class="absolute inset-0 object-cover w-full h-full rounded-xl" alt="profile photo">
                             @else
                                 <div class="absolute inset-0 flex items-center justify-center rounded-xl ring-1 ring-black/10">
                                     no photos

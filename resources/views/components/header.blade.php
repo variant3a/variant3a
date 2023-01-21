@@ -15,7 +15,7 @@
             </div>
             <div class="relative flex items-center justify-between h-16 px-4 z-1">
                 <a href="{{ url()->current() }}" id="random-emoji" class="inline-block">
-                    <img src="{{ asset('images/logo_only_transparent_trim.png') }}" class="w-8 h-auto">
+                    <img src="{{ asset('images/logo_only_transparent_trim.png') }}" class="w-8 h-auto" alt="site logo">
                 </a>
             </div>
             <div class="relative z-20 flex items-center justify-between h-16">
