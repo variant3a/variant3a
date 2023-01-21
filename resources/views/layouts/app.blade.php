@@ -21,7 +21,6 @@
 
     <!-- Scripts -->
     @livewireScripts
-    <script src="https://cdn.jsdelivr.net/npm/fullcalendar-scheduler@5.11.3/main.js"></script>
     <script src="{{ mix('js/app.js') }}" defer></script>
 
     <!-- Styles -->
