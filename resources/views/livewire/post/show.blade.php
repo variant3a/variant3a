@@ -71,7 +71,7 @@
                         x-bind:key="link.id"
                         x-text="link.parentElement.innerText"
                         data-turbo="false"
-                        x-on:scroll.window="position = [...links].filter(v => v.getBoundingClientRect().top > 0)[0].id"
+                        x-on:scroll.window="position = [...links].filter(v => v.getBoundingClientRect().top > 0)[0].id || null"
                         x-bind:class="{ 'bg-teal-500/50 text-white': position === link.id }">
                     </a>
                 </template>
