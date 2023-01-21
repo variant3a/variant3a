@@ -50,6 +50,14 @@
                         </div>
                     @enderror
                 </div>
+                <div class="mb-3">
+                    <input type="text" wire:model.debounce.500ms="post_data.json.description" class="p-2 w-full bg-white dark:bg-zinc-600 rounded ring-1 ring-black/10 dark:ring-0 focus:ring-2 dark:focus:ring-2 focus:ring-teal-500 dark:focus:ring-teal-500 focus:outline-0 @error('post_data.json.description') border-2 border-red-500 text-red-500 @else text-neutral-700 dark:text-neutral-200 @enderror" placeholder="description">
+                    @error('post_data.json.description')
+                        <div class="mt-1 text-sm text-red-600 dark:text-red-500">
+                            {{ $message }}
+                        </div>
+                    @enderror
+                </div>
                 <div class="flex justify-end mb-3">
                     <label class="flex align-middle cursor-pointer text-neutral-700 dark:text-neutral-200">
                         Preview Mode

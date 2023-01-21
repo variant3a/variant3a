@@ -10,6 +10,7 @@ class Show extends Component
 {
 
     public string $title = '';
+    public string $description = '';
     public string $share_string = '';
     public bool $like = false;
     public $post;
@@ -21,6 +22,7 @@ class Show extends Component
         $this->post = $post;
         $this->popular_posts = Post::orderByRaw('json->"$.view" DESC')->limit(5)->get();
         $this->title = $post->title;
+        $this->description = $post->json['description'] ?? false;
         $this->reactions = $post->reactions()->get();
         $this->like = $post->reactions()->where('json->ip', request()->ip())->get()->isNotEmpty();
         $this->share_string = $post->title . ' - ' . config('app.name', 'Laravel') . "\n" . url()->current();
@@ -30,14 +32,18 @@ class Show extends Component
     public function render()
     {
         return view('livewire.post.show')
-            ->extends('layouts.app', ['title' => $this->title, 'tags' => $this->post->tags])
+            ->extends('layouts.app', [
+                'title' => $this->title,
+                'description' => $this->description,
+                'tags' => $this->post->tags,
+            ])
             ->section('content');
     }
 
     public function viewCount()
     {
         $post = $this->post;
-        $post->json = ['view' => ($post->json['view'] ?? 0) + 1];
+        $post->forceFill(['json->view' => ($post->json['view'] ?? 0) + 1]);
         $post->timestamps = false;
         $post->save();
         $this->post = $post;

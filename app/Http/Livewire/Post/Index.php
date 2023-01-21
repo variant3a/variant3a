@@ -12,6 +12,7 @@ class Index extends Component
     use WithPagination;
 
     public string $title = 'Posts';
+    public string $description = '';
     public string $keyword = '';
     public $selected_tag = [];
     public $tags;
@@ -20,16 +21,35 @@ class Index extends Component
     public function mount()
     {
         $this->posts = Post::paginate(10);
+        $this->description = $this->posts->implode('title', '・');
+        $this->tags = Tag::whereHas('posts', function ($query) {
+            $query->whereExists(fn ($q) => $q);
+        })
+            ->withCount('posts')
+            ->orderBy('posts_count', 'desc')
+            ->get();
     }
 
     public function render()
     {
-        $this->search();
         return view('livewire.post.index', [
             'posts' => $this->posts,
         ])
-            ->extends('layouts.app', ['title' => $this->title, 'tags' => $this->tags])
+            ->extends('layouts.app', [
+                'title' => $this->title,
+                'description' => $this->description,
+            ])
             ->section('content');
+    }
+
+    public function hydrate()
+    {
+        $this->tags->loadCount('posts');
+    }
+
+    public function updatedKeyword()
+    {
+        $this->search();
     }
 
     public function search()
@@ -55,18 +75,6 @@ class Index extends Component
         $posts->orderBy('created_at', 'desc');
 
         $this->posts = $posts->paginate(10);
-
-        $tags = Tag::query();
-
-        $tags->whereHas('posts', function ($query) {
-            $query->whereExists(function ($query) {
-                return $query;
-            });
-        });
-        $tags->withCount('posts');
-        $tags->orderBy('posts_count', 'desc');
-
-        $this->tags = $tags->get();
 
         $this->dispatchBrowserEvent('paginated');
     }

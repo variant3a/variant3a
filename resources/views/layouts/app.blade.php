@@ -7,6 +7,9 @@
     @if (isset($tags))
         <meta name="keyword" content="{{ $tags->implode('name', ', ') }}">
     @endif
+    @if (isset($description))
+        <meta name="description" content="{{ $description }}">
+    @endif
 
     <!-- Canonical Tag -->
     <link rel="canonical" href="{{ url()->current() }}">

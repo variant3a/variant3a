@@ -29,6 +29,7 @@ class Edit extends Component
     protected $rules = [
         'post_data.title' => 'required|max:255',
         'post_data.content' => 'required|max:10000',
+        'post_data.json.description' => 'nullable|max:255',
     ];
 
     public function mount(Post $post)
@@ -88,17 +89,17 @@ class Edit extends Component
         $data = $this->post_data;
         $selected_tags = $this->selected_tag;
 
-        DB::transaction(function () use ($data, $selected_tags) {
+        DB::transaction(function () use (&$data, $selected_tags) {
             $post = Post::firstOrNew(['id' => $this->post_data['id'] ?? 'null']);
             $post->fill($data);
             $post->created_by = auth()->id();
             $post->updated_by = auth()->id();
             $post->save();
-
             $post->tags()->sync($selected_tags);
+            $data = $post;
         });
 
-        return redirect()->route('post.index');
+        return redirect()->route('post.detail', $data);
     }
 
     public function createTag()
