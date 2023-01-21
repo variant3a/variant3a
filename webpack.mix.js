@@ -1,5 +1,7 @@
 const mix = require('laravel-mix')
 const tailwindcss = require('tailwindcss')
+const CompressionPlugin = require('compression-webpack-plugin')
+
 /*
  |--------------------------------------------------------------------------
  | Mix Asset Management
@@ -24,7 +26,15 @@ mix.js('resources/js/app.js', 'public/js')
         open: false,
         files: [
             'resources/**/*',
-        ]
+        ],
+        plugins: [
+            new CompressionPlugin({
+                test: /\.js$/,
+                compressionOptions: {
+                    level: 9,
+                },
+            })
+        ],
     })
 
 if (mix.inProduction()) {
