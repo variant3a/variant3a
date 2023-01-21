@@ -69,7 +69,7 @@
                     <a class="flex justify-between w-full p-1 break-all rounded hover:bg-teal-500/50 text-neutral-700 dark:text-neutral-200 hover:text-white first:rounded-t last:rounded-b"
                         x-bind:href="`#${link.id}`"
                         x-bind:key="link.id"
-                        x-text="link.parentElement.innerText"
+                        x-text="'#'.repeat(link.parentElement.tagName.replace('H', '')) + ' ' + link.parentElement.innerText"
                         data-turbo="false"
                         x-on:scroll.window="position = [...links].filter(v => v.getBoundingClientRect().top > 0)[0]?.id || null"
                         x-bind:class="{ 'bg-teal-500/50 text-white': position === link.id }">
