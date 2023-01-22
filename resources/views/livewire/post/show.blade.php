@@ -1,13 +1,13 @@
 <div class="grid grid-cols-1 gap-1 md:grid-cols-4 sm:gap-3">
     <div class="col-span-4 md:col-span-1">
-        <div class="relative space-y-1 sm:space-y-3 md:sticky md:top-24"
+        <div class="relative sm:space-y-3 md:sticky md:top-24"
             x-data="{ showShareDropdown: false }">
             @auth
-                <a href="{{ route('post.edit', $post) }}" class="block w-full p-2 font-bold text-center bg-teal-500 rounded shadow hover:shadow-lg hover:bg-teal-400/90 text-neutral-200 ring-1 ring-black/5">
+                <a href="{{ route('post.edit', $post) }}" class="block w-full p-2 mb-1 font-bold text-center bg-teal-500 rounded shadow hover:shadow-lg hover:bg-teal-400/90 text-neutral-200 ring-1 ring-black/5">
                     Edit
                 </a>
             @endauth
-            <div class="flex p-2 bg-white rounded shadow sm:p-3 h-fit dark:bg-zinc-700 text-neutral-700 dark:text-neutral-200 ring-1 ring-black/5">
+            <div class="flex p-2 mb-1 bg-white rounded shadow sm:p-3 h-fit dark:bg-zinc-700 text-neutral-700 dark:text-neutral-200 ring-1 ring-black/5">
                 <div class="flex flex-col justify-center flex-shrink-0">
                     <div class="relative w-16 h-full pt-16 aspect-square">
                         <img src="{{ asset('storage/' . $post->user->profile_photo_path) }}" class="absolute inset-0 object-cover w-full h-full rounded-xl" alt="profile photo">
