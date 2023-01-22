@@ -142,15 +142,15 @@
                                 {{ $popular_post->title }}
                             </span>
                         </div>
-                        <div class="ml-4 truncate text-neutral-400">
+                        <div class="ml-4 truncate text-neutral-400 group-hover:text-neutral-200">
                             {{ $popular_post->json['description'] ?? '' }}
                         </div>
-                        <div class="flex mt-1 space-x-3 text-neutral-400 text-end">
-                            <span title="{{ $post->created_at->format('Y-m-d H:i:s') }}" class="text-end text-neutral-400 group-hover:text-neutral-200">
+                        <div class="flex mt-1 space-x-3 text-neutral-400 group-hover:text-neutral-200 text-end">
+                            <span title="{{ $post->created_at->format('Y-m-d H:i:s') }}" class="text-end">
                                 <i class="bi bi-calendar2-event"></i>
                                 {{ $popular_post->created_at->format('F j, Y') ?? '' }}
                             </span>
-                            <span class="text-neutral-400 group-hover:text-neutral-200">
+                            <span>
                                 <i class="bi bi-bar-chart-fill"></i>
                                 {{ 'Views: ' . ($popular_post->json['view'] ?? 0) }}
                             </span>
