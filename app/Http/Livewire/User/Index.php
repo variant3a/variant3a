@@ -16,6 +16,7 @@ class Index extends Component
     use WithFileUploads;
 
     public string $title = 'About me';
+    public string $description = '';
     public string $hiddenEmail = '';
     public $files = [];
     public $user;
@@ -26,13 +27,18 @@ class Index extends Component
     {
         $this->getPictures();
         $this->user = User::where('user_id', '=', 'variant3a')->first();
+        $this->description = $this->user->json['bio'] ?? false;
         $this->timelines = Timeline::where('created_by', $this->user->id)->orderBy('start_date', 'asc')->with('tags')->get();
     }
 
     public function render()
     {
         return view('livewire.user.index')
-            ->extends('layouts.app', ['title' => $this->title, 'tags' => $this->timelines->pluck('tags')->collapse()])
+            ->extends('layouts.app', [
+                'title' => $this->title,
+                'description' => $this->description,
+                'tags' => $this->timelines->pluck('tags')->collapse()
+            ])
             ->section('content');
     }
 

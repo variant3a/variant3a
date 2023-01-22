@@ -12,6 +12,7 @@ class Index extends Component
 {
 
     public string $title = '';
+    public string $description = 'Welcome to variant3a\'s Knowledge Base. Will be post technical stories, knowledge and insights.';
     public $posts, $post, $users;
     public $memo;
 
@@ -23,29 +24,16 @@ class Index extends Component
 
     public function mount()
     {
-        $this->users = User::all();
-        $this->posts = Post::select('title')->get();
-        $this->post = Post::latest()->first();
-        $this->memo = Memo::where('created_by', auth()->id())->latest()->first() ?? new Memo();
+        //
     }
 
     public function render()
     {
         return view('livewire.home.index')
-            ->extends('layouts.app', ['title' => $this->title])
+            ->extends('layouts.app', [
+                'title' => $this->title,
+                'description' => $this->description,
+            ])
             ->section('content');
-    }
-
-    public function updated()
-    {
-        $this->validate();
-
-        $data = $this->memo;
-
-        $memo = Memo::whereDate('created_at', Carbon::today())->firstOrNew();
-        $memo->content = $data->content;
-        $memo->created_by = auth()->id();
-        $memo->updated_by = auth()->id();
-        $memo->save();
     }
 }
