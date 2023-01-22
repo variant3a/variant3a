@@ -76,22 +76,6 @@
                     </a>
                 </template>
             </div>
-            <div class="hidden row-auto mb-1 bg-white rounded shadow md:block sm:mb-3 dark:bg-zinc-700 ring-1 ring-black/5">
-                <div class="p-2 text-neutral-400">
-                    Most viewed
-                </div>
-                @if ($popular_posts->count())
-                    @foreach ($popular_posts as $popular_post)
-                        <a href="{{ route('post.detail', $popular_post) }}" class="flex justify-between w-full p-2 break-all text-neutral-700 dark:text-neutral-200 hover:text-neutral-200 hover:bg-teal-500 first:rounded-t last:rounded-b" wire:key="{{ "article-detail-$popular_post->id" }}">
-                            <span>{{ $loop->iteration . '. ' . $popular_post->title }}</span>
-                            {{-- <span>
-                                <i class="bi bi-bar-chart-fill"></i>
-                                {{ $popular_post->json['view'] ?? 0 }}
-                            </span> --}}
-                        </a>
-                    @endforeach
-                @endif
-            </div>
         </div>
     </div>
     <div class="col-span-4 md:col-span-3">
@@ -144,19 +128,33 @@
             </div>
         </div>
     </div>
-    <div class="col-span-4 mb-3 md:col-span-3">
-        <div class="block row-auto mb-1 bg-white rounded shadow md:hidden sm:mb-3 dark:bg-zinc-700 ring-1 ring-black/5">
+    <div class="col-span-4 mb-3 md:col-start-2 md:col-span-3">
+        <div class="block row-auto mb-1 bg-white rounded shadow sm:mb-3 dark:bg-zinc-700 ring-1 ring-black/5">
             <div class="p-2 text-neutral-400">
                 Most viewed
             </div>
             @if ($popular_posts->count())
                 @foreach ($popular_posts as $popular_post)
-                    <a href="{{ route('post.detail', $popular_post) }}" class="flex justify-between w-full p-2 break-all text-neutral-700 dark:text-neutral-200 hover:text-neutral-200 hover:bg-teal-500 first:rounded-t last:rounded-b" wire:key="{{ "article-detail-$popular_post->id" }}">
-                        <span>{{ $loop->iteration . '. ' . $popular_post->title }}</span>
-                        {{-- <span>
-                        <i class="bi bi-bar-chart-fill"></i>
-                        {{ $popular_post->json['view'] ?? 0 }}
-                    </span> --}}
+                    <a href="{{ route('post.detail', $popular_post) }}" class="flex flex-col w-full p-2 break-all group text-neutral-700 dark:text-neutral-200 hover:text-neutral-200 hover:bg-teal-500 first:rounded-t last:rounded-b" wire:key="{{ "article-detail-$popular_post->id" }}">
+                        <div class="flex justify-between">
+                            <span>
+                                <span class="text-neutral-400 group-hover:text-neutral-200">{{ $loop->iteration . '. ' }}</span>
+                                {{ $popular_post->title }}
+                            </span>
+                        </div>
+                        <div class="ml-4 truncate">
+                            {{ $popular_post->json['description'] ?? '' }}
+                        </div>
+                        <div class="flex mt-1 space-x-3 text-neutral-400 text-end">
+                            <span title="{{ $post->created_at->format('Y-m-d H:i:s') }}" class="text-end text-neutral-400 group-hover:text-neutral-200">
+                                <i class="bi bi-calendar2-event"></i>
+                                {{ $popular_post->created_at->format('F j, Y') ?? '' }}
+                            </span>
+                            <span class="text-neutral-400 group-hover:text-neutral-200">
+                                <i class="bi bi-bar-chart-fill"></i>
+                                {{ 'Views: ' . ($popular_post->json['view'] ?? 0) }}
+                            </span>
+                        </div>
                     </a>
                 @endforeach
             @endif
