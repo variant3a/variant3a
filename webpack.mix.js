@@ -18,6 +18,14 @@ mix.js('resources/js/app.js', 'public/js')
     .options({
         processCssUrls: false,
         postCss: [tailwindcss()],
+        plugins: [
+            new CompressionPlugin({
+                test: /\.js$/,
+                compressionOptions: {
+                    level: 9,
+                },
+            })
+        ],
     })
     .browserSync({
         notify: false,
@@ -26,14 +34,6 @@ mix.js('resources/js/app.js', 'public/js')
         open: false,
         files: [
             'resources/**/*',
-        ],
-        plugins: [
-            new CompressionPlugin({
-                test: /\.js$/,
-                compressionOptions: {
-                    level: 9,
-                },
-            })
         ],
     })
 
