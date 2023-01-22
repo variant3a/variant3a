@@ -26,11 +26,12 @@ class Index extends Component
     public function render()
     {
         $this->search();
-        $this->description = $this->posts->implode('title', '・');
-        return view('livewire.post.index', [
-            'posts' => $this->posts,
-        ])
-            ->extends('layouts.app', ['title' => $this->title, 'tags' => $this->tags])
+        return view('livewire.post.index', ['posts' => $this->posts])
+            ->extends('layouts.app', [
+                'title' => $this->title,
+                'description' => config('app.name', 'Laravel') . ' - ' . $this->posts->implode('title', '・'),
+                'tags' => $this->tags
+            ])
             ->section('content');
     }
 
