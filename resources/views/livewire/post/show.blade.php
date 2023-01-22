@@ -142,7 +142,7 @@
                                 {{ $popular_post->title }}
                             </span>
                         </div>
-                        <div class="ml-4 truncate">
+                        <div class="ml-4 truncate text-neutral-400">
                             {{ $popular_post->json['description'] ?? '' }}
                         </div>
                         <div class="flex mt-1 space-x-3 text-neutral-400 text-end">
