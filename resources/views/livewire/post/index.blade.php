@@ -22,7 +22,7 @@
                 @endif
             </div>
             <div class="hidden row-auto mb-1 bg-white rounded shadow md:block sm:mb-3 dark:bg-zinc-700 ring-1 ring-black/5">
-                @if ($posts?->count() ?? 0)
+                @if ($posts->count())
                     @foreach ($posts as $post)
                         <a href="{{ route('post.detail', $post) }}" class="block w-full p-1 break-all sm:p-2 text-neutral-700 dark:text-neutral-200 hover:text-neutral-200 hover:bg-teal-500 first:rounded-t last:rounded-b" wire:key="{{ "article-detail-$post->id" }}">
                             {{ $post->title }}
