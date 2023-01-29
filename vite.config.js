@@ -3,7 +3,7 @@ import laravel, { refreshPaths } from 'laravel-vite-plugin'
 import viteCompression from "vite-plugin-compression"
 
 export default defineConfig(({ command, mode }) => {
-    const productionPlugin = []
+    let productionPlugin = []
     if (mode === 'production') {
         productionPlugin = [
             viteCompression(),
