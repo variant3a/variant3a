@@ -1,5 +1,10 @@
-import hljs from 'highlight.js'
+import hljs from 'highlight.js/es/common'
+import nginx from 'highlight.js/es/languages/nginx'
+import powershell from 'highlight.js/es/languages/powershell'
 import * as Turbo from "@hotwired/turbo"
+
+hljs.registerLanguage('nginx', nginx)
+hljs.registerLanguage('powershell', powershell)
 
 Turbo.start()
 
