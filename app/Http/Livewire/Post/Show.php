@@ -43,7 +43,7 @@ class Show extends Component
     public function viewCount()
     {
         $post = $this->post;
-        $post->forceFill(['json->view' => ($post->json['view'] ?? 0) + 1]);
+        $post->json['view'] = $post->json['view'] + 1;
         $post->timestamps = false;
         $post->save();
         $this->post = $post;
