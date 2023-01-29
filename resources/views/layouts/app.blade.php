@@ -19,12 +19,10 @@
 
     <title>{{ $title ? $title . ' - ' . config('app.name', 'Laravel') : config('app.name', 'Laravel') }}</title>
 
-    <!-- Scripts -->
     @livewireScripts
-    <script src="{{ mix('js/app.js') }}" defer></script>
 
-    <!-- Styles -->
-    <link rel="stylesheet" href="{{ mix('css/app.css') }}">
+    @vite(['resources/sass/app.sass', 'resources/js/app.js'])
+
     @livewireStyles
 
     <meta name="google-site-verification" content="2ZseLlPEz2jQX_FTIz1UkNzLEpovoPTGEdn0S4YgbzE" />
