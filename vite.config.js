@@ -1,41 +1,51 @@
 import { defineConfig } from 'vite'
 import laravel, { refreshPaths } from 'laravel-vite-plugin'
+import viteCompression from "vite-plugin-compression"
 
-export default defineConfig({
-    optimizeDeps: {
-        include: [
-            'livewire-turbolinks',
-        ],
-    },
-    plugins: [
-        laravel({
-            input: [
-                'resources/sass/app.sass',
-                'resources/js/app.js',
-            ],
-            refresh: [
-                ...refreshPaths,
-                'app/Http/Livewire/**',
-            ],
-        }),
-    ],
-    resolve: {
-        alias: {
-            '@': '/resources/js'
-        },
-    },
-    build: {
-        commonjsOptions: {
+export default defineConfig(({ command, mode }) => {
+    const productionPlugin = []
+    if (mode === 'production') {
+        productionPlugin = [
+            viteCompression(),
+        ]
+    }
+    return {
+        optimizeDeps: {
             include: [
-                /livewire-turbolinks/,
-                /node_modules/,
+                'livewire-turbolinks',
             ],
         },
-    },
-    server: {
-        host: '0.0.0.0',
-        hmr: {
-            host: 'localhost'
+        plugins: [
+            ...productionPlugin,
+            laravel({
+                input: [
+                    'resources/sass/app.sass',
+                    'resources/js/app.js',
+                ],
+                refresh: [
+                    ...refreshPaths,
+                    'app/Http/Livewire/**',
+                ],
+            }),
+        ],
+        resolve: {
+            alias: {
+                '@': '/resources/js'
+            },
         },
-    },
+        build: {
+            commonjsOptions: {
+                include: [
+                    /livewire-turbolinks/,
+                    /node_modules/,
+                ],
+            },
+        },
+        server: {
+            host: '0.0.0.0',
+            hmr: {
+                host: 'localhost'
+            },
+        },
+    }
 })
