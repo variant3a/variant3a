@@ -277,7 +277,7 @@
                                 @foreach ($tags as $tag)
                                     <span wire:key="tag-{{ $tag->id }}">
                                         <input type="checkbox" wire:model="selected_tag" class="hidden peer" id="btn-check-{{ $tag->id }}" value="{{ $tag->id }}" autocomplete="off">
-                                        <label class="block px-2 mb-2 mr-2 text-teal-500 break-all border-2 border-teal-500 rounded cursor-pointer hover:bg-teal-500 peer-checked:bg-teal-500 hover:text-neutral-200 peer-checked:text-neutral-200 ring-1 ring-black/5" for="btn-check-{{ $tag->id }}">
+                                        <label class="block px-2 mb-2 mr-2 text-teal-500 break-all border-2 border-teal-500 rounded cursor-pointer active:ring-2 active:ring-black/20 peer-checked:bg-teal-500 peer-checked:text-neutral-200" for="btn-check-{{ $tag->id }}">
                                             {{ $tag->name }}
                                         </label>
                                     </span>
