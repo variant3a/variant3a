@@ -38,7 +38,7 @@
         </div>
     </div>
     <div class="col-span-4 md:col-span-3"
-        x-data="{ editorToggle: false }">
+        x-data="{ editorToggle: false, draft: $persist($wire.entangle('post_data')).as('postData' + ($wire.post_data?.id ?? 0)) }">
         <form wire:submit.prevent="store" method="post">
             @csrf
             <div class="flex flex-col mb-3 p-3 pb-0 min-h-[calc(100vh_-_6.75rem)] shadow bg-white dark:bg-zinc-700 rounded ring-1 ring-black/5">
