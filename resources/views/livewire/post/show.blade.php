@@ -211,8 +211,8 @@
                         "height": "512"
                     }
                 },
-                "datePublished": "2023-01-22",
-                "dateModified": "2023-01-22"
+                "datePublished": "{{ $post->created_at }}",
+                "dateModified": "{{ $post->updated_at }}"
             }
         ]
     </script>
