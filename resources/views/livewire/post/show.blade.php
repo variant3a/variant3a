@@ -84,9 +84,9 @@
                 {{ $post->title }}
             </div>
             <div class="flex justify-between space-x-3 text-neutral-400 text-end" href="{{ route('post.detail', $post) }}">
-                <span title="{{ $post->created_at->format('Y-m-d H:i:s') }}" class="self-end">
+                <span title="{{ $post->created_at?->format('Y-m-d H:i:s') ?? '' }}" class="self-end">
                     <i class="bi bi-calendar2-event"></i>
-                    {{ $post->created_at->format('F j, Y') }}
+                    {{ $post->created_at?->format('F j, Y') ?? '' }}
                 </span>
                 <span>
                     <i class="bi bi-bar-chart-fill"></i>
@@ -117,9 +117,9 @@
                 @endif
             </div>
             <div class="flex mb-0 space-x-3 text-neutral-400 text-end" href="{{ route('post.detail', $post) }}">
-                <span title="{{ $post->created_at->format('Y-m-d H:i:s') }}" class="self-end">
+                <span title="{{ $post->created_at?->format('Y-m-d H:i:s') ?? '' }}" class="self-end">
                     <i class="bi bi-calendar2-event"></i>
-                    {{ $post->created_at->format('F j, Y') }}
+                    {{ $post->created_at?->format('F j, Y') }}
                 </span>
                 <span>
                     <i class="bi bi-bar-chart-fill"></i>
@@ -146,9 +146,9 @@
                             {{ $popular_post->json['description'] ?? '' }}
                         </div>
                         <div class="flex mt-1 space-x-3 text-neutral-400 group-hover:text-neutral-200 text-end">
-                            <span title="{{ $post->created_at->format('Y-m-d H:i:s') }}" class="text-end">
+                            <span title="{{ $post->created_at?->format('Y-m-d H:i:s') ?? '' }}" class="text-end">
                                 <i class="bi bi-calendar2-event"></i>
-                                {{ $popular_post->created_at->format('F j, Y') ?? '' }}
+                                {{ $popular_post->created_at?->format('F j, Y') ?? '' }}
                             </span>
                             <span>
                                 <i class="bi bi-bar-chart-fill"></i>
