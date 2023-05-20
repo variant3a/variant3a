@@ -4,7 +4,7 @@
     "theme_color": "#14b8a6",
     "background_color": "#18181b",
     "display": "standalone",
-    "scope": "https://variant3a.ddns.net",
+    "scope": "https://variant3a.com",
     "start_url": "/",
     "icons": [
         {
@@ -17,5 +17,5 @@
             "type": "image/png",
             "sizes": "512x512"
         }
-   ]
+    ]
 }
