@@ -1,4 +1,5 @@
 /node_modules
+/public/build
 /public/css
 /public/hot
 /public/js
@@ -14,3 +15,7 @@ npm-debug.log
 yarn-error.log
 /.idea
 /.vscode
+composer.lock
+package-lock.json
+rr
+.rr.yaml
