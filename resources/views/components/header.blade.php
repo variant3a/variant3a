@@ -98,6 +98,11 @@
                     Cockpit
                     <i class="px-2 bi bi-box-arrow-up-right"></i>
                 </a>
+                <a class="flex justify-between px-4 py-2 text-sm text-neutral-700 dark:text-neutral-200 hover:text-neutral-200 hover:bg-teal-500/50" href="{{ route('telescope') }}" target="_blank"
+                    x-on:click="showDropdown = !showDropdown">
+                    Telescope
+                    <i class="px-2 bi bi-box-arrow-up-right"></i>
+                </a>
                 <a class="block px-4 py-2 text-sm text-neutral-700 dark:text-neutral-200 hover:text-neutral-200 hover:bg-teal-500/50" href="{{ route('setting.index') }}"
                     x-on:click="showDropdown = !showDropdown">
                     Settings
