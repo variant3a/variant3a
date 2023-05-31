@@ -140,5 +140,6 @@ class Preloader
         \Illuminate\Database\PDO\Connection::class,
         \Illuminate\Database\DBAL\TimestampType::class,
         \Illuminate\Testing\ParallelRunner::class,
+        \Laravel\Octane\Tables\SwooleTable::class,
     )
     ->load();
