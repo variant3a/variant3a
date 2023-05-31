@@ -125,7 +125,7 @@ class Preloader
 }
 
 (new Preloader())
-    ->paths(__DIR__ . '/vendor/laravel')
+    ->paths(__DIR__ . '/vendor/laravel/framework')
     ->ignore(
         \Illuminate\Filesystem\Cache::class,
         \Illuminate\Log\LogManager::class,
@@ -140,6 +140,5 @@ class Preloader
         \Illuminate\Database\PDO\Connection::class,
         \Illuminate\Database\DBAL\TimestampType::class,
         \Illuminate\Testing\ParallelRunner::class,
-        \Laravel\Octane\Tables\SwooleTable::class,
     )
     ->load();
