@@ -55,6 +55,7 @@ class Index extends Component
             });
         }
 
+        $posts->with('tags', 'user');
         $posts->orderBy('created_at', 'desc');
 
         $this->posts = $posts->paginate(10);
