@@ -176,6 +176,21 @@
         </div>
         <div class="flex flex-col">
             @if ($timelines->count())
+                <div class="flex flex-col grid-cols-12 mt-8 md:grid text-gray-50">
+                    <div class="flex md:contents">
+                        <div class="relative col-start-1 col-end-3 mx-2 md:mx-auto">
+                            <div class="flex items-center justify-center w-8 h-full">
+                                <div class="w-1 h-full bg-white pointer-events-none dark:bg-zinc-700"></div>
+                            </div>
+                            <div class="absolute w-8 h-8 -mt-3 text-center bg-white rounded-full shadow top-1/2 dark:bg-zinc-700">
+                                <i class="text-xl leading-normal bi bi-code-slash text-neutral-700 dark:text-neutral-200"></i>
+                            </div>
+                        </div>
+                        <div class="w-full col-start-3 col-end-12 p-2 py-12 my-3 md:my-4 sm:p-3 h-fit text-neutral-700 dark:text-neutral-200">
+                            Keep Coding...
+                        </div>
+                    </div>
+                </div>
                 @foreach ($timelines as $timeline)
                     <div class="flex flex-col grid-cols-12 md:grid text-gray-50" wire:key="timeline-{{ $timeline->id }}">
                         <div class="flex md:contents">
@@ -212,21 +227,6 @@
                         </div>
                     </div>
                 @endforeach
-                <div class="flex flex-col grid-cols-12 mb-8 md:grid text-gray-50">
-                    <div class="flex md:contents">
-                        <div class="relative col-start-1 col-end-3 mx-2 md:mx-auto">
-                            <div class="flex items-center justify-center w-8 h-full">
-                                <div class="w-1 h-full bg-white pointer-events-none dark:bg-zinc-700"></div>
-                            </div>
-                            <div class="absolute w-8 h-8 -mt-3 text-center bg-white rounded-full shadow top-1/2 dark:bg-zinc-700">
-                                <i class="text-xl leading-normal bi bi-code-slash text-neutral-700 dark:text-neutral-200"></i>
-                            </div>
-                        </div>
-                        <div class="w-full col-start-3 col-end-12 p-2 py-12 my-3 md:my-4 sm:p-3 h-fit text-neutral-700 dark:text-neutral-200">
-                            Keep Coding...
-                        </div>
-                    </div>
-                </div>
             @else
                 <div class="p-2 my-3 md:my-4 text-neutral-700 dark:text-neutral-200">
                     No Timelines.
