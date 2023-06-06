@@ -28,7 +28,7 @@ class Index extends Component
         $this->getPictures();
         $this->user = User::where('user_id', '=', 'variant3a')->first();
         $this->description = $this->user->json['bio'] ?? false;
-        $this->timelines = Timeline::where('created_by', $this->user->id)->orderBy('start_date', 'asc')->with('tags')->get();
+        $this->timelines = Timeline::where('created_by', $this->user->id)->orderBy('start_date', 'desc')->with('tags')->get();
     }
 
     public function render()
