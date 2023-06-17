@@ -105,9 +105,9 @@
                 </div>
             @endif
             @if ($photos->count() > 9)
-                <button type="button" class="w-full p-2 mb-2 font-bold text-center bg-teal-500 rounded shadow sm:mb-4 hover:shadow-lg hover:bg-teal-400/90 text-neutral-200 md:hidden"
+                <button type="button" class="w-full p-2 mb-2 text-teal-300 bg-teal-800 hover:bg-teal-700 disabled:bg-neutral-700 disabled:text-neutral-400 sm:mb-4 md:hidden rounded-3xl"
                     x-on:click="expand = !expand"
-                    x-text="expand ? 'Collapse' : 'Expand'" x-cloak x-transition>
+                    x-text="expand ? 'collapse' : 'expand'" x-cloak x-transition>
                 </button>
             @endif
         </div>
