@@ -69,6 +69,7 @@ class Index extends Component
         });
         $tags->withCount('posts');
         $tags->orderBy('posts_count', 'desc');
+        $tags->limit(8);
 
         $this->tags = $tags->get();
 

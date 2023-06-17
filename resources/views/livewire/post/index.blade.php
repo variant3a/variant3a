@@ -8,7 +8,7 @@
                 </x-fab>
             @endauth
             <x-search type="text" wire:model="keyword" class="w-full" placeholder="search" />
-            <div class="flex flex-col h-full p-3 pb-1 rounded-2xl bg-neutral-800 md:mb-3">
+            <div class="flex flex-col h-full p-2 pb-1 sm:p-3 rounded-2xl bg-neutral-800 md:mb-3">
                 @if ($tags->count())
                     <div class="flex flex-row flex-wrap">
                         @foreach ($tags as $search_tag)
