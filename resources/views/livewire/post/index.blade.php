@@ -44,7 +44,7 @@
                     <a href="{{ route('post.detail', $post) }}" class="flex flex-col h-full p-2 space-y-2 hover:bg-neutral-700 rounded-3xl bg-neutral-800" wire:key="{{ "article-$post->id" }}">
                         <div class="w-full h-0 pt-[50%] relative">
                             @if ($post->json['thumbnail'] ?? false)
-                                <img src="{{ $post->json['thumbnail'] }}" class="absolute inset-0 object-cover w-full h-full rounded-xl">
+                                <img src="{{ asset($post->json['thumbnail']) }}" class="absolute inset-0 object-cover w-full h-full rounded-xl">
                             @else
                                 <img src="{{ asset('images/thumbnails/laravel_transparent.png') }}" class="absolute inset-0 object-cover w-full h-full bg-gray-700 rounded-2xl">
                             @endif

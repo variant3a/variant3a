@@ -108,7 +108,7 @@
             </div>
             <div class="w-full mx-auto sm:w-1/2">
                 @if ($post->json['thumbnail'] ?? false)
-                    <img src="{{ $post->json['thumbnail'] }}" class="object-cover w-full h-full rounded-xl">
+                    <img src="{{ asset($post->json['thumbnail']) }}" class="object-cover w-full h-full rounded-xl">
                 @else
                     <img src="{{ asset('images/thumbnails/laravel_transparent.png') }}" class="object-cover w-full h-full bg-gray-700 rounded-2xl">
                 @endif
