@@ -59,7 +59,7 @@
                             {{ $post->json['description'] ?? '' }}
                         </div>
                         @if ($post->tags->count())
-                            <div class="flex">
+                            <div class="flex flex-wrap">
                                 @foreach ($post->tags as $tag)
                                     <input type="checkbox" wire:model="selected_tag" class="hidden" id="btn-check-{{ "$post->id-$tag->id" }}" value="{{ $tag->id }}" autocomplete="off">
                                     <label class="flex items-center mr-2 space-x-1 text-sm text-teal-500 cursor-pointer" for="btn-check-{{ "$post->id-$tag->id" }}">

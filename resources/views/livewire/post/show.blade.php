@@ -96,7 +96,7 @@
                     </span>
                 </span>
             </div>
-            <div class="flex">
+            <div class="flex flex-wrap">
                 @if ($post->tags->count())
                     @foreach ($post->tags as $tag)
                         <div class="flex items-center mr-2 space-x-1 text-sm text-teal-500 break-all" wire:key="article-tag-{{ "$post->id-$tag->id" }}">
@@ -116,7 +116,7 @@
             <div class="py-4 break-all sm:px-2 markdown text-neutral-700">
                 {!! e(Markdown::parse($post->content)) !!}
             </div>
-            <div class="flex">
+            <div class="flex flex-wrap">
                 @if ($post->tags->count())
                     @foreach ($post->tags as $tag)
                         <div class="flex items-center mr-2 space-x-1 text-sm text-teal-500 break-all" wire:key="article-tag-{{ "$post->id-$tag->id" }}">
