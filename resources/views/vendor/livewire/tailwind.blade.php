@@ -5,18 +5,18 @@
         <nav role="navigation" aria-label="Pagination Navigation" class="flex items-center justify-between">
             <div class="flex justify-between flex-1">
                 <div>
-                    <span class="relative z-0 inline-flex rounded-md shadow ring-1 ring-black ring-opacity-5">
+                    <span class="relative z-0 inline-flex">
                         <span>
                             {{-- Previous Page Link --}}
                             @if ($paginator->onFirstPage())
                                 <span aria-disabled="true" aria-label="{{ __('pagination.previous') }}">
-                                    <span class="relative inline-flex items-center px-2 py-2 text-sm font-medium leading-5 bg-white cursor-default text-neutral-300 dark:text-neutral-500 dark:bg-zinc-700 rounded-l-md" aria-hidden="true">
-                                        <i class="bi bi-chevron-left"></i>
+                                    <span class="relative inline-flex items-center p-2 text-sm font-medium leading-5 rounded-full hover:bg-transparent text-neutral-400" aria-hidden="true">
+                                        <i class="material-icons">chevron_left</i>
                                     </span>
                                 </span>
                             @else
-                                <button wire:click="previousPage('{{ $paginator->getPageName() }}')" dusk="previousPage{{ $paginator->getPageName() == 'page' ? '' : '.' . $paginator->getPageName() }}.after" rel="prev" class="relative inline-flex items-center px-2 py-2 text-sm font-medium leading-5 transition duration-150 ease-in-out bg-white rounded-l-md text-neutral-700 dark:text-neutral-200 dark:bg-zinc-700 hover:bg-teal-500 dark:hover:bg-teal-500 hover:text-neutral-200 active:bg-gray-100 active:text-neutral-700" aria-label="{{ __('pagination.previous') }}">
-                                    <i class="bi bi-chevron-left"></i>
+                                <button wire:click="previousPage('{{ $paginator->getPageName() }}')" dusk="previousPage{{ $paginator->getPageName() == 'page' ? '' : '.' . $paginator->getPageName() }}.after" rel="prev" class="relative inline-flex items-center p-2 text-sm font-medium leading-5 text-teal-400 rounded-full hover:bg-teal-600/20 active:bg-teal-600/30" aria-label="{{ __('pagination.previous') }}">
+                                    <i class="material-icons">chevron_left</i>
                                 </button>
                             @endif
                         </span>
@@ -26,7 +26,7 @@
                             {{-- "Three Dots" Separator --}}
                             @if (is_string($element))
                                 <span aria-disabled="true">
-                                    <span class="relative inline-flex items-center px-4 py-2 -ml-px text-sm font-medium leading-5 bg-white cursor-default select-none text-neutral-700 dark:bg-zinc-700">{{ $element }}</span>
+                                    <span class="relative inline-flex items-center w-10 h-10 text-sm font-medium leading-5 rounded-full cursor-default select-none bg-neutral-800 text-neutral-700">{{ $element }}</span>
                                 </span>
                             @endif
 
@@ -36,10 +36,10 @@
                                     <span wire:key="paginator-{{ $paginator->getPageName() }}-{{ $this->numberOfPaginatorsRendered[$paginator->getPageName()] }}-page{{ $page }}">
                                         @if ($page == $paginator->currentPage())
                                             <span aria-current="page">
-                                                <span class="relative inline-flex items-center px-4 py-2 -ml-px text-sm font-medium leading-5 bg-teal-500 cursor-default select-none text-neutral-200">{{ $page }}</span>
+                                                <span class="flex items-center justify-center w-10 h-10 text-sm font-medium leading-5 text-teal-900 bg-teal-500 rounded-full cursor-default select-none">{{ $page }}</span>
                                             </span>
                                         @else
-                                            <button wire:click="gotoPage({{ $page }}, '{{ $paginator->getPageName() }}')" class="relative inline-flex items-center px-4 py-2 -ml-px text-sm font-medium leading-5 transition duration-150 ease-in-out bg-white text-neutral-700 dark:text-neutral-200 dark:bg-zinc-700 hover:bg-teal-500 dark:hover:bg-teal-500 hover:text-neutral-200 active:bg-gray-100 active:text-neutral-700" aria-label="{{ __('Go to page :page', ['page' => $page]) }}">
+                                            <button wire:click="gotoPage({{ $page }}, '{{ $paginator->getPageName() }}')" class="flex items-center justify-center w-10 h-10 text-sm font-medium leading-5 text-teal-400 rounded-full hover:bg-teal-600/20 active:bg-teal-600/30" aria-label="{{ __('Go to page :page', ['page' => $page]) }}">
                                                 {{ $page }}
                                             </button>
                                         @endif
@@ -51,13 +51,13 @@
                         <span>
                             {{-- Next Page Link --}}
                             @if ($paginator->hasMorePages())
-                                <button wire:click="nextPage('{{ $paginator->getPageName() }}')" dusk="nextPage{{ $paginator->getPageName() == 'page' ? '' : '.' . $paginator->getPageName() }}.after" rel="next" class="relative inline-flex items-center px-2 py-2 -ml-px text-sm font-medium leading-5 transition duration-150 ease-in-out bg-white text-neutral-700 dark:text-neutral-200 dark:bg-zinc-700 rounded-r-md hover:text-neutral-200 hover:bg-teal-500 dark:hover:bg-teal-500" aria-label="{{ __('pagination.next') }}">
-                                    <i class="bi bi-chevron-right"></i>
+                                <button wire:click="nextPage('{{ $paginator->getPageName() }}')" dusk="nextPage{{ $paginator->getPageName() == 'page' ? '' : '.' . $paginator->getPageName() }}.after" rel="next" class="relative inline-flex items-center p-2 -ml-px text-sm font-medium leading-5 text-teal-400 rounded-full hover:bg-teal-600/20 active:bg-teal-600/30" aria-label="{{ __('pagination.next') }}">
+                                    <i class="material-icons">chevron_right</i>
                                 </button>
                             @else
                                 <span aria-disabled="true" aria-label="{{ __('pagination.next') }}">
-                                    <span class="relative inline-flex items-center px-2 py-2 -ml-px text-sm font-medium leading-5 bg-white cursor-default text-neutral-300 dark:text-neutral-500 dark:bg-zinc-700 rounded-r-md" aria-hidden="true">
-                                        <i class="bi bi-chevron-right"></i>
+                                    <span class="relative inline-flex items-center p-2 -ml-px text-sm font-medium leading-5 rounded-full hover:bg-transparent text-neutral-400" aria-hidden="true">
+                                        <i class="material-icons">chevron_right</i>
                                     </span>
                                 </span>
                             @endif

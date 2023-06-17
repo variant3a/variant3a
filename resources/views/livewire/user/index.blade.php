@@ -1,12 +1,12 @@
 <div class="grid grid-cols-1 gap-1 md:grid-cols-4 sm:gap-3">
     <div class="col-span-4 md:col-span-1">
-        <div class="flex flex-col p-2 mb-1 bg-white rounded shadow sm:mb-3 sm:p-3 h-fit dark:bg-zinc-700 text-neutral-700 dark:text-neutral-200 ring-1 ring-black/5">
+        <div class="flex flex-col p-2 mb-1 bg-neutral-800 rounded-3xl sm:mb-3 sm:p-3 h-fit text-neutral-400">
             <div class="flex justify-center mb-3">
                 <div class="w-1/2 h-0 pt-[50%] relative">
                     @if ($user->profile_photo_path)
-                        <img src="{{ asset('storage/' . $user->profile_photo_path) }}" class="absolute inset-0 object-cover w-full h-full rounded-xl" alt="profile photo">
+                        <img src="{{ asset('storage/' . $user->profile_photo_path) }}" class="absolute inset-0 object-cover w-full h-full rounded-3xl" alt="profile photo">
                     @else
-                        <div class="absolute inset-0 flex items-center justify-center rounded-xl ring-1 ring-black/10">
+                        <div class="absolute inset-0 flex items-center justify-center rounded-xl">
                             no photos
                         </div>
                     @endif
@@ -35,20 +35,7 @@
                 </p>
             @endif
         </div>
-        @if ($user->user_id === 'variant3a')
-            <div class="flex justify-around p-2 mb-1 bg-white rounded shadow sm:mb-3 sm:p-3 h-fit dark:bg-zinc-700 text-neutral-700 dark:text-neutral-200 ring-1 ring-black/5">
-                <a href="https://github.com/variant3a" target="_blank no_refferer" class="w-4 h-auto text-center text-neutral-700 dark:text-neutral-200">
-                    <i class="bi-github"></i>
-                </a>
-                <a href="https://github.com/variant3a/variant3a" target="_blank no_refferer" class="self-center">
-                    <img src="{{ asset('images/logo_only_transparent_trim.png') }}" class="w-4 h-auto bg-transparent" alt="site logo">
-                </a>
-                <a href="https://www.tumblr.com/variant3a" target="_blank no_refferer" class="w-4 h-auto text-center text-neutral-700 dark:text-neutral-200">
-                    <i class="bi-images"></i>
-                </a>
-            </div>
-        @endif
-        <div class="flex flex-col p-2 pb-0 bg-white rounded shadow sm:p-3 sm:pb-1 h-fit dark:bg-zinc-700 text-neutral-700 dark:text-neutral-200 ring-1 ring-black/5"
+        <div class="flex flex-col p-2 pb-0 bg-neutral-800 rounded-3xl sm:p-3 sm:pb-1 h-fit text-neutral-400"
             x-data="{ expand: false }">
             @if ($user->id === auth()->id())
                 <div class="mb-2 sm:mb-3"
@@ -68,16 +55,16 @@
                         x-on:livewire-upload-error="droping = false;progress = 0"
                         x-on:livewire-upload-progress="progress = $event.detail.progress">
 
-                        <label class="block w-full p-2 font-bold text-center rounded shadow hover:shadow-lg hover:bg-teal-400/90 text-neutral-200 ring-1 ring-black/5"
+                        <label class="block w-full p-2 text-center text-teal-400 cursor-pointer hover:bg-teal-600/20 active:bg-teal-600/30 rounded-3xl hover:bg-teal-300"
                             x-show="!progress"
-                            x-bind:class="droping ? 'bg-teal-400/90' : 'bg-teal-500'">
+                            x-bind:class="droping ? 'bg-teal-400/90' : ''">
 
                             <input type="file" wire:model="files" class="hidden" accept="image/*" multiple>
-                            Upload File
+                            upload file
                         </label>
-                        <div class="relative top-0 w-full h-10 font-bold text-center align-middle bg-gray-200 rounded dark:bg-gray-700 text-neutral-200"
+                        <div class="relative top-0 w-full h-10 font-bold text-center align-middle rounded-3xl bg-neutral-700 text-neutral-200"
                             x-show="progress">
-                            <div class="h-10 transition-all ease-in-out bg-teal-600 rounded top-1 dark:bg-teal-500"
+                            <div class="h-10 transition-all ease-in-out bg-teal-600 rounded-3xl top-1"
                                 x-bind:style="{ width: `${progress}%` }">
                             </div>
                         </div>
@@ -95,13 +82,11 @@
                                     x-on:mouseleave="hover = false">
                                     <img src="{{ asset('storage/webp/' . pathinfo($photo->path, PATHINFO_DIRNAME) . '/' . pathinfo($photo->path, PATHINFO_FILENAME) . '.webp') }}" class="absolute inset-0 object-cover w-full h-full rounded">
                                     <div class="absolute top-0 flex w-full h-full text-xl text-center rounded place-items-center justify-evenly start-0"
-                                        x-bind:class="hover ? 'backdrop-blur-lg bg-zinc-200/20 dark:bg-white/10 ring-1 ring-white/40 dark:ring-white/20' : ''"
+                                        x-bind:class="hover ? 'backdrop-blur-lg bg-zinc-200/20' : ''"
                                         x-show="hover" x-cloak>
-                                        <i class="block w-8 rounded cursor-pointer bi bi-arrows-angle-expand hover:bg-teal-500/50 hover:text-neutral-200" x-on:click="detail = !detail">
-                                        </i>
+                                        <i class="block w-8 rounded cursor-pointer material-icons hover:bg-teal-500/50 hover:text-neutral-200" x-on:click="detail = !detail">fullscreen</i>
                                         @if (auth()->id() === $photo->created_by)
-                                            <i class="block w-8 text-red-500 rounded cursor-pointer bi bi-trash hover:bg-red-500/50 hover:text-neutral-200" wire:click="deletePicture({{ $photo->id }})">
-                                            </i>
+                                            <i class="block w-8 text-red-500 rounded cursor-pointer material-icons bi bi-trash hover:bg-red-500/50 hover:text-neutral-200" wire:click="deletePicture({{ $photo->id }})">delete</i>
                                         @endif
                                     </div>
                                 </div>
@@ -115,12 +100,12 @@
                     @endforeach
                 </div>
             @else
-                <div class="mb-2 sm:mb-3 text-neutral-700 dark:text-neutral-200">
-                    No Photos.
+                <div class="mb-2 sm:mb-3 text-neutral-400">
+                    no photos.
                 </div>
             @endif
             @if ($photos->count() > 9)
-                <button type="button" class="w-full p-2 mb-2 font-bold text-center bg-teal-500 rounded shadow sm:mb-4 hover:shadow-lg hover:bg-teal-400/90 text-neutral-200 ring-1 ring-black/5 md:hidden"
+                <button type="button" class="w-full p-2 mb-2 font-bold text-center bg-teal-500 rounded shadow sm:mb-4 hover:shadow-lg hover:bg-teal-400/90 text-neutral-200 md:hidden"
                     x-on:click="expand = !expand"
                     x-text="expand ? 'Collapse' : 'Expand'" x-cloak x-transition>
                 </button>
@@ -128,108 +113,110 @@
         </div>
     </div>
     <div class="col-span-4 md:col-span-3">
-        <div class="flex flex-col p-2 bg-white rounded shadow sm:p-3 h-fit dark:bg-zinc-700 text-neutral-700 dark:text-neutral-200 ring-1 ring-black/5">
-            <div class="grid grid-cols-1 gap-1 my-2 md:grid-cols-4 sm:gap-3">
+        <div class="flex flex-col p-2 bg-neutral-800 rounded-3xl sm:p-3 h-fit text-neutral-400">
+            <div class="grid grid-cols-1 gap-1 my-3 md:grid-cols-4 sm:gap-3">
                 <div class="col-span-4 md:col-span-1 text-neutral-400">
-                    Full Name
+                    full name
                 </div>
-                <div class="col-span-4 break-all md:col-span-3 text-neutral-700 dark:text-neutral-200">
+                <div class="col-span-4 break-all md:col-span-3 text-neutral-400">
                     {{ $user->name }}
                 </div>
             </div>
             <hr>
-            <div class="grid grid-cols-1 gap-1 my-2 md:grid-cols-4 sm:gap-3">
+            <div class="grid grid-cols-1 gap-1 my-3 md:grid-cols-4 sm:gap-3">
                 <div class="self-center col-span-4 md:col-span-1 text-neutral-400">
-                    Email
+                    email
                 </div>
                 @if ($hiddenEmail)
-                    <div class="col-span-4 break-all md:col-span-3 text-neutral-700 dark:text-neutral-200">
+                    <div class="col-span-4 break-all md:col-span-3 text-neutral-400">
                         {{ $hiddenEmail }}
                     </div>
                 @else
-                    <div class="col-span-4 break-all md:col-span-3 text-neutral-700 dark:text-neutral-200">
+                    <div class="col-span-4 break-all md:col-span-3 text-neutral-400">
                         <button type="button" class="inline text-teal-500 hover:underline"
                             wire:click="getHiddenEmail()">
-                            Show Email
+                            show email
                         </button>
                     </div>
                 @endif
             </div>
             <hr>
-            <div class="grid grid-cols-1 gap-1 my-2 md:grid-cols-4 sm:gap-3">
+            <div class="grid grid-cols-1 gap-1 my-3 md:grid-cols-4 sm:gap-3">
                 <div class="col-span-4 md:col-span-1 text-neutral-400">
-                    Languages
+                    languages
                 </div>
-                <div class="col-span-4 md:col-span-3 text-neutral-700 dark:text-neutral-200 break-word">
+                <div class="col-span-4 md:col-span-3 text-neutral-400 break-word">
                     {{ $user->json['programming_lang'] }}
                 </div>
             </div>
             <hr>
-            <div class="grid grid-cols-1 gap-1 my-2 md:grid-cols-4 sm:gap-3">
+            <div class="grid grid-cols-1 gap-1 my-3 md:grid-cols-4 sm:gap-3">
                 <div class="col-span-4 md:col-span-1 text-neutral-400">
-                    Frameworks
+                    frameworks
                 </div>
-                <div class="col-span-4 md:col-span-3 text-neutral-700 dark:text-neutral-200 break-word">
+                <div class="col-span-4 md:col-span-3 text-neutral-400 break-word">
                     {{ $user->json['frameworks'] }}
                 </div>
             </div>
         </div>
         <div class="flex flex-col">
             @if ($timelines->count())
-                <div class="flex flex-col grid-cols-12 mt-8 md:grid text-gray-50">
+                <div class="flex flex-col grid-cols-12 mt-8 md:grid text-neutral-50">
                     <div class="flex md:contents">
                         <div class="relative col-start-1 col-end-3 mx-2 md:mx-auto">
                             <div class="flex items-center justify-center w-8 h-full">
-                                <div class="w-1 h-full bg-white pointer-events-none dark:bg-zinc-700"></div>
+                                <div class="w-1 h-full bg-teal-700 pointer-events-none"></div>
                             </div>
-                            <div class="absolute w-8 h-8 -mt-3 text-center bg-white rounded-full shadow top-1/2 dark:bg-zinc-700">
-                                <i class="text-xl leading-normal bi bi-code-slash text-neutral-700 dark:text-neutral-200"></i>
+                            <div class="absolute w-8 h-8 -mt-3 text-center bg-teal-500 rounded-3xl top-1/2">
+                                <i class="text-xl leading-normal material-icons text-neutral-700">data_object</i>
                             </div>
                         </div>
-                        <div class="w-full col-start-3 col-end-12 p-2 py-12 my-3 md:my-4 sm:p-3 h-fit text-neutral-700 dark:text-neutral-200">
-                            Keep Coding...
+                        <div class="w-full col-start-3 col-end-12 p-2 py-12 my-3 md:my-4 sm:p-3 h-fit text-neutral-400">
+                            keep coding...
                         </div>
                     </div>
                 </div>
                 @foreach ($timelines as $timeline)
-                    <div class="flex flex-col grid-cols-12 md:grid text-gray-50" wire:key="timeline-{{ $timeline->id }}">
+                    <div class="flex flex-col grid-cols-12 md:grid text-neutral-50" wire:key="timeline-{{ $timeline->id }}">
                         <div class="flex md:contents">
                             <div class="relative col-start-1 col-end-3 mx-2 md:mx-auto">
                                 <div class="flex items-center justify-center w-8 h-full">
-                                    <div class="w-1 h-full bg-white pointer-events-none dark:bg-zinc-700"></div>
+                                    <div class="w-1 h-full bg-teal-700 pointer-events-none"></div>
                                 </div>
-                                <div class="absolute w-8 h-8 -mt-3 text-center bg-white rounded-full shadow top-1/2 dark:bg-zinc-700">
-                                    <i class="bi text-xl leading-normal text-neutral-700 dark:text-neutral-200 {{ $timeline->json['icon'] ?? 'bi-circle' }}"></i>
+                                <div class="absolute w-8 h-8 -mt-3 text-center @if (!$timeline->end_date || $timeline->end_date->gt(now())) bg-teal-500 @else bg-neutral-700 @endif rounded-3xl top-1/2">
+                                    <i class="text-xl leading-normal material-icons text-neutral-700">{{ $timeline->json['icon'] ?? '' }}</i>
                                 </div>
                             </div>
-                            <div class="w-full col-start-3 col-end-12 p-2 mt-3 bg-white rounded shadow md:mt-4 dark:bg-zinc-700 sm:p-3 h-fit ring-1 ring-black/5">
-                                <h3 class="mb-1 text-lg font-semibold break-all text-neutral-700 dark:text-neutral-200">
+                            <div class="w-full col-start-3 col-end-12 p-2 mt-3 bg-neutral-800 rounded-2xl md:mt-4 sm:p-3 h-fit">
+                                <h3 class="mb-1 text-lg font-semibold break-all text-neutral-400">
                                     {{ $timeline->title }}
                                 </h3>
-                                <div class="mb-2 break-all markdown text-neutral-700 dark:text-neutral-200">
+                                <div class="mb-2 break-all markdown text-neutral-400">
                                     {!! e(Markdown::parse($timeline->content)) !!}
                                 </div>
                                 @if ($timeline->tags->count())
                                     <div class="flex flex-wrap mb-2">
                                         @foreach ($timeline->tags as $tag)
-                                            <span class="inline mr-2 text-sm text-teal-500 break-all" wire:key="timeline-tag-{{ "$timeline->id-$tag->id" }}">
-                                                <i class="bi bi-tag"></i>
+                                            <div class="flex items-center mr-2 space-x-1 text-sm text-teal-500 break-all" wire:key="timeline-tag-{{ "$timeline->id-$tag->id" }}">
+                                                <i class="material-icons">tag</i>
                                                 {{ $tag->name }}
-                                            </span>
+                                            </div>
                                         @endforeach
                                     </div>
                                 @endif
-                                <p class="w-full leading-tight text-justify break-word text-neutral-400">
-                                    <i class="bi bi-calendar2-event"></i>
-                                    {{ $timeline->start_date->format('F, Y') }}
-                                </p>
+                                <span class="flex items-center space-x-1 text-neutral-400" title="{{ $timeline->start_date->format('Y-m-d H:i:s') }}">
+                                    <i class="material-icons">calendar_today</i>
+                                    <span>
+                                        {{ $timeline->start_date->format('F, Y') }}
+                                    </span>
+                                </span>
                             </div>
                         </div>
                     </div>
                 @endforeach
             @else
-                <div class="p-2 my-3 md:my-4 text-neutral-700 dark:text-neutral-200">
-                    No Timelines.
+                <div class="p-2 my-3 md:my-4 text-neutral-400">
+                    no timelines.
                 </div>
             @endif
         </div>

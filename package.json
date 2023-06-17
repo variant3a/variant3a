@@ -27,6 +27,7 @@
         "@tailwindcss/line-clamp": "^0.4.2",
         "@tailwindcss/typography": "^0.5.8",
         "highlight.js": "^11.7.0",
-        "livewire-turbolinks": "^0.1.4"
+        "livewire-turbolinks": "^0.1.4",
+        "tailwind-scrollbar": "^3.0.4"
     }
 }

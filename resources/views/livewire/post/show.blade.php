@@ -3,11 +3,12 @@
         <div class="relative sm:space-y-3 md:sticky md:top-24"
             x-data="{ showShareDropdown: false }">
             @auth
-                <a href="{{ route('post.edit', $post) }}" class="block w-full p-2 mb-1 font-bold text-center bg-teal-500 rounded shadow hover:shadow-lg hover:bg-teal-400/90 text-neutral-200 ring-1 ring-black/5">
-                    Edit
-                </a>
+                <x-fab href="{{ route('post.edit') }}" class="flex items-center justify-center p-4 pr-6 mb-2 font-bold text-center bg-teal-500 shadow w-fit sm:mb-3 hover:shadow-lg hover:bg-teal-400/90 text-neutral-200" :style="'filled'">
+                    <i class="material-icons">edit</i>
+                    edit
+                </x-fab>
             @endauth
-            <div class="flex p-2 mb-1 bg-white rounded shadow sm:p-3 h-fit dark:bg-zinc-700 text-neutral-700 dark:text-neutral-200 ring-1 ring-black/5">
+            <div class="flex p-2 mb-1 shadow rounded-3xl bg-neutral-800 sm:p-3 h-fit text-neutral-400">
                 <div class="flex flex-col justify-center flex-shrink-0">
                     <div class="relative w-16 h-full pt-16 aspect-square">
                         <img src="{{ asset('storage/' . $post->user->profile_photo_path) }}" class="absolute inset-0 object-cover w-full h-full rounded-xl" alt="profile photo">
@@ -32,128 +33,151 @@
             </div>
             <div class="flex justify-between space-x-3">
                 <div class="grow">
-                    <button type="button" class="flex justify-between w-full p-2 font-bold text-center bg-teal-500 rounded shadow hover:shadow-lg hover:bg-teal-400/90 text-neutral-200 ring-1 ring-black/5"
+                    <x-button.primary type="button" class="flex justify-between w-full p-2 text-center" :style="'filled'"
                         x-on:click="showShareDropdown = !showShareDropdown">
                         <span class="grow">
-                            Share
+                            share
                         </span>
-                        <i class="bi bi-chevron-down"></i>
-                    </button>
-                    <div class="absolute left-0 z-30 rounded shadow-lg sm:mt-3 backdrop-blur-lg bg-zinc-200/20 dark:bg-white/10 ring-1 ring-white/40 dark:ring-white/20 focus:outline-none" x-show="showShareDropdown" x-cloak x-transition>
-                        <div class="py-1">
-                            <button type="button" class="block w-full px-4 py-2 text-sm text-left text-neutral-700 dark:text-neutral-200 hover:text-neutral-200 hover:bg-teal-500/50"
-                                x-on:click="
+                        <i class="material-icons bi bi-chevron-down"></i>
+                    </x-button.primary>
+                    <div class="absolute left-0 z-30 py-2 translate-y-4 rounded shadow-lg bg-neutral-700 shadow-neutral-700" x-show="showShareDropdown" x-cloak>
+                        <button type="button" class="block px-4 py-2 text-neutral-300 hover:bg-teal-500/10"
+                            x-on:click="
                                 navigator.clipboard.writeText($wire.share_string);
                                 showShareDropdown = !showShareDropdown;">
-                                Copy link to clipboard
-                            </button>
-                        </div>
+                            copy link to clipboard
+                        </button>
                     </div>
                 </div>
                 @if (!$like)
-                    <button type="button" class="flex justify-center p-2 font-semibold align-middle bg-white rounded-full shadow grow dark:bg-zinc-700 dark:hover:text-teal-500 hover:shadow-lg hover:text-teal-500 text-neutral-400 ring-1 ring-black/5" wire:click="like()">
-                        <i class="px-2 bi bi-heart"></i>
+                    <button type="button" class="flex justify-center p-2 font-semibold align-middle rounded-full shadow bg-neutral-800 grow hover:shadow-lg hover:text-teal-500 text-neutral-400" wire:click="like()">
+                        <i class="px-2 material-icons">favorite_border</i>
                         {{ $reactions->count() }}
                     </button>
                 @else
-                    <div class="flex justify-center p-2 font-semibold text-teal-500 align-middle bg-white rounded-full shadow grow dark:bg-zinc-700 ring-1 ring-black/5" wire:click="like()">
-                        <i class="px-2 bi bi-heart-fill"></i>
+                    <div class="flex justify-center p-2 font-semibold text-teal-500 align-middle rounded-full shadow bg-neutral-800 grow" wire:click="like()">
+                        <i class="px-2 material-icons">favorite</i>
                         {{ $reactions->count() }}
                     </div>
                 @endif
             </div>
-            <div class="hidden row-auto p-2 mb-1 space-y-1 font-mono bg-white rounded shadow md:block sm:mb-3 dark:bg-zinc-700 ring-1 ring-black/5"
+            <div class="hidden row-auto py-3 mb-1 space-y-1 overflow-y-auto font-mono shadow h-96 rounded-2xl bg-neutral-800 md:block sm:mb-3"
                 x-data="{ position: '', links: document.querySelectorAll(`[id^='content-']`) }"
                 x-show="links.length">
                 <template x-for="link in links">
-                    <a class="flex justify-between w-full p-1 break-all rounded hover:bg-teal-500/50 text-neutral-700 dark:text-neutral-200 hover:text-white first:rounded-t last:rounded-b"
+                    <a class="block w-full p-3 break-all sm:p-2 text-neutral-400 hover:bg-teal-500/10"
                         x-bind:href="`#${link.id}`"
                         x-bind:key="link.id"
                         x-text="'#'.repeat(link.parentElement.tagName.replace('H', '')) + ' ' + link.parentElement.innerText"
                         data-turbo="false"
                         x-on:scroll.window="position = [...links].filter(v => v.getBoundingClientRect().top > 0)[0]?.id || null"
-                        x-bind:class="{ 'bg-teal-500/50 text-white': position === link.id }">
+                        x-bind:class="{ 'bg-teal-500/50 hover:bg-teal-500/60 text-white': position === link.id }">
                     </a>
                 </template>
             </div>
         </div>
     </div>
     <div class="col-span-4 md:col-span-3">
-        <div class="flex flex-col p-2 bg-white rounded shadow sm:p-3 h-fit dark:bg-zinc-700 ring-1 ring-black/5">
-            <div class="pl-2 mb-3 text-3xl font-bold break-all border-l-8 border-teal-500 text-break text-neutral-700 dark:text-neutral-200">
+        <div class="flex flex-col p-2 sm:p-4 bg-neutral-800 rounded-3xl h-fit">
+            <div class="pl-2 mb-3 text-3xl font-bold break-all border-l-8 border-teal-500 text-break text-neutral-300">
                 {{ $post->title }}
             </div>
-            <div class="flex justify-between space-x-3 text-neutral-400 text-end" href="{{ route('post.detail', $post) }}">
-                <span title="{{ $post->created_at?->format('Y-m-d H:i:s') ?? '' }}" class="self-end">
-                    <i class="bi bi-calendar2-event"></i>
-                    {{ $post->created_at?->format('F j, Y') ?? '' }}
+            <div class="flex justify-between p-2 space-x-3 text-neutral-400 text-end">
+                <span class="flex items-center space-x-1" title="{{ $post->created_at->format('Y-m-d H:i:s') }}">
+                    <i class="material-icons">calendar_today</i>
+                    <span>
+                        {{ $post->created_at->format('F j, Y') }}
+                    </span>
                 </span>
-                <span>
-                    <i class="bi bi-bar-chart-fill"></i>
-                    {{ 'Views: ' . ($post->json['view'] ?? 0) }}
+                <span class="flex items-center space-x-1">
+                    <i class="material-icons">insights</i>
+                    <span>
+                        {{ 'views: ' . ($post->json['view'] ?? 0) }}
+                    </span>
                 </span>
             </div>
-            <div>
+            <div class="flex">
                 @if ($post->tags->count())
                     @foreach ($post->tags as $tag)
-                        <div class="inline mr-2 text-sm text-teal-500 break-all" wire:key="article-tag-{{ "$post->id-$tag->id" }}">
-                            <i class="bi bi-tag"></i>
+                        <div class="flex items-center mr-2 space-x-1 text-sm text-teal-500 break-all" wire:key="article-tag-{{ "$post->id-$tag->id" }}">
+                            <i class="material-icons">tag</i>
                             {{ $tag->name }}
                         </div>
                     @endforeach
                 @endif
             </div>
-            <div class="py-4 break-all sm:px-2 markdown text-neutral-700 dark:text-neutral-200">
+            <div class="w-full mx-auto sm:w-1/2">
+                @if ($post->json['thumbnail'] ?? false)
+                    <img src="{{ $post->json['thumbnail'] }}" class="object-cover w-full h-full rounded-xl">
+                @else
+                    <img src="{{ asset('images/thumbnails/laravel_transparent.png') }}" class="object-cover w-full h-full bg-gray-700 rounded-2xl">
+                @endif
+            </div>
+            <div class="py-4 break-all sm:px-2 markdown text-neutral-700">
                 {!! e(Markdown::parse($post->content)) !!}
             </div>
-            <div class="py-2">
+            <div class="flex">
                 @if ($post->tags->count())
                     @foreach ($post->tags as $tag)
-                        <div class="inline mr-2 text-sm text-teal-500 break-all" wire:key="article-tag-{{ "$post->id-$tag->id" }}">
-                            <i class="bi bi-tag"></i>
+                        <div class="flex items-center mr-2 space-x-1 text-sm text-teal-500 break-all" wire:key="article-tag-{{ "$post->id-$tag->id" }}">
+                            <i class="material-icons">tag</i>
                             {{ $tag->name }}
                         </div>
                     @endforeach
                 @endif
             </div>
-            <div class="flex mb-0 space-x-3 text-neutral-400 text-end" href="{{ route('post.detail', $post) }}">
-                <span title="{{ $post->created_at?->format('Y-m-d H:i:s') ?? '' }}" class="self-end">
-                    <i class="bi bi-calendar2-event"></i>
-                    {{ $post->created_at?->format('F j, Y') }}
+            <div class="flex justify-between p-2 space-x-3 text-neutral-400 text-end">
+                <span class="flex items-center space-x-1" title="{{ $post->created_at->format('Y-m-d H:i:s') }}">
+                    <i class="material-icons">calendar_today</i>
+                    <span>
+                        {{ $post->created_at->format('F j, Y') }}
+                    </span>
                 </span>
-                <span>
-                    <i class="bi bi-bar-chart-fill"></i>
-                    {{ 'Views: ' . ($post->json['view'] ?? 0) }}
+                <span class="flex items-center space-x-1">
+                    <i class="material-icons">insights</i>
+                    <span>
+                        {{ 'views: ' . ($post->json['view'] ?? 0) }}
+                    </span>
                 </span>
             </div>
         </div>
     </div>
     <div class="col-span-4 mb-3 md:col-start-2 md:col-span-3">
-        <div class="block row-auto mb-1 bg-white rounded shadow sm:mb-3 dark:bg-zinc-700 ring-1 ring-black/5">
-            <div class="p-2 text-neutral-400">
-                Most viewed
+        <div class="block row-auto py-2 mb-1 bg-neutral-800 rounded-3xl sm:mb-3">
+            <div class="p-4 text-neutral-400">
+                most viewed
             </div>
             @if ($popular_posts->count())
                 @foreach ($popular_posts as $popular_post)
-                    <a href="{{ route('post.detail', $popular_post) }}" class="flex flex-col w-full p-2 break-all group text-neutral-700 dark:text-neutral-200 hover:text-neutral-200 hover:bg-teal-500 first:rounded-t last:rounded-b" wire:key="{{ "article-detail-$popular_post->id" }}">
-                        <div class="flex justify-between">
-                            <span>
-                                <span class="text-neutral-400 group-hover:text-neutral-200">{{ $loop->iteration . '. ' }}</span>
-                                {{ $popular_post->title }}
-                            </span>
-                        </div>
-                        <div class="ml-4 truncate text-neutral-400 group-hover:text-neutral-200">
-                            {{ $popular_post->json['description'] ?? '' }}
-                        </div>
-                        <div class="flex mt-1 space-x-3 text-neutral-400 group-hover:text-neutral-200 text-end">
-                            <span title="{{ $post->created_at?->format('Y-m-d H:i:s') ?? '' }}" class="text-end">
-                                <i class="bi bi-calendar2-event"></i>
-                                {{ $popular_post->created_at?->format('F j, Y') ?? '' }}
-                            </span>
-                            <span>
-                                <i class="bi bi-bar-chart-fill"></i>
-                                {{ 'Views: ' . ($popular_post->json['view'] ?? 0) }}
-                            </span>
+                    <a href="{{ route('post.detail', $popular_post) }}" class="flex flex-col w-full p-3 space-y-2 break-all group text-neutral-400 hover:bg-teal-500/10 first:rounded-t-3xl last:rounded-b-3xl" wire:key="{{ "article-detail-$popular_post->id" }}">
+                        <div class="flex items-center">
+                            <div class="flex items-center justify-center p-3">
+                                <span>{{ $loop->iteration . '. ' }}</span>
+                            </div>
+                            <div class="flex flex-col min-w-0">
+                                <div class="flex justify-between text-teal-500">
+                                    <span>
+                                        {{ $popular_post->title }}
+                                    </span>
+                                </div>
+                                <div class="truncate">
+                                    {{ $popular_post->json['description'] ?? '' }}
+                                </div>
+                                <div class="flex mt-1 space-x-3 text-end">
+                                    <span class="flex items-center space-x-1" title="{{ $post->created_at?->format('Y-m-d H:i:s') }}">
+                                        <i class="material-icons">calendar_today</i>
+                                        <span>
+                                            {{ $popular_post->created_at?->format('F j, Y') ?? '' }}
+                                        </span>
+                                    </span>
+                                    <span class="flex items-center space-x-1">
+                                        <i class="material-icons">insights</i>
+                                        <span>
+                                            {{ 'views: ' . ($popular_post->json['view'] ?? 0) }}
+                                        </span>
+                                    </span>
+                                </div>
+                            </div>
                         </div>
                     </a>
                 @endforeach

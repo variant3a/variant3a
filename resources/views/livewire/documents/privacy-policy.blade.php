@@ -1,4 +1,4 @@
-<div class="p-3 pb-1 bg-white rounded shadow md:mb-3 dark:bg-zinc-700 ring-1 ring-black/5">
+<div class="p-3 pb-1 bg-white rounded shadow md:mb-3 ring-1 ring-black/5">
     <div class="privacy-policy">
         <h1>
             プライバシーポリシー

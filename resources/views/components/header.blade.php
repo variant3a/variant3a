@@ -1,131 +1,115 @@
-<div
-    x-data="{
-        showDropdown: false,
-        showSideNav: (screen.width >= 768) ? true : false,
-        showNavTitle: false
-    }">
-    <div class="fixed z-10 m-1 sm:m-3 top-0 left-0 w-[calc(100%_-_0.5rem)] sm:w-[calc(100%_-_1.5rem)] shadow-lg rounded backdrop-blur-lg bg-zinc-200/20 dark:bg-white/10 ring-1 ring-white/40 dark:ring-white/20">
-        <div class="flex justify-between">
-            <div class="relative flex items-center justify-between z-1 md:hidden">
-                <button type="button" class="inline-block h-16 p-5 text-center no-underline rounded-l hover:text-neutral-200 hover:bg-teal-500/50"
-                    x-on:click="showSideNav = !showSideNav"
-                    :class="showSideNav ? 'bg-teal-500 text-neutral-200' : 'text-teal-500'">
-                    <i class="self-center px-1 text-xl bi bi-list"></i>
-                </button>
-            </div>
-            <div class="relative flex items-center justify-between h-16 px-4 z-1">
-                <a href="{{ url()->current() }}" id="random-emoji" class="inline-block">
-                    <img src="{{ asset('images/logo_only_transparent_trim.png') }}" class="w-8 h-auto" alt="site logo">
-                </a>
-            </div>
-            <div class="relative z-20 flex items-center justify-between h-16">
-                <div class="fixed inset-0 w-screen h-screen" x-on:click="showDropdown = !showDropdown" x-show="showDropdown" x-on: x-cloak></div>
-                <button type="button" class="inline-block h-16 p-5 rounded-r hover:text-neutral-200 hover:bg-teal-500/50"
-                    x-on:click="showDropdown = !showDropdown"
-                    :class="showDropdown ? 'bg-teal-500 text-neutral-200' : 'text-teal-500'">
-                    <i class="self-center px-1 text-xl bi bi-three-dots-vertical"></i>
-                </button>
-            </div>
-        </div>
-    </div>
-    <div class="fixed inset-0 z-20 w-screen h-screen md:hidden" x-on:click="showSideNav = !showSideNav" x-show="showSideNav" x-cloak></div>
-    <div class="fixed z-30 md:pointer-events-none top-20 sm:top-24 left-1 sm:left-3 md:inset-0 md:m-3 w-[calc(100vw_-_0.5rem)] sm:w-[calc(100vw_-_2.25rem)] max-h-[calc(100vh_-_6.25rem)] shadow-lg md:shadow-none md:backdrop-blur-0 bg-zinc-200/20 md:bg-transparent dark:bg-white/10 dark:md:bg-transparent rounded backdrop-blur-lg ring-1 ring-white/40 dark:ring-white/20 md:ring-0 overflow-auto" x-show="showSideNav" x-cloak x-transition>
-        <div class="flex flex-col flex-1 md:flex-row md:justify-center">
-            <div class="flex p-5 md:hidden">
-                <h5 class="inline-block my-0 font-semibold text-neutral-700 dark:text-neutral-200">
-                    variant3a
-                </h5>
-            </div>
-            <a href="{{ route('/') }}" class="flex h-16 p-5 text-teal-500 hover:text-neutral-200 hover:bg-teal-500/50 md:pointer-events-auto"
-                x-on:mouseover="showNavTitle = 'Home'"
-                x-on:mouseleave="showNavTitle = ''"
-                x-on:click="showSideNav = (screen.width >= 768) ? showSideNav : !showSideNav">
-                <i class="self-center px-1 text-xl bi bi-house-door-fill"></i>
-                <div class="mx-5 md:hidden">
-                    Home
-                </div>
-            </a>
-            <a href="{{ route('post.index') }}" class="flex h-16 p-5 text-teal-500 hover:text-neutral-200 hover:bg-teal-500/50 md:pointer-events-auto"
-                x-on:mouseover="showNavTitle = 'Posts'"
-                x-on:mouseleave="showNavTitle = ''"
-                x-on:click="showSideNav = (screen.width >= 768) ? showSideNav : !showSideNav">
-                <i class="self-center px-1 text-xl bi bi-newspaper"></i>
-                <div class="mx-5 md:hidden">
-                    Posts
-                </div>
-            </a>
-            <a href="{{ route('user.index') }}" class="flex h-16 p-5 text-teal-500 hover:text-neutral-200 hover:bg-teal-500/50 md:pointer-events-auto"
-                x-on:mouseover="showNavTitle = 'About me'"
-                x-on:mouseleave="showNavTitle = ''"
-                x-on:click="showSideNav = (screen.width >= 768) ? showSideNav : !showSideNav">
-                <i class="self-center px-1 text-xl bi bi-person-workspace"></i>
-                <div class="mx-5 md:hidden">
-                    About me
-                </div>
-            </a>
-        </div>
-    </div>
-    <div class="fixed left-0 right-0 z-30 hidden w-32 p-2 m-auto text-center text-teal-500 rounded shadow-lg md:block top-20 backdrop-blur-lg bg-zinc-200/20 dark:bg-white/10 ring-1 ring-white/40 dark:ring-white/20 focus:outline-none" x-show="showNavTitle" x-text="showNavTitle" x-cloak x-transition>
-    </div>
-    <div class="fixed z-30 w-56 rounded shadow-lg top-20 sm:top-24 right-1 sm:right-3 backdrop-blur-lg bg-zinc-200/20 dark:bg-white/10 ring-1 ring-white/40 dark:ring-white/20 focus:outline-none" x-show="showDropdown" x-cloak x-transition>
-        <div class="py-1">
-            <button type="button" class="block w-full px-4 py-2 text-sm text-left text-neutral-700 dark:text-neutral-200 hover:text-neutral-200 hover:bg-teal-500/50"
-                x-on:click="changeTheme">
-                Switch Theme
+<div class="container fixed z-40 flex justify-between p-4 -translate-x-1/2 left-1/2">
+    <div class="flex w-full space-x-2" x-data="{ nav: false }">
+        <div class="relative w-full space-y-2 sm:hidden">
+            <button type="button" class="flex items-center justify-center p-2 text-teal-900 transition bg-teal-400 rounded-full" x-bind:class="nav ? 'shadow-xl drop-shadow-xl' : ''" x-on:click="nav = !nav">
+                <i class="self-center px-1 text-xl material-icons">menu</i>
             </button>
+            <div class="absolute z-40 space-y-2">
+                <a href="{{ route('/') }}" class="flex items-center p-2 pr-8 text-teal-900 transition bg-teal-400 rounded-full shadow-xl drop-shadow-xl hover:bg-teal-300 disabled:bg-neutral-700 disabled:text-neutral-400" x-show="nav" x-on:click="nav = false" x-on:click.away="nav = false" x-cloak
+                    x-transition:enter="transition ease-out duration-150"
+                    x-transition:enter-start="transform -translate-x-[150%]"
+                    x-transition:enter-end="transform scale-x-100 translate-x-0"
+                    x-transition:leave="transition ease-in duration-150 delay-150"
+                    x-transition:leave-start="transform scale-x-100 translate-x-0"
+                    x-transition:leave-end="transform -translate-x-[150%]">
+                    <i class="self-center px-1 text-xl material-icons">home</i>
+                    <div class="">
+                        home
+                    </div>
+                </a>
+                <a href="{{ route('post.index') }}" class="flex items-center p-2 pr-8 text-teal-900 transition bg-teal-400 rounded-full shadow-xl drop-shadow-xl hover:bg-teal-300 disabled:bg-neutral-700 disabled:text-neutral-400" x-show="nav" x-on:click="nav = false" x-on:click.away="nav = false" x-cloak x-transition:enter="transition ease-out duration-150 delay-75"
+                    x-transition:enter-start="transform -translate-x-[150%]"
+                    x-transition:enter-end="transform scale-x-100 translate-x-0"
+                    x-transition:leave="transition ease-in duration-150 delay-75"
+                    x-transition:leave-start="transform scale-x-100 translate-x-0"
+                    x-transition:leave-end="transform -translate-x-[150%]">
+                    <i class="self-center px-1 text-xl material-icons">newspaper</i>
+                    <div class="">
+                        posts
+                    </div>
+                </a>
+                <a href="{{ route('user.index') }}" class="flex items-center p-2 pr-8 text-teal-900 transition bg-teal-400 rounded-full shadow-xl drop-shadow-xl hover:bg-teal-300 disabled:bg-neutral-700 disabled:text-neutral-400" x-show="nav" x-on:click="nav = false" x-on:click.away="nav = false" x-cloak x-transition:enter="transition ease-out duration-150 delay-150"
+
+                    x-transition:enter-start="transform -translate-x-[150%]"
+                    x-transition:enter-end="transform scale-x-100 translate-x-0"
+                    x-transition:leave="transition ease-in duration-150"
+                    x-transition:leave-start="transform scale-x-100 translate-x-0"
+                    x-transition:leave-end="transform -translate-x-[150%]">
+                    <i class="self-center px-1 text-xl material-icons">person</i>
+                    <div class="">
+                        about me
+                    </div>
+                </a>
+            </div>
+        </div>
+        <a href="{{ route('/') }}" class="items-center justify-center hidden p-2 pr-6 text-teal-900 transition bg-teal-400 rounded-full hover:bg-teal-300 disabled:bg-neutral-700 disabled:text-neutral-400 sm:flex">
+            <i class="self-center px-1 text-xl material-icons">home</i>
+            <div class="">
+                home
+            </div>
+        </a>
+        <a href="{{ route('post.index') }}" class="items-center justify-center hidden p-2 pr-6 text-teal-900 transition bg-teal-400 rounded-full sm:flex hover:bg-teal-300 disabled:bg-neutral-700 disabled:text-neutral-400">
+            <i class="self-center px-1 text-xl material-icons">newspaper</i>
+            <div class="">
+                posts
+            </div>
+        </a>
+        <a href="{{ route('user.index') }}" class="items-center justify-center hidden p-2 pr-6 text-teal-900 transition bg-teal-400 rounded-full sm:flex hover:bg-teal-300 disabled:bg-neutral-700 disabled:text-neutral-400">
+            <i class="self-center px-1 text-xl material-icons">person</i>
+            <div class="">
+                about me
+            </div>
+        </a>
+    </div>
+    <div class="relative" x-data="{ menu: false }" x-on:click.away="menu = false">
+        <x-button.primary type="button" class="flex items-center justify-center p-2" x-on:click="menu = !menu">
+            <i class="self-center px-1 text-xl material-icons">more_vert</i>
+        </x-button.primary>
+        <div class="absolute right-0 z-40 w-48 py-2 translate-y-4 rounded shadow-lg bg-neutral-700 shadow-neutral-700" x-show="menu" x-on:click="menu = false">
             @auth
-                <a class="block px-4 py-2 text-sm text-neutral-700 dark:text-neutral-200 hover:text-neutral-200 hover:bg-teal-500/50" href="{{ route('user.edit') }}"
-                    x-on:click="showDropdown = !showDropdown">
-                    Edit Profile
+                <a class="block px-4 py-2 text-neutral-300 hover:bg-teal-500/10" href="{{ route('user.edit') }}">
+                    edit profile
                 </a>
-                <a class="flex justify-between px-4 py-2 text-sm text-neutral-700 dark:text-neutral-200 hover:text-neutral-200 hover:bg-teal-500/50" href="https://hr.variant3a.com" target="_blank"
-                    x-on:click="showDropdown = !showDropdown">
+                <a class="block px-4 py-2 text-neutral-300 hover:bg-teal-500/10" href="{{ route('setting.index') }}">
+                    settings
+                </a>
+                <hr class="my-2 dropdown-divider">
+                <a class="flex justify-between px-4 py-2 text-neutral-300 hover:bg-teal-500/10" href="https://hr.variant3a.com" target="_blank">
                     hr
-                    <i class="px-2 bi bi-box-arrow-up-right"></i>
+                    <i class="px-2 material-icons">open_in_new</i>
                 </a>
-                <a class="flex justify-between px-4 py-2 text-sm text-neutral-700 dark:text-neutral-200 hover:text-neutral-200 hover:bg-teal-500/50" href="https://jenkins.variant3a.com" target="_blank"
-                    x-on:click="showDropdown = !showDropdown">
-                    Jenkins
-                    <i class="px-2 bi bi-box-arrow-up-right"></i>
+                <a class="flex justify-between px-4 py-2 text-neutral-300 hover:bg-teal-500/10" href="https://jenkins.variant3a.com" target="_blank">
+                    jenkins
+                    <i class="px-2 material-icons">open_in_new</i>
                 </a>
-                <a class="flex justify-between px-4 py-2 text-sm text-neutral-700 dark:text-neutral-200 hover:text-neutral-200 hover:bg-teal-500/50" href="https://pma.variant3a.com" target="_blank"
-                    x-on:click="showDropdown = !showDropdown">
-                    phpMyAdmin
-                    <i class="px-2 bi bi-box-arrow-up-right"></i>
+                <a class="flex justify-between px-4 py-2 text-neutral-300 hover:bg-teal-500/10" href="https://pma.variant3a.com" target="_blank">
+                    phpmyadmin
+                    <i class="px-2 material-icons">open_in_new</i>
                 </a>
-                <a class="flex justify-between px-4 py-2 text-sm text-neutral-700 dark:text-neutral-200 hover:text-neutral-200 hover:bg-teal-500/50" href="https://cockpit.variant3a.com" target="_blank"
-                    x-on:click="showDropdown = !showDropdown">
-                    Cockpit
-                    <i class="px-2 bi bi-box-arrow-up-right"></i>
+                <a class="flex justify-between px-4 py-2 text-neutral-300 hover:bg-teal-500/10" href="https://cockpit.variant3a.com" target="_blank">
+                    cockpit
+                    <i class="px-2 material-icons">open_in_new</i>
                 </a>
-                <a class="flex justify-between px-4 py-2 text-sm text-neutral-700 dark:text-neutral-200 hover:text-neutral-200 hover:bg-teal-500/50" href="{{ route('telescope') }}" target="_blank"
-                    x-on:click="showDropdown = !showDropdown">
-                    Telescope
-                    <i class="px-2 bi bi-box-arrow-up-right"></i>
+                <a class="flex justify-between px-4 py-2 text-neutral-300 hover:bg-teal-500/10" href="{{ route('telescope') }}" target="_blank">
+                    telescope
+                    <i class="px-2 material-icons">open_in_new</i>
                 </a>
-                <a class="block px-4 py-2 text-sm text-neutral-700 dark:text-neutral-200 hover:text-neutral-200 hover:bg-teal-500/50" href="{{ route('setting.index') }}"
-                    x-on:click="showDropdown = !showDropdown">
-                    Settings
-                </a>
-                <hr class="dropdown-divider">
-                <form action="{{ route('logout') }}" method="post"
-                    x-on:click="showDropdown = !showDropdown">
+                <hr class="my-2 dropdown-divider">
+                <form action="{{ route('logout') }}" method="post">
                     @csrf
-                    <button type="submit" class="w-full px-4 py-2 text-sm text-left text-red-500 hover:text-neutral-200 hover:bg-red-500/50" data-turbo="false">
-                        Logout
+                    <button type="submit" class="w-full px-4 py-2 text-left text-red-500 hover:bg-red-500/10" data-turbo="false">
+                        logout
                     </button>
                 </form>
             @endauth
             @guest
                 @env('local')
-                <a class="block px-4 py-2 text-sm text-neutral-700 dark:text-neutral-200 hover:text-neutral-200 hover:bg-teal-500/50" href="{{ route('register') }}"
-                    x-on:click="showDropdown = !showDropdown">
-                    Register
+                <a class="block px-4 py-2 text-neutral-300 hover:bg-teal-500/10" href="{{ route('register') }}">
+                    register
                 </a>
                 @endenv
-                <a class="block px-4 py-2 text-sm text-neutral-700 dark:text-neutral-200 hover:text-neutral-200 hover:bg-teal-500/50" href="{{ route('login') }}"
-                    x-on:click="showDropdown = !showDropdown">
-                    Login
+                <a class="block px-4 py-2 text-neutral-300 hover:bg-teal-500/10" href="{{ route('login') }}">
+                    login
                 </a>
             @endguest
         </div>

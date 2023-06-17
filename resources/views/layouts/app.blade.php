@@ -41,8 +41,8 @@
     <meta name="google-site-verification" content="2ZseLlPEz2jQX_FTIz1UkNzLEpovoPTGEdn0S4YgbzE" />
 </head>
 
-<body class="flex flex-col min-h-screen bg-gray-100 dark:bg-zinc-800">
-    <header id="header" data-turbo-permanent>
+<body class="flex flex-col min-h-screen bg-neutral-900 scrollbar-thin scrollbar">
+    <header id="header">
         @include('components.header')
     </header>
     <main class="flex-1">
@@ -54,29 +54,6 @@
     <footer id="footer" data-turbo-permanent>
         @include('components.footer')
     </footer>
-    <script data-turbo-eval="false" defer>
-        // Switch Theme Script
-
-        const savedTheme = localStorage.theme
-        const scheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
-        const theme = savedTheme ?? scheme
-
-        if (theme === 'dark') {
-            document.documentElement.classList.add('dark')
-        } else {
-            document.documentElement.classList.remove('dark')
-        }
-
-        window.changeTheme = () => {
-            if (localStorage.theme === 'dark') {
-                document.documentElement.classList.remove('dark')
-                localStorage.theme = 'light'
-            } else {
-                document.documentElement.classList.add('dark')
-                localStorage.theme = 'dark'
-            }
-        }
-    </script>
 </body>
 
 </html>

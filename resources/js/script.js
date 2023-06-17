@@ -4,7 +4,6 @@ import * as Turbo from "@hotwired/turbo"
 Turbo.start()
 
 document.addEventListener('turbo:load', () => hljs.highlightAll())
-Livewire.hook('element.updated', () => hljs.highlightAll())
 
 window.addEventListener('load', () => {
     if ('serviceWorker' in navigator) {
